@@ -1,0 +1,145 @@
+---
+aid: hanko
+name: Hanko
+description: >-
+  Hanko is a passkey-first, open-source authentication platform that serves as
+  a modern alternative to Auth0, Clerk, and WorkOS. It provides a REST API
+  covering passkeys (WebAuthn/FIDO2), passwords, OAuth social login, SAML SSO,
+  multi-factor authentication, and session management. Hanko is available as a
+  managed cloud service and as a self-hosted open-source deployment, targeting
+  developers who want to add passwordless authentication to their applications.
+  The platform is headquartered in Germany and emphasizes privacy-first,
+  European-hosted infrastructure with a free tier supporting up to 10,000
+  monthly active users.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Authentication
+  - Passkeys
+  - WebAuthn
+  - FIDO2
+  - Identity
+  - OAuth
+  - SAML
+  - Passwordless
+  - Open Source
+url: https://raw.githubusercontent.com/api-evangelist/hanko/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - aid: hanko:public-api
+    name: Hanko Public API
+    description: >-
+      The Hanko Public API provides the frontend-facing authentication endpoints
+      including WebAuthn/passkey registration and login, password authentication,
+      OAuth third-party login, SAML SSO flows, session validation, user
+      management, email management, and well-known configuration endpoints.
+      The base URL uses a per-tenant subdomain pattern.
+    humanURL: https://docs.hanko.io
+    baseURL: https://{tenant_id}.hanko.io
+    tags:
+      - Authentication
+      - Passkeys
+      - WebAuthn
+      - OAuth
+      - SAML
+      - Sessions
+      - Users
+    properties:
+      - type: Documentation
+        url: https://docs.hanko.io
+      - type: OpenAPI
+        url: https://docs.hanko.io/openapi-public.yaml
+
+  - aid: hanko:admin-api
+    name: Hanko Admin API
+    description: >-
+      The Hanko Admin API provides backend management capabilities including
+      user CRUD operations, session management, email management, WebAuthn
+      credential management, audit log access, webhook configuration, OTP
+      management, password management, and Prometheus metrics. This API
+      requires a secret API key and should never be called from client-side code.
+    humanURL: https://docs.hanko.io
+    baseURL: https://{tenant_id}.hanko.io
+    tags:
+      - Administration
+      - Users
+      - Sessions
+      - Audit Logs
+      - Webhooks
+    properties:
+      - type: Documentation
+        url: https://docs.hanko.io
+      - type: OpenAPI
+        url: https://docs.hanko.io/openapi-admin.yaml
+
+  - aid: hanko:passkey-api
+    name: Hanko Passkey API
+    description: >-
+      The Hanko Passkey API is a standalone FIDO2-certified passkey server
+      designed to add passkey support to any existing authentication system.
+      It covers WebAuthn credential registration and management, passkey login
+      flows, MFA operations, transaction verification, audit log retrieval,
+      and JWKS endpoints. It uses a secret API key for backend authentication.
+    humanURL: https://docs.hanko.io/passkey-api/introduction
+    baseURL: https://passkeys.hanko.io
+    tags:
+      - Passkeys
+      - WebAuthn
+      - FIDO2
+      - MFA
+      - Credentials
+    properties:
+      - type: Documentation
+        url: https://docs.hanko.io/passkey-api/introduction
+      - type: OpenAPI
+        url: https://docs.hanko.io/openapi-passkeys.yaml
+
+  - aid: hanko:flow-api
+    name: Hanko Flow API
+    description: >-
+      The Hanko Flow API powers structured authentication flows including
+      login initialization and advancement, registration flow management,
+      profile flow handling, and token exchange operations. It underpins
+      the Hanko Elements UI components and supports stateful multi-step
+      authentication journeys.
+    humanURL: https://docs.hanko.io
+    baseURL: https://{tenant_id}.hanko.io
+    tags:
+      - Authentication
+      - Flows
+      - Registration
+      - Login
+    properties:
+      - type: Documentation
+        url: https://docs.hanko.io
+      - type: OpenAPI
+        url: https://docs.hanko.io/openapi-flow.yaml
+
+common:
+  - type: Website
+    url: https://www.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: GitHubOrganization
+    url: https://github.com/teamhanko
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/teamhanko
+  - type: Blog
+    url: https://www.hanko.io/blog
+  - type: Pricing
+    url: https://www.hanko.io/pricing
+  - type: StatusPage
+    url: https://status.hanko.io
+  - type: X
+    url: https://twitter.com/hanko
+  - type: Plans
+    url: plans/hanko-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/hanko-rate-limits.yml
+  - type: FinOps
+    url: finops/hanko-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,46 @@
+---
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Hanko
+providerId: hanko
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Authentication
+  - Passkeys
+description: >-
+  Hanko applies per-operation token-bucket rate limits to sensitive
+  authentication endpoints including OTP, passcode, and password operations.
+  The default configuration allows 3 requests per 1-minute window per scope.
+  Rate limits are configurable in self-hosted deployments via the backend
+  configuration schema (v2.7.0+). Cloud-hosted deployments return HTTP 429
+  when limits are exceeded. Specific cloud-tier rate limit values are not
+  publicly documented beyond the open-source defaults.
+sources:
+  - https://github.com/teamhanko/hanko/wiki/config-properties-rate_limiter-properties-token_limits
+  - https://docs.hanko.io
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: OTP Operations
+    scope: user
+    metric: requests_per_minute
+    limit: 3
+    timeFrame: minute
+
+  - name: Passcode Authentication
+    scope: user
+    metric: requests_per_minute
+    limit: 3
+    timeFrame: minute
+
+  - name: Password Authentication
+    scope: user
+    metric: requests_per_minute
+    limit: 3
+    timeFrame: minute
