@@ -1,0 +1,98 @@
+---
+vocabulary:
+  - term: passkey
+    definition: >-
+      A FIDO2/WebAuthn credential bound to a device or cloud keychain that
+      replaces passwords for phishing-resistant, biometric-backed authentication.
+    related: [webauthn, fido2, credential]
+
+  - term: webauthn
+    definition: >-
+      Web Authentication (WebAuthn) is a W3C standard that enables strong,
+      public-key cryptography-based authentication in browsers and apps using
+      hardware authenticators or platform authenticators.
+    related: [passkey, fido2, aaguid]
+
+  - term: fido2
+    definition: >-
+      An umbrella term for the FIDO Alliance's set of specifications (CTAP2 +
+      WebAuthn) enabling passwordless and MFA authentication with hardware or
+      platform authenticators.
+    related: [webauthn, passkey]
+
+  - term: tenant_id
+    definition: >-
+      A UUID identifying a Hanko Cloud project/tenant. Used as a subdomain in
+      the base URL pattern `{tenant_id}.hanko.io`.
+    related: []
+
+  - term: aaguid
+    definition: >-
+      Authenticator Attestation Globally Unique Identifier — a UUID that
+      identifies the make and model of an authenticator device (e.g. YubiKey
+      5, iCloud Keychain).
+    related: [webauthn, passkey]
+
+  - term: credential_creation_options
+    definition: >-
+      The challenge parameters returned by the server during passkey
+      registration initialization, consumed by the browser's
+      `navigator.credentials.create()` call.
+    related: [passkey, webauthn]
+
+  - term: credential_request_options
+    definition: >-
+      The challenge parameters returned by the server during passkey login
+      initialization, consumed by the browser's `navigator.credentials.get()`
+      call.
+    related: [passkey, webauthn]
+
+  - term: passcode
+    definition: >-
+      A one-time code (OTP) sent via email used as a fallback or primary
+      authentication factor in Hanko's public API flows.
+    related: [otp, mfa]
+
+  - term: saml_sso
+    definition: >-
+      Security Assertion Markup Language Single Sign-On — a federated identity
+      standard supported by Hanko for enterprise identity provider integration.
+    related: [oauth, identity_provider]
+
+  - term: audit_log
+    definition: >-
+      An immutable record of a security-relevant event (login attempt, credential
+      created, user deleted, etc.) stored per-tenant and accessible via the Admin
+      API.
+    related: [tenant_id]
+
+  - term: webhook
+    definition: >-
+      An HTTP callback registered to receive real-time event notifications for
+      user lifecycle and authentication events (e.g. user.create, user.login).
+    related: [event]
+
+  - term: jwks
+    definition: >-
+      JSON Web Key Set — a public endpoint (`/.well-known/jwks.json`) that
+      exposes the RSA/EC public keys used to verify Hanko-issued JWTs.
+    related: [jwt, session]
+
+  - term: flow_api
+    definition: >-
+      Hanko's stateful multi-step authentication flow engine that powers the
+      Hanko Elements frontend components. Manages login, registration, and
+      profile flows as state machines.
+    related: [passkey, hanko_elements]
+
+  - term: mfa
+    definition: >-
+      Multi-Factor Authentication — Hanko supports TOTP (time-based OTP) and
+      security keys as second factors alongside passkeys or passwords.
+    related: [otp, webauthn, security_key]
+
+  - term: session_token
+    definition: >-
+      A JWT issued by Hanko after successful authentication, delivered as a
+      cookie (`hanko`) or Bearer token and used to authorize subsequent requests.
+    related: [jwt, jwks]

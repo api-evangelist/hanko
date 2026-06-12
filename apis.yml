@@ -51,6 +51,8 @@ apis:
         url: https://docs.hanko.io
       - type: OpenAPI
         url: https://docs.hanko.io/openapi-public.yaml
+      - type: OpenAPI
+        url: openapi/hanko-public-api-openapi.yml
 
   - aid: hanko:admin-api
     name: Hanko Admin API
@@ -73,6 +75,8 @@ apis:
         url: https://docs.hanko.io
       - type: OpenAPI
         url: https://docs.hanko.io/openapi-admin.yaml
+      - type: OpenAPI
+        url: openapi/hanko-admin-api-openapi.yml
 
   - aid: hanko:passkey-api
     name: Hanko Passkey API
@@ -95,6 +99,8 @@ apis:
         url: https://docs.hanko.io/passkey-api/introduction
       - type: OpenAPI
         url: https://docs.hanko.io/openapi-passkeys.yaml
+      - type: OpenAPI
+        url: openapi/hanko-passkey-api-openapi.yml
 
   - aid: hanko:flow-api
     name: Hanko Flow API
@@ -116,6 +122,8 @@ apis:
         url: https://docs.hanko.io
       - type: OpenAPI
         url: https://docs.hanko.io/openapi-flow.yaml
+      - type: OpenAPI
+        url: openapi/hanko-flow-api-openapi.yml
 
 common:
   - type: Website
@@ -140,6 +148,10 @@ common:
     url: rate-limits/hanko-rate-limits.yml
   - type: FinOps
     url: finops/hanko-finops.yml
+  - type: Vocabulary
+    url: vocabulary/hanko-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/hanko-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

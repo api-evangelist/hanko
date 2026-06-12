@@ -1,0 +1,28 @@
+{
+  "description": "Response from POST /webauthn/login/initialize — returns a WebAuthn credential request challenge",
+  "request": {
+    "method": "POST",
+    "path": "/webauthn/login/initialize",
+    "body": {
+      "user_id": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "publicKey": {
+        "challenge": "dGhpcyBpcyBhIGNoYWxsZW5nZQ==",
+        "timeout": 60000,
+        "rpId": "example.com",
+        "userVerification": "required",
+        "allowCredentials": [
+          {
+            "type": "public-key",
+            "id": "5333cc5bc7c448cf82489c184ac72b65",
+            "transports": ["internal"]
+          }
+        ]
+      }
+    }
+  }
+}

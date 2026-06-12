@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "hanko": "https://www.hanko.io/vocab#",
+    "fido": "https://www.w3.org/2019/WebAuthn/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "User": "schema:Person",
+    "user_id": { "@id": "schema:identifier" },
+    "username": { "@id": "schema:name" },
+    "emails": { "@id": "schema:email", "@container": "@set" },
+    "created_at": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "updated_at": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+
+    "Email": "schema:ContactPoint",
+    "address": { "@id": "schema:email" },
+    "is_primary": { "@id": "hanko:isPrimary", "@type": "xsd:boolean" },
+    "is_verified": { "@id": "hanko:isVerified", "@type": "xsd:boolean" },
+
+    "WebAuthnCredential": "fido:PublicKeyCredentialDescriptor",
+    "public_key": { "@id": "fido:publicKey" },
+    "aaguid": { "@id": "fido:aaguid" },
+    "attestation_type": { "@id": "fido:attestationType" },
+    "backup_eligible": { "@id": "hanko:backupEligible", "@type": "xsd:boolean" },
+    "backup_state": { "@id": "hanko:backupState", "@type": "xsd:boolean" },
+    "mfa_only": { "@id": "hanko:mfaOnly", "@type": "xsd:boolean" },
+    "last_used_at": { "@id": "hanko:lastUsedAt", "@type": "xsd:dateTime" },
+    "transports": { "@id": "fido:transports", "@container": "@set" },
+
+    "Session": "schema:Action",
+    "session_token": { "@id": "hanko:sessionToken" },
+    "expires_at": { "@id": "hanko:expiresAt", "@type": "xsd:dateTime" },
+    "ip_address": { "@id": "schema:location" },
+    "user_agent": { "@id": "schema:softwareVersion" },
+
+    "AuditLog": "schema:Event",
+    "type": { "@id": "schema:eventType" },
+    "actor_user_id": { "@id": "schema:agent" },
+    "actor_email": { "@id": "hanko:actorEmail" },
+    "meta_source_ip": { "@id": "hanko:sourceIp" },
+
+    "Webhook": "schema:Action",
+    "callback": { "@id": "schema:url", "@type": "@id" },
+    "events": { "@id": "hanko:webhookEvents", "@container": "@set" },
+    "enabled": { "@id": "hanko:enabled", "@type": "xsd:boolean" },
+
+    "tenant_id": { "@id": "hanko:tenantId" },
+    "passkeys": { "@id": "hanko:passkeys", "@container": "@set" },
+    "security_keys": { "@id": "hanko:securityKeys", "@container": "@set" }
+  }
+}

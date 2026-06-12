@@ -1,0 +1,40 @@
+{
+  "description": "Exchange for POST /webauthn/registration/initialize — starts passkey registration for an authenticated user",
+  "request": {
+    "method": "POST",
+    "path": "/webauthn/registration/initialize",
+    "headers": {
+      "Authorization": "Bearer <jwt>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "publicKey": {
+        "rp": {
+          "name": "My App",
+          "id": "myapp.example.com"
+        },
+        "user": {
+          "id": "base64EncodedUserId==",
+          "name": "john@example.com",
+          "displayName": "John Doe"
+        },
+        "challenge": "cmFuZG9tQ2hhbGxlbmdlVmFsdWU=",
+        "pubKeyCredParams": [
+          { "type": "public-key", "alg": -7 },
+          { "type": "public-key", "alg": -257 }
+        ],
+        "timeout": 60000,
+        "excludeCredentials": [],
+        "authenticatorSelection": {
+          "authenticatorAttachment": "platform",
+          "requireResidentKey": true,
+          "residentKey": "required",
+          "userVerification": "required"
+        },
+        "attestation": "none"
+      }
+    }
+  }
+}

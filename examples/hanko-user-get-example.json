@@ -1,0 +1,41 @@
+{
+  "description": "Response from GET /users/{id} — returns a full user record with credentials and emails",
+  "request": {
+    "method": "GET",
+    "path": "/users/c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "user_id": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c",
+      "username": "john_doe_123",
+      "emails": [
+        {
+          "id": "802df042-1ac2-496d-af81-6ace729ed055",
+          "address": "john@example.com",
+          "is_verified": true,
+          "is_primary": true,
+          "created_at": "2024-01-15T10:00:00Z",
+          "updated_at": "2024-01-15T10:00:00Z"
+        }
+      ],
+      "passkeys": [
+        {
+          "id": "5333cc5b-c7c4-48cf-8248-9c184ac72b65",
+          "name": "iCloud Keychain",
+          "public_key": "pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...",
+          "attestation_type": "packed",
+          "aaguid": "fbfc3007-154e-4ecc-8c0b-6e020557d7bd",
+          "transports": ["internal"],
+          "backup_eligible": true,
+          "backup_state": true,
+          "mfa_only": false,
+          "created_at": "2024-01-15T10:05:00Z",
+          "last_used_at": "2024-06-10T14:22:00Z"
+        }
+      ],
+      "created_at": "2024-01-15T10:00:00Z",
+      "updated_at": "2024-06-10T14:22:00Z"
+    }
+  }
+}

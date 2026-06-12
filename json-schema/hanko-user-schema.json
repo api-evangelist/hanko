@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/hanko/main/json-schema/hanko-user-schema.json",
+  "title": "Hanko User",
+  "description": "A Hanko user record returned by the Public and Admin APIs.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The ID of the user (deprecated, use user_id).",
+      "type": "string",
+      "format": "uuid",
+      "deprecated": true
+    },
+    "user_id": {
+      "description": "The ID of the user.",
+      "type": "string",
+      "format": "uuid",
+      "example": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
+    },
+    "emails": {
+      "type": "array",
+      "description": "List of email addresses associated with the user.",
+      "items": {
+        "$ref": "#/$defs/Email"
+      }
+    },
+    "username": {
+      "type": "string",
+      "description": "The username of the user.",
+      "example": "john_doe_123"
+    },
+    "passkeys": {
+      "type": "array",
+      "description": "List of registered passkey (WebAuthn) credentials.",
+      "items": {
+        "$ref": "#/$defs/WebAuthnCredential"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user was created."
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user was last updated."
+    }
+  },
+  "required": ["user_id", "created_at", "updated_at"],
+  "$defs": {
+    "Email": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "address": { "type": "string", "format": "email" },
+        "is_verified": { "type": "boolean" },
+        "is_primary": { "type": "boolean" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "address", "is_verified", "is_primary"]
+    },
+    "WebAuthnCredential": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "name": { "type": "string" },
+        "public_key": { "type": "string" },
+        "attestation_type": { "type": "string" },
+        "aaguid": { "type": "string" },
+        "transports": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "backup_eligible": { "type": "boolean" },
+        "backup_state": { "type": "boolean" },
+        "mfa_only": { "type": "boolean" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "last_used_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "attestation_type", "aaguid", "backup_eligible", "backup_state", "mfa_only"]
+    }
+  }
+}

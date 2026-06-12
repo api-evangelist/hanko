@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/hanko/main/json-schema/hanko-session-schema.json",
+  "title": "Hanko Session",
+  "description": "A Hanko session cookie/token issued after successful authentication.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The session ID.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "user_id": {
+      "description": "The ID of the authenticated user.",
+      "type": "string",
+      "format": "uuid"
+    },
+    "user_agent": {
+      "description": "The User-Agent header from the session creation request.",
+      "type": "string"
+    },
+    "ip_address": {
+      "description": "IP address from which the session was created.",
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_used": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "user_id", "created_at", "updated_at", "last_used"]
+}
