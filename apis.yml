@@ -126,6 +126,10 @@ apis:
         url: openapi/hanko-flow-api-openapi.yml
 
 common:
+  - type: DomainSecurity
+    url: security/hanko-domain-security.yml
+  - type: Authentication
+    url: authentication/hanko-authentication.yml
   - type: Website
     url: https://www.hanko.io
   - type: Documentation
