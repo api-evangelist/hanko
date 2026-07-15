@@ -126,6 +126,8 @@ apis:
         url: openapi/hanko-flow-api-openapi.yml
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/hanko-agentic-access.yml
   - type: DomainSecurity
     url: security/hanko-domain-security.yml
   - type: Authentication
