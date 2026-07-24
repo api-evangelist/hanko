@@ -1,0 +1,199 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs .well-known API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: .well-known
+paths:
+  /.well-known/jwks.json:
+    get:
+      summary: Get JSON Web Key Set
+      description: 'Retrieve a [JSON Web Key Set](https://www.rfc-editor.org/rfc/rfc7517#section-5) (JWKS) object containing the public `keys` used to verify
+
+        JSON Web Tokens (JWT) issued by the Hanko API and signed using the RS256 signing algorithm.
+
+        '
+      operationId: getJwks
+      tags:
+      - .well-known
+      responses:
+        '200':
+          description: JSON Web Key Set
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONWebKeySet'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /.well-known/config:
+    get:
+      deprecated: true
+      summary: Get public Hanko configuration
+      description: 'Retrieve public backend configuration options.
+
+
+        Useful for example for conditionally constructing a UI based on the options (e.g. don''t show password
+
+        inputs when they are disabled).
+
+        '
+      operationId: getConfig
+      tags:
+      - .well-known
+      responses:
+        '200':
+          description: Hanko configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HankoConfiguration'
+components:
+  schemas:
+    JSONWebKeySet:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONWebKey'
+          externalDocs:
+            description: RFC7517 - JSON Web Key (JWK) - Section 5.1
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-5.1
+      externalDocs:
+        description: RFC7517 - JSON Web Key (JWK) - Section 5
+        url: https://www.rfc-editor.org/rfc/rfc7517#section-5
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    HankoConfiguration:
+      description: Public backend configuration options
+      type: object
+      externalDocs:
+        description: Hanko Configuration
+        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md
+      properties:
+        emails:
+          description: Controls the behavior regarding email addresses.
+          type: object
+          properties:
+            require_verification:
+              description: Require email verification after account registration and prevent signing in with unverified email addresses. Also, email addresses can only be marked as primary when they have been verified before.
+              type: boolean
+        password:
+          description: Configuration options concerning passwords
+          type: object
+          properties:
+            enabled:
+              description: Indicates whether passwords are enabled or not
+              type: boolean
+            min_password_length:
+              description: Describes the minimum password length
+              type: number
+              example: 8
+        account:
+          description: Controls the behavior regarding user account.
+          type: object
+          properties:
+            allow_deletion:
+              description: Indicates the user account can be deleted by the current user.
+              type: boolean
+            allow_signup:
+              description: Indicates users are able to create new accounts.
+              type: boolean
+    JSONWebKey:
+      type: object
+      externalDocs:
+        description: RFC7517 - JSON Web Key (JWK)
+        url: https://datatracker.ietf.org/doc/html/rfc7517
+      properties:
+        alg:
+          type: string
+          example: RS256
+          externalDocs:
+            description: RFC7517 - JSON Web Key (JWK) - Section 4.4
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.4
+        e:
+          type: string
+          format: base64url
+          example: AQAB
+          externalDocs:
+            description: RFC7518 - JSON Web Algorithms (JWA) - Section 6.3.1.2
+            url: https://www.rfc-editor.org/rfc/rfc7518#section-6.3.1.2
+        kid:
+          type: string
+          example: d6ff37d7-e3d1-4432-ab80-b64faf55ae36
+          externalDocs:
+            description: RFC7517 - JSON Web Key (JWK) - Section 4.5
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.5
+        kty:
+          type: string
+          example: RSA
+          externalDocs:
+            description: RFC7517 - JSON Web Key (JWK) - Section 4.1
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.1
+        n:
+          type: string
+          format: base64url
+          example: vPFRUCRoxN3RygdJHR3S5BV-DDLw6n-7oUXtX0nr7Twl...
+          externalDocs:
+            description: RFC7518 - JSON Web Algorithms (JWA) - Section 6.3.1.1
+            url: https://www.rfc-editor.org/rfc/rfc7518#section-6.3.1.1
+        use:
+          type: string
+          example: sig
+          externalDocs:
+            description: RFC7517 - JSON Web Key (JWK) - Section 4.2
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-4.2
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

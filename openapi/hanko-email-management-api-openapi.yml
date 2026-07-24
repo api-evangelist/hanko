@@ -1,0 +1,253 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs Email Management API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: Email Management
+paths:
+  /emails:
+    get:
+      summary: Get a list of emails of the current user.
+      operationId: listEmails
+      tags:
+      - Email Management
+      deprecated: true
+      security:
+      - CookieAuth: []
+      - BearerTokenAuth: []
+      responses:
+        '200':
+          description: A list of emails assigned to the current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Emails'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      deprecated: true
+      summary: Add a new email address to the current user.
+      operationId: createEmail
+      tags:
+      - Email Management
+      security:
+      - CookieAuth: []
+      - BearerTokenAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                  format: email
+              required:
+              - address
+      responses:
+        '201':
+          description: Email successfully added
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /emails/{id}/set_primary:
+    post:
+      deprecated: true
+      summary: Marks the email address as primary email
+      operationId: setPrimaryEmail
+      tags:
+      - Email Management
+      security:
+      - CookieAuth: []
+      - BearerTokenAuth: []
+      parameters:
+      - name: id
+        in: path
+        description: ID of the email address
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID4'
+      responses:
+        '201':
+          description: Email has been set as primary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /emails/{id}:
+    delete:
+      deprecated: true
+      summary: Delete an email address
+      operationId: deleteEmail
+      tags:
+      - Email Management
+      security:
+      - CookieAuth: []
+      - BearerTokenAuth: []
+      parameters:
+      - name: id
+        in: path
+        description: ID of the email address
+        required: true
+        schema:
+          $ref: '#/components/schemas/UUID4'
+      responses:
+        '201':
+          description: Email has been deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Identities:
+      description: The user's third party connections/identities.
+      type: array
+      items:
+        $ref: '#/components/schemas/Identity'
+    Emails:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            description: The ID of the email address
+            allOf:
+            - $ref: '#/components/schemas/UUID4'
+          address:
+            description: The email address
+            type: string
+            format: email
+          is_verified:
+            description: Indicated the email has been verified.
+            type: boolean
+          is_primary:
+            description: Indicates it's the primary email address.
+            type: boolean
+          identity:
+            allOf:
+            - $ref: '#/components/schemas/Identity'
+            - deprecated: true
+            - description: Deprecated, use `user.identities` instead.
+          identities:
+            allOf:
+            - $ref: '#/components/schemas/Identities'
+            - deprecated: true
+            - description: Deprecated, use `user.identities` instead.
+      example:
+      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
+        address: john.doe@example.com
+        is_verified: true
+        is_primary: false
+    Identity:
+      type: object
+      description: Representation of a user's third party connection/identity.
+      properties:
+        id:
+          type: string
+          description: The ID of the user at the provider
+        identity_id:
+          type: string
+          description: The identity's ID
+          format: uuid4
+        provider:
+          type: string
+          description: 'Contains the display name of the provider, if available. Otherwise contains the provider ID.
+
+            '
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Unauthorized
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

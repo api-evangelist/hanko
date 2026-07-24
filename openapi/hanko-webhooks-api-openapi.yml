@@ -1,0 +1,302 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs Webhooks API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: Webhooks
+paths:
+  /webhooks:
+    get:
+      summary: Get a list of webhooks
+      description: 'Returns a list of all configured webhooks. '
+      security:
+      - BearerApiKeyAuth: []
+      operationId: list-webhooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  database:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DatabaseWebhook'
+                  config:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Webhooks
+    post:
+      summary: Create a new database webhook
+      description: ''
+      security:
+      - BearerApiKeyAuth: []
+      operationId: create-db-webhooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseWebhook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Webhooks
+  /webhooks/{id}:
+    get:
+      summary: Get a webhook by ID
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-webhooks-id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseWebhook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Webhooks
+    delete:
+      summary: Delete a webhook by ID
+      security:
+      - BearerApiKeyAuth: []
+      operationId: delete-webhooks-id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          description: Internal Server Error
+      tags:
+      - Webhooks
+    put:
+      summary: Update a webhook by ID
+      security:
+      - BearerApiKeyAuth: []
+      operationId: put-webhooks-id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/Webhook'
+              - type: object
+                properties:
+                  enabled:
+                    type: boolean
+                required:
+                - enabled
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseWebhook'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Webhooks
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: UUID of the requested object
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Webhook:
+      type: object
+      title: Webhook
+      properties:
+        callback:
+          type: string
+          format: uri
+        events:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum:
+            - user
+            - user.login
+            - user.create
+            - user.delete
+            - user.update
+            - user.update.email
+            - user.update.email.create
+            - user.update.email.delete
+            - user.update.email.primary
+            - user.update.username
+            - user.update.username.create
+            - user.update.username.delete
+            - user.update.username.update
+            - email.send
+      required:
+      - callback
+      - events
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    DatabaseWebhook:
+      type: object
+      title: DatabaseWebhook
+      properties:
+        id:
+          type: string
+          format: uuid
+        callback:
+          type: string
+          format: uri
+        enabled:
+          type: boolean
+        failures:
+          type: integer
+          minimum: 0
+        expires_at:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseWebhookEvent'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the audit log
+          type: string
+          format: date-time
+          example: '2022-09-14T12:15:09.788784Z'
+    DatabaseWebhookEvent:
+      type: object
+      title: DatabaseWebhookEvent
+      properties:
+        id:
+          type: string
+          format: uuid
+        event:
+          type: string
+          enum:
+          - user
+          - user.login
+          - user.create
+          - user.delete
+          - user.update
+          - user.update.email
+          - user.update.email.create
+          - user.update.email.delete
+          - user.update.email.primary
+          - user.update.username
+          - user.update.username.create
+          - user.update.username.delete
+          - user.update.username.update
+          - email.send
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

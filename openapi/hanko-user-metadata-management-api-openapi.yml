@@ -1,0 +1,168 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs User Metadata Management API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: User Metadata Management
+paths:
+  /users/{id}/metadata:
+    get:
+      summary: Get metadata of a user
+      tags:
+      - User Metadata Management
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-user-metadata
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserMetadata'
+        '204':
+          description: No content (user has no metadata)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    patch:
+      summary: Patch metadata of a user
+      description: "Updates a users metadata by deep merging the metadata patch from\nthe request with existing metadata.\n\nSet the entire request to `null` to clear all metadata:\nSet any of `public_metadata`, `private_metadata`, `unsafe_metadata` to null to\nclear metadata for that category. \n\nAn empty object (`{}`) for the top level request object or an empty object for\n`public_metadata`, `private_metadata` or the `unsafe_metadata` property represent\na noop patch. \n\nUnknown top level keys besides `public_metadata`, `private_metadata` or `unsafe_metadata`\nare ignored.\n\nAll other top level request values (e.g. an empty string, a non-empty string, an array) result in a bad request.\n"
+      tags:
+      - User Metadata Management
+      security:
+      - BearerApiKeyAuth: []
+      operationId: patch-user-metadata
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UserMetadata'
+              - description: The user metadata patch
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserMetadata'
+        '204':
+          description: No content (user has no metadata)
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: UUID of the requested object
+      required: true
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    UserMetadata:
+      description: User metadata
+      type: object
+      properties:
+        public_metadata:
+          type: object
+          additionalProperties: {}
+          example:
+            role: admin
+        private_metadata:
+          type: object
+          additionalProperties: {}
+          example:
+            internal_id: e6c19cfb-09a2-41e5-a908-e33193b7ca0a
+        unsafe_metadata:
+          type: object
+          additionalProperties: {}
+          example:
+            birthday: '2025-05-12'
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

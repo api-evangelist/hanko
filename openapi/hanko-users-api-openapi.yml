@@ -1,0 +1,662 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs Users API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: Users
+paths:
+  /users/{id}/emails:
+    get:
+      summary: Get a list of emails for a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-id-emails
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Email'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    post:
+      summary: Create an email for a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: post-users-id-emails
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        $ref: '#/components/requestBodies/CreateEmail'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Email'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/emails/{email_id}:
+    get:
+      summary: Get an email of a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-id-emails-email_id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: email_id
+        in: path
+        description: UUID of the requested email
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Email'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    delete:
+      summary: Remove an email from a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: delete-users-emails-email_id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: email_id
+        in: path
+        description: UUID of the requested email
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/emails/{email_id}/set_primary:
+    post:
+      summary: Set email as primary
+      security:
+      - BearerApiKeyAuth: []
+      operationId: post-users-emails-email_id-set_primary
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: email_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/sessions:
+    get:
+      summary: Get users active sessions
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-sessions
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/sessions/{session_id}:
+    delete:
+      summary: Delete a session from a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: delete-users-sessions-session_id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: session_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/otp:
+    get:
+      summary: Get the OTP secret metadata of a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-otp
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OTP'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    delete:
+      summary: Delete the OTP secret from a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: delete-users-otp
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/webauthn_credentials:
+    get:
+      summary: Get a list of all WebAuthn credentials for a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-webauthn_credentials
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WebAuthnCredential'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/webauthn_credentials/{credential_id}:
+    get:
+      summary: Get a WebAuthn credential of a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-webauthn_credentials-credential_id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: credential_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebAuthnCredential'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    delete:
+      summary: Delete a WebAuthn credential from a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: delete-users-webauthn_credentials-credential_id
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      - name: credential_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+  /users/{id}/password:
+    get:
+      summary: Get password metadata of a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: get-users-password
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Password'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    post:
+      summary: Create a password for a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: post-users-password
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePassword'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Password'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    put:
+      summary: Update the password for a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: put-users-password
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePassword'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Password'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+    delete:
+      summary: Delete the password of a user
+      security:
+      - BearerApiKeyAuth: []
+      operationId: delete-users-password
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - Users
+components:
+  schemas:
+    CreatePassword:
+      type: object
+      properties:
+        password:
+          type: string
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        user_agent:
+          type: string
+        ip_address:
+          type: string
+          format: ip_address
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+        expires_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - user_id
+      - created_at
+      - updated_at
+      - last_used
+    Password:
+      description: The password credential of a user
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          description: The ID of the password credential
+          example: 28a7206b-e789-435a-b87c-108e034135c2
+        created_at:
+          description: Time of creation of the password credential
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the password credential
+          type: string
+          format: date-time
+    OTP:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - created_at
+    Email:
+      type: object
+      required:
+      - id
+      - address
+      - is_verified
+      - is_primary
+      - created_at
+      - updated_at
+      properties:
+        id:
+          description: The ID of the email
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          example: 802df042-1ac2-496d-af81-6ace729ed055
+        address:
+          description: The email address
+          type: string
+          format: email
+        is_verified:
+          description: Indicated the email has been verified.
+          type: boolean
+        is_primary:
+          description: Indicates it's the primary email address.
+          type: boolean
+        created_at:
+          description: Time of creation of the email
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the email
+          type: string
+          format: date-time
+    WebAuthnCredential:
+      type: object
+      required:
+      - id
+      - public_key
+      - attestation_type
+      - aaguid
+      - created_at
+      - backup_eligible
+      - backup_state
+      - mfa_only
+      properties:
+        id:
+          description: The ID of the credential
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          example: f9bebc04-b894-4018-bdb8-8b520a532fef
+        name:
+          description: A name that the user choose
+          type: string
+        public_key:
+          description: The public key of the credential
+          type: string
+        attestation_type:
+          description: The attestation type the credential was registered with
+          type: string
+        aaguid:
+          description: The AAGUID of the authenticator the credentials was created on
+          type: string
+        transports:
+          description: The ways the authenticator is connected
+          type: array
+          items:
+            type: string
+        created_at:
+          description: Time of creation of the credential
+          type: string
+          format: date-time
+        last_used_at:
+          description: The time when the credential was last used
+          type: string
+          format: date-time
+        backup_eligible:
+          description: Indicates if the credential can be backed up
+          type: boolean
+        backup_state:
+          description: Indicates if the credential is backed up
+          type: boolean
+        mfa_only:
+          description: Indicates if the credential can only be used as a MFA credential
+          type: boolean
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: UUID of the requested object
+      required: true
+      schema:
+        type: string
+        format: uuid
+  requestBodies:
+    CreateEmail:
+      description: Request Body for creating an email for a user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              address:
+                type: string
+                format: email
+              is_primary:
+                type: boolean
+              is_verified:
+                type: boolean
+            required:
+            - address
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

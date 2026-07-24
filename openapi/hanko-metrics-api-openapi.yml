@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs Metrics API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: Metrics
+paths:
+  /metrics:
+    get:
+      summary: Get Prometheus metrics.
+      security:
+      - BearerApiKeyAuth: []
+      operationId: getMetrics
+      tags:
+      - Metrics
+      responses:
+        '200':
+          description: 'Prometheus Metrics for details about the format see: https://prometheus.io/docs/instrumenting/exposition_formats/#text-format-details'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: go_gc_duration_seconds{quantile="0"} 2.5875e-05
+components:
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

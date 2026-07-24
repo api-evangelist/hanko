@@ -1,0 +1,530 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs mfa API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: mfa
+  description: Represents all objects which are related to MFA in common
+paths:
+  /{tenant_id}/mfa/registration/initialize:
+    post:
+      tags:
+      - mfa
+      summary: Start MFA Registration
+      description: Initialize a registration for mfa credentials
+      operationId: post-mfa-registration-initialize
+      parameters:
+      - $ref: '#/components/parameters/X-API-KEY'
+      - name: tenant_id
+        in: path
+        description: Tenant ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/post-registration-initialize'
+      responses:
+        '200':
+          $ref: '#/components/responses/post-registration-initialize'
+        '400':
+          $ref: '#/components/responses/error'
+        '401':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      security: []
+      servers:
+      - url: https://passkeys.hanko.io
+  /{tenant_id}/mfa/registration/finalize:
+    post:
+      tags:
+      - mfa
+      summary: Finish MFA Registration
+      description: Finish credential registration process
+      operationId: post-mfa-registration-finalize
+      parameters:
+      - $ref: '#/components/parameters/X-API-KEY'
+      - name: tenant_id
+        in: path
+        description: Tenant ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/post-registration-finalize'
+      responses:
+        '200':
+          $ref: '#/components/responses/token'
+        '400':
+          $ref: '#/components/responses/error'
+        '401':
+          $ref: '#/components/responses/error'
+        '404':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      security: []
+      servers:
+      - url: https://passkeys.hanko.io
+  /{tenant_id}/mfa/login/initialize:
+    post:
+      tags:
+      - mfa
+      summary: Start MFA Login
+      description: Initialize a login flow for MFA
+      operationId: post-mfa-login-initialize
+      parameters:
+      - $ref: '#/components/parameters/X-API-KEY'
+      - name: tenant_id
+        in: path
+        description: Tenant ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/post-mfa-login-initialize'
+      responses:
+        '200':
+          $ref: '#/components/responses/post-login-initialize'
+        '400':
+          $ref: '#/components/responses/error'
+        '401':
+          $ref: '#/components/responses/error'
+        '404':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      security: []
+      servers:
+      - url: https://passkeys.hanko.io
+  /{tenant_id}/mfa/login/finalize:
+    post:
+      tags:
+      - mfa
+      summary: Finish MFA Login
+      description: Finalize the login operation
+      operationId: post-mfa-login-finalize
+      parameters:
+      - $ref: '#/components/parameters/X-API-KEY'
+      - name: tenant_id
+        in: path
+        description: Tenant ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/post-login-finalize'
+      responses:
+        '200':
+          $ref: '#/components/responses/token'
+        '400':
+          $ref: '#/components/responses/error'
+        '401':
+          $ref: '#/components/responses/error'
+        '404':
+          $ref: '#/components/responses/error'
+        '500':
+          $ref: '#/components/responses/error'
+      security: []
+      servers:
+      - url: https://passkeys.hanko.io
+components:
+  responses:
+    post-registration-initialize:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              publicKey:
+                type: object
+                properties:
+                  rp:
+                    $ref: '#/components/schemas/relying-party-entity'
+                  user:
+                    $ref: '#/components/schemas/public-key-user'
+                  challenge:
+                    type: string
+                  pubKeyCredParams:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/credential-parameter-entity'
+                  timeout:
+                    type: integer
+                  excludeCredentials:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/credential-descriptor-entity'
+                  authenticatorSelection:
+                    $ref: '#/components/schemas/authentication-selection-entity'
+                  attestation:
+                    type: string
+                    enum:
+                    - direct
+                    - enterprise
+                    - indirect
+                    - none
+                  extensions:
+                    type: object
+                    properties:
+                      appid:
+                        type: string
+                      appidExclude:
+                        type: string
+                      credProps:
+                        type: boolean
+                required:
+                - rp
+                - user
+                - challenge
+                - pubKeyCredParams
+            required:
+            - publicKey
+    token:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+            minProperties: 1
+    error:
+      description: Error Response with detailed information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example:
+                - explanatory title
+              details:
+                type: string
+                example:
+                - Information which helps resolving the problem
+              status:
+                type: integer
+    post-login-initialize:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              publicKey:
+                type: object
+                properties:
+                  challenge:
+                    type: string
+                  timeout:
+                    type: integer
+                  rpId:
+                    type: string
+                  allowCredentials:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/credential-descriptor-entity'
+                  userVerification:
+                    type: string
+                    enum:
+                    - discouraged
+                    - preferred
+                    - required
+                  extensions:
+                    type: object
+                    properties:
+                      appid:
+                        type: boolean
+                      appidExclude:
+                        type: boolean
+                      credProps:
+                        type: object
+                        properties:
+                          rk:
+                            type: boolean
+                required:
+                - challenge
+              mediation:
+                type: string
+                enum:
+                - optional
+                - required
+                - silent
+  schemas:
+    credential-descriptor-entity:
+      type: object
+      title: credential-descriptor-entity
+      properties:
+        type:
+          enum:
+          - public-key
+        id:
+          type: string
+        transports:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+            - ble
+            - hybrid
+            - internal
+            - nfc
+            - usb
+      required:
+      - type
+      - id
+    credential:
+      type: object
+      title: credential
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - public-key
+      required:
+      - id
+      - type
+    public-key-user:
+      type: object
+      title: public-key-user
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - displayName
+      - name
+    credential-parameter-entity:
+      type: object
+      title: credential-parameter-entity
+      properties:
+        type:
+          enum:
+          - public-key
+        alg:
+          type: integer
+          format: int32
+      required:
+      - type
+      - alg
+    relying-party-entity:
+      title: relying-party-entity
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+      - $ref: '#/components/schemas/credential-entity'
+    authenticator-attestation-response:
+      title: authenticator-attestation-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          attestationObject:
+            type: string
+          transports:
+            type: array
+            uniqueItems: true
+            items:
+              type: string
+        required:
+        - attestationObject
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
+    credential-entity:
+      type: object
+      title: credential-entity
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    authenticator-response:
+      type: object
+      title: authenticator-response
+      properties:
+        clientDataJSON:
+          type: string
+      required:
+      - clientDataJSON
+    public-key-credential:
+      title: public-key-credential
+      allOf:
+      - $ref: '#/components/schemas/credential'
+      - type: object
+        properties:
+          rawId:
+            type: string
+          authenticatorAttachment:
+            type: string
+            enum:
+            - cross-platform
+            - platform
+            - null
+        required:
+        - rawId
+    authentication-selection-entity:
+      type: object
+      title: authentication-selection-entity
+      properties:
+        authenticatorAttachement:
+          type: string
+          enum:
+          - cross-platform
+          - platform
+        requireResidentKey:
+          type: boolean
+          default: false
+        residentKey:
+          type: string
+          enum:
+          - discouraged
+          - preferred
+          - required
+        userVerification:
+          type: string
+          enum:
+          - discouraged
+          - preferred
+          - required
+  requestBodies:
+    post-login-finalize:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/public-key-credential'
+            - type: object
+              properties:
+                response:
+                  $ref: '#/components/schemas/autenticator-assertion-response'
+                clientExtensionResults:
+                  type: object
+                  properties:
+                    appid:
+                      type: boolean
+                    appidExclude:
+                      type: boolean
+                    credProps:
+                      type: object
+                      properties:
+                        rk:
+                          type: boolean
+              required:
+              - response
+              - clientExtensionResults
+    post-registration-finalize:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/public-key-credential'
+            - type: object
+              properties:
+                response:
+                  $ref: '#/components/schemas/authenticator-attestation-response'
+                transports:
+                  type: array
+                  uniqueItems: true
+                  items:
+                    type: string
+              required:
+              - response
+    post-mfa-login-initialize:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+            required:
+            - user_id
+    post-registration-initialize:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              username:
+                type: string
+                maxLength: 128
+              icon:
+                type: string
+              display_name:
+                type: string
+                maxLength: 128
+            required:
+            - user_id
+            - username
+  parameters:
+    X-API-KEY:
+      name: apiKey
+      in: header
+      description: Secret API key
+      required: true
+      schema:
+        type: string
+        minLength: 32
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko

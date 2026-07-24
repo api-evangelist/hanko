@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  version: 1.2.0
+  title: Hanko Admin Audit Logs Session Management API
+  description: '## Introduction
+
+
+    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+
+
+    ## Authentication
+
+
+    The Admin API must be protected by an access management system.
+
+
+    ---
+
+    '
+  contact:
+    email: developers@hanko.io
+  license:
+    name: AGPL-3.0-or-later
+    url: https://www.gnu.org/licenses/agpl-3.0.txt
+servers:
+- url: https://{tenant_id}.hanko.io/admin
+  variables:
+    tenant_id:
+      default: ''
+      description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+tags:
+- name: Session Management
+paths:
+  /sessions/validate:
+    get:
+      tags:
+      - Session Management
+      summary: Validate a session
+      description: 'Validate a session using a cookie header or an authorization header.
+
+        This is a passive check that does not update the session''s internal last activity timestamp.
+
+        '
+      security:
+      - CookieAuth: []
+      - BearerTokenAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/ValidateSessionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Session Management
+      summary: Validate a session
+      description: 'Validate a session using a session token in a request body.
+
+        This endpoint updates the session''s internal last activity timestamp. This extends the idle timeout window
+
+        if configured).
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                session_token:
+                  description: The session token (JWT) to validate
+                  type: string
+                  format: JWT
+              required:
+              - session_token
+      responses:
+        '200':
+          $ref: '#/components/responses/ValidateSessionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    JWTClaims:
+      type: object
+      description: The claims extracted from a JWT.
+      properties:
+        subject:
+          description: The unique identifier of the token's subject.
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+        issued_at:
+          description: The timestamp indicating when the token was issued.
+          type: string
+          format: date-time
+        expiration:
+          description: The timestamp indicating when the token will expire.
+          type: string
+          format: date-time
+        audience:
+          description: The intended audience of the token.
+          type: array
+          items:
+            type: string
+        issuer:
+          description: The entity that issued the token.
+          type: string
+        email:
+          description: Data about the email address associated with the token's subject, if available.
+          type: object
+          properties:
+            address:
+              description: The actual email address.
+              type: string
+              format: email
+            is_primary:
+              description: Indicates whether the email address is the primary address.
+              type: boolean
+            is_verified:
+              description: Indicates whether the email address is verified.
+              type: boolean
+        session_id:
+          description: The unique identifier for the session associated with this token.
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+        amr:
+          description: Authentication Method References, JSON array of strings that are identifiers for authentication methods used in the authentication.
+          type: array
+          items:
+            type: string
+            enum:
+            - pwd
+            - passkey
+            - otp
+            - ext:<provider>
+            - totp
+            - security_key
+            description: '- `pwd` => password
+
+              - `passkey` => passkey
+
+              - `otp` => email passcode
+
+              - `ext:<provider>` => thirdparty provider, where <provider> is the internal provider ID, e.g. `ext:microsoft`
+
+              - `totp` => 2FA authenticator app
+
+              - `security_key` => 2FA security key
+
+              '
+      required:
+      - subject
+      - expiration
+      - session_id
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    ValidateSessionResponse:
+      description: Session validation response
+      content:
+        application/json:
+          schema:
+            properties:
+              is_valid:
+                description: Indicates whether the session is valid or not
+                type: boolean
+              expiration_time:
+                description: Date-time indicating the expiration of the session. Deprecated, please use `claims.expiration` instead.
+                type: string
+                format: date-time
+                deprecated: true
+              user_id:
+                description: The ID of the user the session is associated with. Deprecated, please use `claims.subject` instead.
+                type: string
+                format: uuid4
+                deprecated: true
+              claims:
+                $ref: '#/components/schemas/JWTClaims'
+              idle_expires_at:
+                description: 'Timestamp (in UTC) indicating when the session will expire due to inactivity, assuming no further activity occurs before this time.
+
+                  Only present when idle timeout is configured. The value is capped to the JWT expiration time.
+
+                  '
+                type: string
+                format: date-time
+            required:
+            - isValid
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+  securitySchemes:
+    BearerApiKeyAuth:
+      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+externalDocs:
+  description: More about Hanko
+  url: https://github.com/teamhanko/hanko
