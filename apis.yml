@@ -12,7 +12,20 @@ description: >-
   European-hosted infrastructure with a free tier supporting up to 10,000
   monthly active users.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hanko.png
 tags:
   - Authentication
   - Passkeys
@@ -28,103 +41,321 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - aid: hanko:public-api
-    name: Hanko Public API
-    description: >-
-      The Hanko Public API provides the frontend-facing authentication endpoints
-      including WebAuthn/passkey registration and login, password authentication,
-      OAuth third-party login, SAML SSO flows, session validation, user
-      management, email management, and well-known configuration endpoints.
-      The base URL uses a per-tenant subdomain pattern.
-    humanURL: https://docs.hanko.io
-    baseURL: https://{tenant_id}.hanko.io
-    tags:
-      - Authentication
-      - Passkeys
-      - WebAuthn
-      - OAuth
-      - SAML
-      - Sessions
-      - Users
-    properties:
-      - type: Documentation
-        url: https://docs.hanko.io
-      - type: OpenAPI
-        url: https://docs.hanko.io/openapi-public.yaml
-      - type: OpenAPI
-        url: openapi/hanko-public-api-openapi.yml
-
-  - aid: hanko:admin-api
-    name: Hanko Admin API
-    description: >-
-      The Hanko Admin API provides backend management capabilities including
-      user CRUD operations, session management, email management, WebAuthn
-      credential management, audit log access, webhook configuration, OTP
-      management, password management, and Prometheus metrics. This API
-      requires a secret API key and should never be called from client-side code.
-    humanURL: https://docs.hanko.io
-    baseURL: https://{tenant_id}.hanko.io
-    tags:
-      - Administration
-      - Users
-      - Sessions
-      - Audit Logs
-      - Webhooks
-    properties:
-      - type: Documentation
-        url: https://docs.hanko.io
-      - type: OpenAPI
-        url: https://docs.hanko.io/openapi-admin.yaml
-      - type: OpenAPI
-        url: openapi/hanko-admin-api-openapi.yml
-
-  - aid: hanko:passkey-api
-    name: Hanko Passkey API
-    description: >-
-      The Hanko Passkey API is a standalone FIDO2-certified passkey server
-      designed to add passkey support to any existing authentication system.
-      It covers WebAuthn credential registration and management, passkey login
-      flows, MFA operations, transaction verification, audit log retrieval,
-      and JWKS endpoints. It uses a secret API key for backend authentication.
-    humanURL: https://docs.hanko.io/passkey-api/introduction
-    baseURL: https://passkeys.hanko.io
-    tags:
-      - Passkeys
-      - WebAuthn
-      - FIDO2
-      - MFA
-      - Credentials
-    properties:
-      - type: Documentation
-        url: https://docs.hanko.io/passkey-api/introduction
-      - type: OpenAPI
-        url: https://docs.hanko.io/openapi-passkeys.yaml
-      - type: OpenAPI
-        url: openapi/hanko-passkey-api-openapi.yml
-
-  - aid: hanko:flow-api
-    name: Hanko Flow API
-    description: >-
-      The Hanko Flow API powers structured authentication flows including
-      login initialization and advancement, registration flow management,
-      profile flow handling, and token exchange operations. It underpins
-      the Hanko Elements UI components and supports stateful multi-step
-      authentication journeys.
-    humanURL: https://docs.hanko.io
-    baseURL: https://{tenant_id}.hanko.io
-    tags:
-      - Authentication
-      - Flows
-      - Registration
-      - Login
-    properties:
-      - type: Documentation
-        url: https://docs.hanko.io
-      - type: OpenAPI
-        url: https://docs.hanko.io/openapi-flow.yaml
-      - type: OpenAPI
-        url: openapi/hanko-flow-api-openapi.yml
-
+- aid: hanko:flow-api
+  name: Hanko Flow API
+  description: >-
+    The Hanko Flow API powers structured authentication flows including login initialization and advancement,
+    registration flow management, profile flow handling, and token exchange operations. It underpins the
+    Hanko Elements UI components and supports stateful multi-step authentication journeys.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Authentication
+  - Flows
+  - Registration
+  - Login
+  properties:
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: OpenAPI
+    url: https://docs.hanko.io/openapi-flow.yaml
+  - type: OpenAPI
+    url: openapi/hanko-flow-api-openapi.yml
+- aid: hanko:hanko-audit-logs-api
+  name: Hanko Audit Logs API
+  description: The Audit Logs API from Hanko — 2 operation(s) for audit logs.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Audit Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-audit-logs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-credentials-api
+  name: Hanko Credentials API
+  description: The Credentials API from Hanko — 9 operation(s) for credentials.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-email-management-api
+  name: Hanko Email Management API
+  description: The Email Management API from Hanko — 3 operation(s) for email management.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Email Management
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-email-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-login-api
+  name: Hanko Login API
+  description: The Login API from Hanko — 2 operation(s) for login.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Login
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-login-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-metrics-api
+  name: Hanko Metrics API
+  description: The Metrics API from Hanko — 1 operation(s) for metrics.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-mfa-api
+  name: Hanko mfa API
+  description: Represents all objects which are related to MFA in common
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - mfa
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-mfa-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-passcode-api
+  name: Hanko Passcode API
+  description: The Passcode API from Hanko — 2 operation(s) for passcode.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Passcode
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-passcode-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-password-api
+  name: Hanko Password API
+  description: The Password API from Hanko — 2 operation(s) for password.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Password
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-password-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-saml-api
+  name: Hanko SAML API
+  description: The SAML API from Hanko — 3 operation(s) for saml.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - SAML
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-saml-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-session-management-api
+  name: Hanko Session Management API
+  description: The Session Management API from Hanko — 1 operation(s) for session management.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Session Management
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-session-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-sessions-api
+  name: Hanko Sessions API
+  description: The Sessions API from Hanko — 1 operation(s) for sessions.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-status-api
+  name: Hanko Status API
+  description: The Status API from Hanko — 1 operation(s) for status.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-status-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-third-party-api
+  name: Hanko Third Party API
+  description: The Third Party API from Hanko — 2 operation(s) for third party.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Third Party
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-third-party-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-token-api
+  name: Hanko Token API
+  description: The Token API from Hanko — 1 operation(s) for token.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Token
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-token-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-transaction-api
+  name: Hanko Transaction API
+  description: The Transaction API from Hanko — 2 operation(s) for transaction.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Transaction
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-transaction-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-user-management-api
+  name: Hanko User Management API
+  description: The User Management API from Hanko — 5 operation(s) for user management.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - User Management
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-user-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-user-metadata-management-api
+  name: Hanko User Metadata Management API
+  description: >-
+    The User Metadata Management API from Hanko — 1 operation(s) for user metadata management.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - User Metadata Management
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-user-metadata-management-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-users-api
+  name: Hanko Users API
+  description: The Users API from Hanko — 9 operation(s) for users.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-webauthn-api
+  name: Hanko webauthn API
+  description: Represents all objects which are related to WebAuthn in common
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - webauthn
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-webauthn-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-webhooks-api
+  name: Hanko Webhooks API
+  description: The Webhooks API from Hanko — 2 operation(s) for webhooks.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
+- aid: hanko:hanko-well-known-api
+  name: Hanko .well-known API
+  description: The .well-known API from Hanko — 2 operation(s) for .well-known.
+  humanURL: https://docs.hanko.io
+  baseURL: https://{tenant_id}.hanko.io
+  tags:
+  - .well-known
+  properties:
+  - type: OpenAPI
+    url: openapi/hanko-well-known-api-openapi.yml
+  - type: Documentation
+    url: https://docs.hanko.io
+  - type: Documentation
+    url: https://docs.hanko.io/passkey-api/introduction
 common:
   - type: AgenticAccess
     url: agentic-access/hanko-agentic-access.yml
