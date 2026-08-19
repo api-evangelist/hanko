@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs Session Management API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/sessions/validate"
+          },
+          "docs": "Validate a session using a cookie header or an authorization header.\nThis is a passive check that does not update the session's internal last activity timestamp.\n"
+        },
+        {
+          "info": {
+            "name": "Validate a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/sessions/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate a session using a session token in a request body.\nThis endpoint updates the session's internal last activity timestamp. This extends the idle timeout window\nif configured).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

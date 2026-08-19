@@ -1,0 +1,256 @@
+{
+  "item": [
+    {
+      "id": "09ea7f7e-d508-4450-8740-f8674c6c60cf",
+      "name": ".well-known",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "922d2b48-6f00-4bce-98c5-236d7ecd79ab",
+          "name": "Get JSON Web Key Set",
+          "request": {
+            "name": "Get JSON Web Key Set",
+            "description": {
+              "content": "Retrieve a [JSON Web Key Set](https://www.rfc-editor.org/rfc/rfc7517#section-5) (JWKS) object containing the public `keys` used to verify\nJSON Web Tokens (JWT) issued by the Hanko API and signed using the RS256 signing algorithm.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "jwks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9760259f-db4c-4ba4-8b74-07cb53403ee1",
+              "name": "JSON Web Key Set",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "jwks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keys\": [\n    {\n      \"alg\": \"RS256\",\n      \"e\": \"AQAB\",\n      \"kid\": \"d6ff37d7-e3d1-4432-ab80-b64faf55ae36\",\n      \"kty\": \"RSA\",\n      \"n\": \"vPFRUCRoxN3RygdJHR3S5BV-DDLw6n-7oUXtX0nr7Twl...\",\n      \"use\": \"sig\"\n    },\n    {\n      \"alg\": \"RS256\",\n      \"e\": \"AQAB\",\n      \"kid\": \"d6ff37d7-e3d1-4432-ab80-b64faf55ae36\",\n      \"kty\": \"RSA\",\n      \"n\": \"vPFRUCRoxN3RygdJHR3S5BV-DDLw6n-7oUXtX0nr7Twl...\",\n      \"use\": \"sig\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cacffee7-ca34-4a08-92b9-8e642cb0ac26",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "jwks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "767001f8-9857-4e13-b0f0-c29969c88468",
+          "name": "Get public Hanko configuration",
+          "request": {
+            "name": "Get public Hanko configuration",
+            "description": {
+              "content": "Retrieve public backend configuration options.\n\nUseful for example for conditionally constructing a UI based on the options (e.g. don't show password\ninputs when they are disabled).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87ce0c54-3dad-49b1-8ddb-abb92528c00b",
+              "name": "Hanko configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"emails\": {\n    \"require_verification\": true\n  },\n  \"password\": {\n    \"enabled\": false,\n    \"min_password_length\": 8\n  },\n  \"account\": {\n    \"allow_deletion\": false,\n    \"allow_signup\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ac9ca3e-042c-4025-9609-4108bcf64008",
+    "name": "Hanko Admin Audit Logs .well-known API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

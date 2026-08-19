@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs Transaction API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/:tenant_id/transaction/initialize",
+            "headers": [
+              {
+                "name": "apiKey",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initializes a new transaction for an existing user"
+        },
+        {
+          "info": {
+            "name": "Finalize transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/:tenant_id/transaction/finalize",
+            "headers": [
+              {
+                "name": "apiKey",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the tenant"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize a transaction"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

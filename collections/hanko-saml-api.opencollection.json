@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs SAML API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SAML",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a SAML provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/saml/provider",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Fully qualified domain name for which a SAML service provider is registered"
+              }
+            ]
+          },
+          "docs": "Get a SAML service provider config for a provided domain."
+        },
+        {
+          "info": {
+            "name": "Get SAML Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/saml/metadata",
+            "params": [
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Fully qualified domain name to which a SAML service provider is registered"
+              },
+              {
+                "name": "cert_only",
+                "value": "",
+                "type": "query",
+                "description": "Toggle to download the SAML service provider public certificate"
+              }
+            ]
+          },
+          "docs": "Download SAML service provider metadata or public certificate."
+        },
+        {
+          "info": {
+            "name": "SAML identity provider callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/saml/callback",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "RelayState",
+                  "value": ""
+                },
+                {
+                  "name": "SAMLResponse",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Callback endpoint called by the identity provider after successful login."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,364 @@
+{
+  "item": [
+    {
+      "id": "27c7cb9e-9635-4990-948b-398d63a1809c",
+      "name": "Token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6d39fbb2-c728-45ab-a705-03fb5111b6fc",
+          "name": "Exchange one time token for session",
+          "request": {
+            "name": "Exchange one time token for session",
+            "description": {
+              "content": "Provide a one time token (e.g. obtained through the [thirdparty callback](#tag/Third-Party/operation/thirdPartyCallback)) to retrieve a session JWT as cookie\nand/or via `X-Auth-Token` header.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"value\": \"<base64url>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e83585c4-2e5b-44c1-8bbe-8e965533a2a5",
+              "name": "Successful token exchange",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<base64url>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Present only on successful exchange and when enabled via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n",
+                  "key": "X-Auth-Token",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Contains the seconds until the session expires.\n",
+                  "key": "X-Session-Lifetime",
+                  "value": "3365.5162485757483"
+                },
+                {
+                  "disabled": false,
+                  "description": "Present only on successful exchange. Contains the JSON Web Token (JWT) that must be provided to protected endpoints.\nCookie attributes (e.g. domain) can be set via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.cookie`.\n",
+                  "key": "Set-Cookie",
+                  "value": "hanko=<JWT>; Path=/; HttpOnly"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f70c14f-7cc2-44a5-b86c-0cf31f1a8074",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<base64url>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cff9b1a6-6cc7-4611-a6d0-1aee1d812e6a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<base64url>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d50e1b9-3833-4b89-afa7-b7253f530f81",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<base64url>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 422,\n  \"message\": \"Unprocessable Entity\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bfd3209-92f7-4edf-a17d-2cc78a2d74ed",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"value\": \"<base64url>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 429,\n  \"message\": \"Too Many Requests\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "68f1f256-9a65-41c4-93f2-13a3bd76c49d",
+    "name": "Hanko Admin Audit Logs Token API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

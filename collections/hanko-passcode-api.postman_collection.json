@@ -1,0 +1,693 @@
+{
+  "item": [
+    {
+      "id": "597b135e-86b2-4714-8ca7-c88095accf65",
+      "name": "Passcode",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1096e972-6991-412a-b71d-cbb5033ed72b",
+          "name": "Initialize passcode login",
+          "request": {
+            "name": "Initialize passcode login",
+            "description": {
+              "content": "Initialize a passcode login for the user identified by `user_id`. Sends an email\ncontaining the actual passcode to the user's primary email address or to the address specified\nthrough `email_id`. Returns a representation of the passcode.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "passcode",
+                "login",
+                "initialize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<uuid4>\",\n  \"email_id\": \"<uuid4>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa4a7c0c-df90-4461-bd25-f65f72bc1c3a",
+              "name": "Successful passcode login initialization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"email_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"ttl\": 300,\n  \"created_at\": \"2003-06-16T14:46:44.191Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bad73583-ccaa-4f40-9c4a-1183a1dc04df",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"email_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ecb4214-1f4b-46e1-acea-5595a14e608b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "initialize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"email_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c06b7b3d-6aa6-4c9e-868c-5337a1698957",
+          "name": "Finalize passcode login",
+          "request": {
+            "name": "Finalize passcode login",
+            "description": {
+              "content": "Finalize a passcode login given the `id` of the passcode and the actual `code` provided in the the email sent\nto the user during initialization.\n\nOn success, sets the User's `verified` status to `true`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "passcode",
+                "login",
+                "finalize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid4>\",\n  \"code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78187007-ba0a-46f9-96f9-0a20c0280600",
+              "name": "Successful passcode login finalization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Present only when enabled via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n",
+                  "key": "X-Auth-Token",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Contains the seconds until the session expires.\n",
+                  "key": "X-Session-Lifetime",
+                  "value": "5141.845719357725"
+                },
+                {
+                  "disabled": false,
+                  "description": "Contains the JSON Web Token (JWT) that must be provided to protected endpoints.\nCookie attributes (e.g. domain) can be set via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.cookie`.\n",
+                  "key": "Set-Cookie",
+                  "value": "hanko=<JWT>; Path=/; HttpOnly"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"ttl\": 300,\n  \"created_at\": \"2003-06-16T14:46:44.191Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4a22727-2ba3-4c3a-8008-8905e2f93926",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b367207-a843-4329-8daf-734b60a38aa1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9cba0d7-571b-4ad2-aeee-c7ab750bbb51",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 403,\n  \"message\": \"Forbidden\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1132186a-92b0-41d0-9703-6af51785ecc5",
+              "name": "Request Timeout",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Timeout",
+              "code": 408,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 408,\n  \"message\": \"Request Timeout\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ee2d56f-b167-47b0-92b5-68b89cbe2acb",
+              "name": "Gone",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 410,\n  \"message\": \"Gone\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddb325a8-0cdf-4a3a-acd3-20464c8425ac",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "passcode",
+                    "login",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"code\": \"897481\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b78cb6a0-212d-4d9b-bcb0-8c8b8579b937",
+    "name": "Hanko Admin Audit Logs Passcode API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "item": [
+    {
+      "id": "6ffdd912-6b43-4abe-975b-306d290cf468",
+      "name": "Session Management",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3af6aa50-e794-457a-a6e1-5c55c7729bec",
+          "name": "Validate a session",
+          "request": {
+            "name": "Validate a session",
+            "description": {
+              "content": "Validate a session using a cookie header or an authorization header.\nThis is a passive check that does not update the session's internal last activity timestamp.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5e901bbf-8da3-4fe1-9016-de3ad753106b",
+              "name": "Session validation response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_valid\": false,\n  \"expiration_time\": \"1977-07-29T21:07:53.955Z\",\n  \"user_id\": \"string\",\n  \"claims\": {\n    \"subject\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"expiration\": \"1979-10-22T08:23:31.408Z\",\n    \"session_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"issued_at\": \"1951-09-05T13:28:56.835Z\",\n    \"audience\": [\n      \"string\",\n      \"string\"\n    ],\n    \"issuer\": \"string\",\n    \"email\": {\n      \"address\": \"wVrgqdiGG@PCFOLw.qgy\",\n      \"is_primary\": true,\n      \"is_verified\": false\n    },\n    \"amr\": [\n      \"otp\",\n      \"passkey\"\n    ]\n  },\n  \"idle_expires_at\": \"2000-07-18T06:48:46.051Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86bd12cb-b5d4-4a46-88af-7755ee3ca6c3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a0a47a9-204d-4c81-bc3e-ee3638cecd12",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8a4fd45-115a-4465-b92f-13cd63322025",
+          "name": "Validate a session",
+          "request": {
+            "name": "Validate a session",
+            "description": {
+              "content": "Validate a session using a session token in a request body.\nThis endpoint updates the session's internal last activity timestamp. This extends the idle timeout window\nif configured).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sessions",
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "30e3edc4-7518-466c-9a88-aea294be5490",
+              "name": "Session validation response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"is_valid\": true,\n  \"expiration_time\": \"2019-04-26T13:02:22.843Z\",\n  \"user_id\": \"string\",\n  \"claims\": {\n    \"subject\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"expiration\": \"1952-02-16T09:24:46.836Z\",\n    \"session_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"issued_at\": \"2024-09-26T01:29:48.756Z\",\n    \"audience\": [\n      \"string\",\n      \"string\"\n    ],\n    \"issuer\": \"string\",\n    \"email\": {\n      \"address\": \"XDi86J3sSa@GcreiaSGSHwsvHKBZgEJZFpx.uhxx\",\n      \"is_primary\": true,\n      \"is_verified\": false\n    },\n    \"amr\": [\n      \"ext:<provider>\",\n      \"pwd\"\n    ]\n  },\n  \"idle_expires_at\": \"2011-08-14T12:27:33.128Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97603bd2-1046-4028-b790-c08645d687ee",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02c2a8a6-557c-46ff-9d62-58ef9238b7db",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sessions",
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6f349e15-1d07-469c-9a9c-9142e9b3b448",
+    "name": "Hanko Admin Audit Logs Session Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

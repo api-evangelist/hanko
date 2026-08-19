@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs User Metadata Management API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Metadata Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get metadata of a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/users/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the requested object"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get metadata of a user"
+        },
+        {
+          "info": {
+            "name": "Patch metadata of a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant_id}.hanko.io/admin/users/:id/metadata",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the requested object"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Updates a users metadata by deep merging the metadata patch from\nthe request with existing metadata.\n\nSet the entire request to `null` to clear all metadata:\nSet any of `public_metadata`, `private_metadata`, `unsafe_metadata` to null to\nclear metadata for that category. \n\nAn empty object (`{}`) for the top level request object or an empty object for\n`public_metadata`, `private_metadata` or the `unsafe_metadata` property represent\na noop patch. \n\nUnknown top level keys besides `public_metadata`, "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

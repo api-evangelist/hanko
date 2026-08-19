@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/audit_logs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page which should be returned"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "The number of returned items"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Date and time from which the logs are included"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Date and time to which the logs are included"
+              },
+              {
+                "name": "actor_user_id",
+                "value": "",
+                "type": "query",
+                "description": "Only audit logs with the specified user_id are included"
+              },
+              {
+                "name": "actor_email",
+                "value": "",
+                "type": "query",
+                "description": "Only audit logs with the specified email are included"
+              },
+              {
+                "name": "meta_source_ip",
+                "value": "",
+                "type": "query",
+                "description": "Only audit logs with the specified ip address are included"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Only audit logs are included when the search string matches values in meta_source_ip or actor_user_id or actor_email"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Only audit logs with the specified type are included"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get a list of audit logs"
+        },
+        {
+          "info": {
+            "name": "List audit log entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/:tenant_id/audit_logs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page to start from"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "How many logs should be displayed per page"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "timestamp from where to start the list"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "timestamp on which to end the list"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "comma separated list of types to query for"
+              },
+              {
+                "name": "actor_user_id",
+                "value": "",
+                "type": "query",
+                "description": "id of the user who performed the action"
+              },
+              {
+                "name": "meta_source_ip",
+                "value": "",
+                "type": "query",
+                "description": "ip address from which the action was performed"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "the search string"
+              },
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the tenant"
+              }
+            ]
+          },
+          "docs": "Get a list of audit logs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

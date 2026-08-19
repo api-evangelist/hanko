@@ -1,0 +1,769 @@
+{
+  "item": [
+    {
+      "id": "a652b880-a9b0-4268-8e1d-cd586e1c7fd2",
+      "name": "Transaction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c6115ea-6b87-4800-98af-250e75d6115c",
+          "name": "Initialize a transaction",
+          "request": {
+            "name": "Initialize a transaction",
+            "description": {
+              "content": "Initializes a new transaction for an existing user",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":tenant_id",
+                "transaction",
+                "initialize"
+              ],
+              "host": [
+                "passkeys",
+                "hanko",
+                "io"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tenant_id",
+                  "description": "(Required) UUID of the tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret API key",
+                "key": "apiKey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<string>\",\n  \"transaction_id\": \"<string>\",\n  \"transaction_data\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4739f9b-5b49-4538-b6a1-90f74449b614",
+              "name": "Example response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "initialize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"publicKey\": {\n    \"challenge\": \"string\",\n    \"timeout\": 7895,\n    \"rpId\": \"string\",\n    \"allowCredentials\": [\n      {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"transports\": [\n          \"usb\",\n          \"hybrid\"\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"transports\": [\n          \"internal\",\n          \"nfc\"\n        ]\n      }\n    ],\n    \"userVerification\": \"discouraged\",\n    \"extensions\": {\n      \"appid\": false,\n      \"appidExclude\": false,\n      \"credProps\": {\n        \"rk\": true\n      }\n    }\n  },\n  \"mediation\": \"required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63f6f8fd-32b5-49c9-89fc-3ca6fe679a47",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "initialize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bbf3abe-6806-40e5-9916-4f2eda4571d2",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "initialize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1735376b-e3bb-4d4c-b375-d9a86cc9f6b1",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "initialize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b600239-13b8-4a86-9de7-1ad61514c6ad",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "initialize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8e3c105-fea4-42e5-b344-580e8bfe1c05",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "initialize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "482eeb7f-470c-436d-bd43-224c15e0b5cb",
+          "name": "Finalize transaction",
+          "request": {
+            "name": "Finalize transaction",
+            "description": {
+              "content": "Finalize a transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":tenant_id",
+                "transaction",
+                "finalize"
+              ],
+              "host": [
+                "passkeys",
+                "hanko",
+                "io"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tenant_id",
+                  "description": "(Required) UUID of the tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret API key",
+                "key": "apiKey",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"<string>\",\n  \"authenticatorAttachment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "940fc87b-fd7c-48a4-86ae-67c89be65599",
+              "name": "Example response",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "finalize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98297810-ed11-4b84-91b5-7aa8cd7c0860",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "finalize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2e68c53-1cee-4280-b566-f14e9047aa5e",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "finalize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d029f6c4-2515-46b6-b0b4-667acdaf0188",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "finalize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69aeaf22-62f1-478f-a494-f3550df238b5",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "transaction",
+                    "finalize"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret API key",
+                    "key": "apiKey",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 5745\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "05a0c57e-ac53-4b5a-9adc-639c6aebf0f5",
+    "name": "Hanko Admin Audit Logs Transaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

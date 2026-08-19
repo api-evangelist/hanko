@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs Token API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Exchange one time token for session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provide a one time token (e.g. obtained through the [thirdparty callback](#tag/Third-Party/operation/thirdPartyCallback)) to retrieve a session JWT as cookie\nand/or via `X-Auth-Token` header.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

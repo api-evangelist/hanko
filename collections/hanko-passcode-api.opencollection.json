@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs Passcode API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Passcode",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize passcode login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/passcode/login/initialize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize a passcode login for the user identified by `user_id`. Sends an email\ncontaining the actual passcode to the user's primary email address or to the address specified\nthrough `email_id`. Returns a representation of the passcode.\n"
+        },
+        {
+          "info": {
+            "name": "Finalize passcode login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/passcode/login/finalize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize a passcode login given the `id` of the passcode and the actual `code` provided in the the email sent\nto the user during initialization.\n\nOn success, sets the User's `verified` status to `true`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

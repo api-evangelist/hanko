@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs webauthn API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "webauthn",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Well-known JWKS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/:tenant_id/.well-known/jwks.json",
+            "params": [
+              {
+                "name": "tenant_id",
+                "value": "",
+                "type": "path",
+                "description": "UUID of the tenant"
+              }
+            ]
+          },
+          "docs": "Endpoint for fetching JWKS"
+        },
+        {
+          "info": {
+            "name": "Initialize WebAuthn login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/login/initialize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize a login with Webauthn. Returns a JSON representation of CredentialRequestOptions for use\nwith the Webauthn API's `navigator.credentials.get()`.\n\nOmitting the optional request body or using an empty JSON object results in generation of request options for a\nlogin using a [discoverable credential](https://www.w3.org/TR/webauthn-2/#client-side-discoverable-public-key-credential-source)\n(i.e. they will not contain\n[allowCredentials](https://www.w3.org/TR/webauthn-2/#dom-publickeycredentia"
+        },
+        {
+          "info": {
+            "name": "Finalize WebAuthn login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/login/finalize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize a login with Webauthn using the WebAuthn API response to a `navigator.credentials.get()` call.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the [webauthn-json](https://github.com/git"
+        },
+        {
+          "info": {
+            "name": "Initialize WebAuthn registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/registration/initialize"
+          },
+          "docs": "Initialize a registration with Webauthn. Returns a JSON representation of CredentialCreationOptions for use\nwith the Webauthn API's `navigator.credentials.create()`.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Ha"
+        },
+        {
+          "info": {
+            "name": "Finalize WebAuthn registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/registration/finalize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize a registration with Webauthn using the WebAuthn API response to a `navigator.credentials.create()` call.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the [webauthn-json](https://gith"
+        },
+        {
+          "info": {
+            "name": "Get a list of WebAuthn credentials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/credentials"
+          },
+          "docs": "Returns a list of WebAuthn credentials assigned to the current user.\n"
+        },
+        {
+          "info": {
+            "name": "Updates a WebAuthn credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/credentials/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the WebAuthn credential"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified WebAuthn credential. Only credentials assigned to the current user can be updated.\n"
+        },
+        {
+          "info": {
+            "name": "Deletes a WebAuthn credential",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant_id}.hanko.io/admin/webauthn/credentials/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the WebAuthn credential"
+              }
+            ]
+          },
+          "docs": "Deletes the specified WebAuthn credential.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

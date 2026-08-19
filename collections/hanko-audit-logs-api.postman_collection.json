@@ -1,0 +1,691 @@
+{
+  "item": [
+    {
+      "id": "e8f37fad-ebfb-4524-94e7-ebcc05608861",
+      "name": "Audit Logs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "727a569a-8965-416f-8631-e3262dd3497a",
+          "name": "Get a list of audit logs",
+          "request": {
+            "name": "Get a list of audit logs",
+            "description": {},
+            "url": {
+              "path": [
+                "audit_logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page which should be returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "The number of returned items"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "Date and time from which the logs are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "Date and time to which the logs are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "actor_user_id",
+                  "value": "<uuid4>",
+                  "description": "Only audit logs with the specified user_id are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "actor_email",
+                  "value": "<email>",
+                  "description": "Only audit logs with the specified email are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "meta_source_ip",
+                  "value": "<ipv4>",
+                  "description": "Only audit logs with the specified ip address are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Only audit logs are included when the search string matches values in meta_source_ip or actor_user_id or actor_email"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Only audit logs with the specified type are included"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Only audit logs with the specified type are included"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4683321c-f45d-493d-86f2-32aa1ba18718",
+              "name": "Details about audit logs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "2022-09-12 12:48:48+00:00"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "2022-09-15 12:48:48+00:00"
+                    },
+                    {
+                      "key": "actor_user_id",
+                      "value": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
+                    },
+                    {
+                      "key": "actor_email",
+                      "value": "example@example.com"
+                    },
+                    {
+                      "key": "meta_source_ip",
+                      "value": "<ipv4>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The total count of the requested resource considering query parameter",
+                  "key": "X-Total-Count",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Web Linking as described in RFC5988",
+                  "key": "Link",
+                  "value": "<http://localhost:8001/resource?page=1&per_page=10>; rel=\"first\",<http://localhost:8001/resource?page=16&per_page=10>; rel=\"last\",<http://localhost:8001/resource?page=6&per_page=10>; rel=\"next\",<http://localhost:8001/resource?page=4&per_page=10>; rel=\"prev\""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"type\": \"<string>\",\n    \"meta_http_request_id\": \"0a2xsrhlhiQv49FIpq8KV8uQVq6ky9Bw\",\n    \"meta_source_ip\": \"172.27.0.1\",\n    \"meta_user_agent\": \"string\",\n    \"created_at\": \"2022-09-14T12:15:09.788784Z\",\n    \"error\": \"string\",\n    \"actor_user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"actor_email\": \"xHXUn1ScJhZz@Pk.pynr\"\n  },\n  {\n    \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"type\": \"<string>\",\n    \"meta_http_request_id\": \"0a2xsrhlhiQv49FIpq8KV8uQVq6ky9Bw\",\n    \"meta_source_ip\": \"172.27.0.1\",\n    \"meta_user_agent\": \"string\",\n    \"created_at\": \"2022-09-14T12:15:09.788784Z\",\n    \"error\": \"string\",\n    \"actor_user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"actor_email\": \"ZrrJO@kqNWKKrwjtilvovPDmjJmTnJTVIkNLv.mv\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3e33f24-11fa-45de-aa12-a78e4e9a1efe",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "2022-09-12 12:48:48+00:00"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "2022-09-15 12:48:48+00:00"
+                    },
+                    {
+                      "key": "actor_user_id",
+                      "value": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
+                    },
+                    {
+                      "key": "actor_email",
+                      "value": "example@example.com"
+                    },
+                    {
+                      "key": "meta_source_ip",
+                      "value": "<ipv4>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "example.com"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2919feb-240b-4860-87fe-03f5d7880133",
+          "name": "List audit log entries",
+          "request": {
+            "name": "List audit log entries",
+            "description": {
+              "content": "Get a list of audit logs",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                ":tenant_id",
+                "audit_logs"
+              ],
+              "host": [
+                "passkeys",
+                "hanko",
+                "io"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page to start from"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "20",
+                  "description": "How many logs should be displayed per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<dateTime>",
+                  "description": "timestamp from where to start the list"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<dateTime>",
+                  "description": "timestamp on which to end the list"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "comma separated list of types to query for"
+                },
+                {
+                  "disabled": false,
+                  "key": "actor_user_id",
+                  "value": "<string>",
+                  "description": "id of the user who performed the action"
+                },
+                {
+                  "disabled": false,
+                  "key": "meta_source_ip",
+                  "value": "<string>",
+                  "description": "ip address from which the action was performed"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "the search string"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tenant_id",
+                  "description": "(Required) UUID of the tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55c5a10d-227c-4dfb-a69a-5f0b7c0e6ec9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "meta_source_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "links to pages",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of log entries",
+                  "key": "X-Total-Count",
+                  "value": "5023.2834465313035"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"8aaac0ac-0509-3af4-bb38-8c0c98c84163\",\n    \"type\": \"string\",\n    \"meta_http_request_id\": \"string\",\n    \"meta_source_ip\": \"string\",\n    \"meta_user_agent\": \"string\",\n    \"created_at\": \"1988-07-28T15:38:22.771Z\",\n    \"updated_at\": \"2004-01-05T00:35:57.303Z\",\n    \"tenant_id\": \"411db0db-807c-d0ab-b5a6-5991fc0aaef0\",\n    \"error\": \"string\",\n    \"actor_user_id\": \"string\"\n  },\n  {\n    \"id\": \"09dd7434-9bbe-b100-9e0f-fbba1bd3a171\",\n    \"type\": \"string\",\n    \"meta_http_request_id\": \"string\",\n    \"meta_source_ip\": \"string\",\n    \"meta_user_agent\": \"string\",\n    \"created_at\": \"1992-03-17T00:08:33.124Z\",\n    \"updated_at\": \"1989-02-21T08:42:55.559Z\",\n    \"tenant_id\": \"54478fa4-5cb9-bea1-e695-629b671db5ab\",\n    \"error\": \"string\",\n    \"actor_user_id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ad93d47-5f91-4cfe-982b-4a8f9d8539e7",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "meta_source_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1efe6d62-8c04-4d99-942b-fa5c92b535e7",
+              "name": "Error Response with detailed information",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    ":tenant_id",
+                    "audit_logs"
+                  ],
+                  "host": [
+                    "passkeys",
+                    "hanko",
+                    "io"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "20"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "actor_user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "meta_source_ip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tenant_id",
+                      "description": "(Required) UUID of the tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4367\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3a87a115-0807-48d0-b349-471cf64f640a",
+    "name": "Hanko Admin Audit Logs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

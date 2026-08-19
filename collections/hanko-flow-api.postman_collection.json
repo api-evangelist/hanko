@@ -1,0 +1,1868 @@
+{
+  "item": [
+    {
+      "id": "c8fefb03-a5f8-4368-8bb7-e26120adf862",
+      "name": "flow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ef8d78ad-b597-4f08-beaa-a23311393f12",
+          "name": "Registration",
+          "request": {
+            "name": "Registration",
+            "description": {
+              "content": "Initialize or advance a registration flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                "key": "X-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input_data\": {\n    \"webauthn_available\": false,\n    \"webauthn_conditional_mediation_available\": false,\n    \"webauthn_platform_authenticator_available\": false\n  },\n  \"csrf_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4a33a360-656a-44f7-a7b2-e4fb41b132c1",
+              "name": "RegistrationFlowResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Enable via configuration option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Auth-Token",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Contains the seconds until the session expires.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Session-Lifetime",
+                  "value": "2272.0338834286313"
+                },
+                {
+                  "disabled": false,
+                  "description": "Serves as a hint at what type of cookie (session or persistent) should be created.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Session-Retention",
+                  "value": "session"
+                },
+                {
+                  "disabled": false,
+                  "description": "Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "Set-Cookie",
+                  "value": "hanko=<JWT>; Path=/; HttpOnly"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": {\n    \"register_client_capabilities\": {\n      \"action\": \"string\",\n      \"href\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"description\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"name\": \"preflight\",\n  \"payload\": {},\n  \"status\": 200,\n  \"csrf_token\": \"HvUwWSfPgz7VnwiS8VMDpnhZ1wNwTNiV\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54c5a098-70d1-4677-891f-cd9a3be1e2d0",
+              "name": "RegistrationFlowResponseBadRequestError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": {\n    \"register_login_identifier\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"thirdparty_oauth\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"remember_me\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"name\": \"registration_init\",\n  \"payload\": {},\n  \"status\": 200,\n  \"csrf_token\": \"HvUwWSfPgz7VnwiS8VMDpnhZ1wNwTNiV\",\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"cause\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cc2f74e-d22c-425f-ada1-d8a2754e63cf",
+              "name": "FlowResponseUnauthorizedError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f4ca8e5-892f-4f23-b2f8-df043dd6138e",
+              "name": "FlowResponseForbiddenError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f40da458-7af9-4968-9bc5-a9e8c1beae67",
+              "name": "FlowResponseGoneError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0a75999-7d66-4981-996f-8933adf69c51",
+              "name": "FlowResponseTooManyRequestsError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f68e3c3d-df76-44ad-a757-eaec69114471",
+              "name": "FlowResponseInternalServerError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36c4e119-7666-491b-8ea4-b74d743be8c4",
+          "name": "Login",
+          "request": {
+            "name": "Login",
+            "description": {
+              "content": "Initialize or advance a login flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                "key": "X-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input_data\": {\n    \"webauthn_available\": false,\n    \"webauthn_conditional_mediation_available\": false,\n    \"webauthn_platform_authenticator_available\": false\n  },\n  \"csrf_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe7f9cf1-6579-4b4b-91da-e8a4d70e0160",
+              "name": "LoginFlowResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Used for cross-domain communication between client and Hanko API.\n\nOnly present if configured on the tenant and on the `success` state of the flow.\n",
+                  "key": "X-Auth-Token",
+                  "value": "<JWT>"
+                },
+                {
+                  "disabled": false,
+                  "description": "Contains the seconds until the session expires.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Session-Lifetime",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "description": "Serves as a hint at what type of cookie (session or persistent) should be created.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Session-Retention",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "Set-Cookie",
+                  "value": "hanko=<JWT>; Path=/; HttpOnly",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": {\n    \"register_client_capabilities\": {\n      \"action\": \"string\",\n      \"href\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"description\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"name\": \"preflight\",\n  \"payload\": {},\n  \"status\": 200,\n  \"csrf_token\": \"HvUwWSfPgz7VnwiS8VMDpnhZ1wNwTNiV\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b68fba9-44f4-4c56-bd91-bd91b9b2e240",
+              "name": "LoginFlowResponseBadRequestError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee29623d-5314-4eb8-9b62-bec4586d347c",
+              "name": "FlowResponseUnauthorizedError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a1aac2d-2ed1-4db3-a0e4-61ead1d8d3ff",
+              "name": "FlowResponseForbiddenError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c679f5a-9809-4202-8770-d407f6a21d0d",
+              "name": "FlowResponseGoneError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "476a3d97-d679-4dee-961d-e647e8d6a76c",
+              "name": "FlowResponseTooManyRequestsError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bc3d3ee-5c89-491b-859d-96be6533e117",
+              "name": "FlowResponseInternalServerError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38ebd995-65a3-4283-891b-d48e4c245d0d",
+          "name": "Profile",
+          "request": {
+            "name": "Profile",
+            "description": {
+              "content": "Initialize or advance a profile flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                "key": "X-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input_data\": {\n    \"webauthn_available\": false,\n    \"webauthn_conditional_mediation_available\": false,\n    \"webauthn_platform_authenticator_available\": false\n  },\n  \"csrf_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54040db3-d452-48ff-9795-04990a2475b1",
+              "name": "ProfileFlowResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": {\n    \"register_client_capabilities\": {\n      \"action\": \"string\",\n      \"href\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"description\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"name\": \"preflight\",\n  \"payload\": {},\n  \"status\": 200,\n  \"csrf_token\": \"HvUwWSfPgz7VnwiS8VMDpnhZ1wNwTNiV\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44b8b58d-3402-4fb5-bf96-93dcbadd0701",
+              "name": "ProfileFlowResponseBadRequestError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0796917-b725-4679-be85-e3bd56e9beaf",
+              "name": "FlowResponseUnauthorizedError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e7a71f35-d162-49f0-8c0c-391fc65c7266",
+              "name": "FlowResponseForbiddenError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1dc5981-a7e9-469e-8bc8-ac3e5bfd6557",
+              "name": "FlowResponseNotFoundError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "326cb6e2-0f0c-468f-8adc-667ef5aa0657",
+              "name": "FlowResponseGoneError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Gone",
+              "code": 410,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62efefc9-3c2f-4ee9-a9d2-d87bfe5a8839",
+              "name": "FlowResponseTooManyRequestsError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe170ad8-4915-4b66-8b74-dcc76f40ee9d",
+              "name": "FlowResponseInternalServerError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "25b2c5ce-f131-42e8-b096-bcf247d29c40",
+          "name": "Token exchange",
+          "request": {
+            "name": "Token exchange",
+            "description": {
+              "content": "Initialize or advance a token exchange flow. \n\nThis flow is only available if SAML is enabled.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token_exchange"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                  "type": "any",
+                  "value": "{{tenant_id}}",
+                  "key": "tenant_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                "key": "X-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"input_data\": {\n    \"token\": \"<string>\"\n  },\n  \"csrf_token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6309ef8f-6400-4ed3-855d-6441385f3417",
+              "name": "TokenExchangeFlowResponse",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token_exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Enable via configuration option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Auth-Token",
+                  "value": "<JWT>"
+                },
+                {
+                  "disabled": false,
+                  "description": "Contains the seconds until the session expires.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Session-Lifetime",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "description": "Serves as a hint at what type of cookie (session or persistent) should be created.\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "X-Session-Retention",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": "Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)\n\nOnly present on the `success` state of the flow.\n",
+                  "key": "Set-Cookie",
+                  "value": "hanko=<JWT>; Path=/; HttpOnly"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"actions\": {\n    \"verify_passcode\": {\n      \"action\": \"string\",\n      \"href\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"description\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"resend_passcode\": {\n      \"action\": \"string\",\n      \"href\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"description\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"back\": {\n      \"action\": \"string\",\n      \"href\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"description\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"inputs\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    }\n  },\n  \"name\": \"passcode_confirmation\",\n  \"payload\": {},\n  \"status\": 200,\n  \"csrf_token\": \"HvUwWSfPgz7VnwiS8VMDpnhZ1wNwTNiV\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4bed87e-f271-4571-8aeb-d0c7e03c47e1",
+              "name": "LoginFlowResponseBadRequestError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token_exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2657e03-7596-4565-a66d-a313258dd0fa",
+              "name": "FlowResponseUnauthorizedError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token_exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07b613a5-f85e-4179-ab9a-e78d1bb3f177",
+              "name": "FlowResponseForbiddenError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token_exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5adeb5f-6b6b-40dc-b475-eb6498d01647",
+              "name": "FlowResponseTooManyRequestsError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token_exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c4b4851-cf38-4c32-8789-0e5e1b50f66a",
+              "name": "FlowResponseInternalServerError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "token_exchange"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "action",
+                      "value": "register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+                      "type": "any",
+                      "value": "{{tenant_id}}",
+                      "key": "tenant_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Used to internationalize outgoing emails (e.g. for email verification, recovery, etc.). \n\nIf email delivery by Hanko is enabled the values for supported languages are: \n  - \"bn\" (Bengali/Bangla)\n  - \"de\" (German) \n  - \"en\" (English) \n  - \"fr\" (French) \n  - \"it\" (Italian) \n  - \"nl\" (Dutch)\n  - \"pt-BR\" (Brazilian Portuguese), \n  - \"zh\" (Chinese)\n\nIf email delivery by Hanko is disabled and a webhook has been configured for the `email.send` event, the\nJWT payload of the `token` contained in the response to the webhook endpoint contains a `language` claim that\nreflects the value originally passed as the header value.\n",
+                    "key": "X-Language",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": \"<Error: Could not resolve allOf schema\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "",
+      "key": "tenant_id"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant_id}}.hanko.io/admin",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7de0d685-5066-4a6b-aa65-109a36b71c33",
+    "name": "Hanko Admin Audit Logs flow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
+      "type": "text/plain"
+    }
+  }
+}

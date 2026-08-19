@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs .well-known API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": ".well-known",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get JSON Web Key Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/.well-known/jwks.json"
+          },
+          "docs": "Retrieve a [JSON Web Key Set](https://www.rfc-editor.org/rfc/rfc7517#section-5) (JWKS) object containing the public `keys` used to verify\nJSON Web Tokens (JWT) issued by the Hanko API and signed using the RS256 signing algorithm.\n"
+        },
+        {
+          "info": {
+            "name": "Get public Hanko configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/.well-known/config"
+          },
+          "docs": "Retrieve public backend configuration options.\n\nUseful for example for conditionally constructing a UI based on the options (e.g. don't show password\ninputs when they are disabled).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

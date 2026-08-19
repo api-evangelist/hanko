@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs Third Party API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Third Party",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize third party login",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/thirdparty/auth",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "The name of the third party provider to log in with. Only providers enabled in the\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nvia the `thirdparty.providers` option can be used. Requesting an unsupported provider results in a\nredirect with error details in the location query.\n"
+              },
+              {
+                "name": "redirect_to",
+                "value": "",
+                "type": "query",
+                "description": "Base64url encoded string representing the URL the\n[`/callback`](#tag/Third-Party/operation/thirdPartyCallback) eventually redirects to after successful login\nwith the third party provider. It must match one of the allowed redirect URLs set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nthrough the `third_party.allowed_redirect_urls`.\n"
+              }
+            ]
+          },
+          "docs": "Initialize an OAuth-backed (authorization code grant type) login with a third party provider by redirecting to\nthe specified provider login URL to retrieve an authorization code.\n"
+        },
+        {
+          "info": {
+            "name": "Third party provider callback",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant_id}.hanko.io/admin/thirdparty/callback",
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "query",
+                "description": "The authorization code that can be exchanged for an access token and to retrieve user provider data\n"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "The state"
+              },
+              {
+                "name": "error",
+                "value": "",
+                "type": "query",
+                "description": "An error returned from the third party provider\n"
+              },
+              {
+                "name": "error_description",
+                "value": "",
+                "type": "query",
+                "description": "The description of the error that occurred (if any)"
+              }
+            ]
+          },
+          "docs": "Callback endpoint called by the third party provider after successful login."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

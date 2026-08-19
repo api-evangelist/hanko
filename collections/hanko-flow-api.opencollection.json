@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hanko Admin Audit Logs flow API",
+    "version": "1.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "flow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Registration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/registration",
+            "headers": [
+              {
+                "name": "X-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize or advance a registration flow."
+        },
+        {
+          "info": {
+            "name": "Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/login",
+            "headers": [
+              {
+                "name": "X-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize or advance a login flow."
+        },
+        {
+          "info": {
+            "name": "Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/profile",
+            "headers": [
+              {
+                "name": "X-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize or advance a profile flow."
+        },
+        {
+          "info": {
+            "name": "Token exchange",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant_id}.hanko.io/admin/token_exchange",
+            "headers": [
+              {
+                "name": "X-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "String of the format `{action_name}@{flow_id}`. Indicates the action to perform on the flow with the \ngiven `flow_id`. Omitting the query parameter initializes a new flow.\n\n_Note for playground usage_: You can derive the value for this query parameter from the `action`'s `href` \nproperty in a flow state response, e.g. for an `href` value of \n`/login?action=register_client_capabilities%4015655672-41ca-48cc-afb1-90be77075764` the (non-URL-encoded) value\nwould be `register_client_capabilities@15655672-41ca-48cc-afb1-90be77075764`.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initialize or advance a token exchange flow. \n\nThis flow is only available if SAML is enabled.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
