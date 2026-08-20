@@ -32,6 +32,15 @@ tags:
   - WebAuthn
   - FIDO2
   - Identity
+  - SAML
+  - Passwordless
+  - Open-Source
+tags_raw:
+  - Authentication
+  - Passkeys
+  - WebAuthn
+  - FIDO2
+  - Identity
   - OAuth
   - SAML
   - Passwordless
@@ -137,6 +146,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - MFA
+  tags_raw:
   - mfa
   properties:
   - type: OpenAPI
@@ -235,6 +246,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - Third-Party
+  tags_raw:
   - Third Party
   properties:
   - type: OpenAPI
@@ -306,6 +319,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -320,6 +335,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - WebAuthn
+  tags_raw:
   - webauthn
   properties:
   - type: OpenAPI
@@ -334,6 +351,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -348,6 +367,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - .well Known
+  tags_raw:
   - .well-known
   properties:
   - type: OpenAPI
