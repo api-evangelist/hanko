@@ -1,33 +1,15 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  version: 1.2.0
-  title: Hanko Admin Audit Logs API
-  description: '## Introduction
-
-
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
-
-
-    ## Authentication
-
-
-    The Admin API must be protected by an access management system.
-
-
-    ---
-
-    '
-  contact:
-    email: developers@hanko.io
-  license:
-    name: AGPL-3.0-or-later
-    url: https://www.gnu.org/licenses/agpl-3.0.txt
+  title: Hanko Audit Logs API
+  version: '1.0'
+  description: 'Operations tagged Audit Logs across 2 of this provider''s published API definitions: hanko-admin-api-openapi.yml, hanko-passkey-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{tenant_id}.hanko.io/admin
   variables:
     tenant_id:
       default: ''
       description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
+- url: https://passkeys.hanko.io
 tags:
 - name: Audit Logs
 paths:
@@ -121,6 +103,12 @@ paths:
               $ref: '#/components/headers/Link'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io/admin
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
   /{tenant_id}/audit_logs:
     get:
       summary: List audit log entries
@@ -199,49 +187,21 @@ paths:
       security: []
       servers:
       - url: https://passkeys.hanko.io
+    servers:
+    - url: https://passkeys.hanko.io
 components:
   schemas:
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    audit_log:
+    Error:
       type: object
-      title: audit_log
-      properties:
-        id:
-          type: string
-          format: uuid
-        type:
-          type: string
-        error:
-          type: string
-        meta_http_request_id:
-          type: string
-        meta_source_ip:
-          type: string
-        meta_user_agent:
-          type: string
-        actor_user_id:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        tenant_id:
-          type: string
-          format: uuid
       required:
-      - id
-      - type
-      - meta_http_request_id
-      - meta_source_ip
-      - meta_user_agent
-      - created_at
-      - updated_at
-      - tenant_id
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     AuditLog:
       type: object
       required:
@@ -288,17 +248,6 @@ components:
           type: string
           format: date-time
           example: '2022-09-14T12:15:09.788784Z'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     AuditLogTypes:
       description: The type of the audit log
       type: string
@@ -344,6 +293,47 @@ components:
       - username_deleted
       - password_changed
       - password_deleted
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    audit_log:
+      type: object
+      title: audit_log
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+        error:
+          type: string
+        meta_http_request_id:
+          type: string
+        meta_source_ip:
+          type: string
+        meta_user_agent:
+          type: string
+        actor_user_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        tenant_id:
+          type: string
+          format: uuid
+      required:
+      - id
+      - type
+      - meta_http_request_id
+      - meta_source_ip
+      - meta_user_agent
+      - created_at
+      - updated_at
+      - tenant_id
   headers:
     X-Total-Count:
       schema:
@@ -355,20 +345,16 @@ components:
         type: string
       description: Web Linking as described in RFC5988
       example: <http://localhost:8001/resource?page=1&per_page=10>; rel="first",<http://localhost:8001/resource?page=16&per_page=10>; rel="last",<http://localhost:8001/resource?page=6&per_page=10>; rel="next",<http://localhost:8001/resource?page=4&per_page=10>; rel="prev"
-  parameters:
-    tenant_id:
-      name: tenant_id
-      in: path
-      description: UUID of the tenant
-      required: true
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        example:
-        - 1f496bcd-49da-4839-a02f-7ce681ccb488
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
     error:
       description: Error Response with detailed information
       content:
@@ -386,15 +372,19 @@ components:
                 - Information which helps resolving the problem
               status:
                 type: integer
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
+  parameters:
+    tenant_id:
+      name: tenant_id
+      in: path
+      description: UUID of the tenant
+      required: true
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        example:
+        - 1f496bcd-49da-4839-a02f-7ce681ccb488
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
@@ -404,3 +394,6 @@ components:
 externalDocs:
   description: More about Hanko
   url: https://github.com/teamhanko/hanko
+x-refined-from:
+- hanko-admin-api-openapi.yml
+- hanko-passkey-api-openapi.yml

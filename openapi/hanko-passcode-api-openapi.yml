@@ -1,17 +1,65 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   version: 1.2.0
-  title: Hanko Admin Audit Logs Passcode API
+  title: Hanko Public Passcode API
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+    This is the OpenAPI specification for the [Hanko Public API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#basic-usage).
 
 
     ## Authentication
 
 
-    The Admin API must be protected by an access management system.
+    The API uses [JSON Web Tokens](https://www.rfc-editor.org/rfc/rfc7519.html) (JWTs) for authentication.
+
+    JWTs are verified using [JSON Web Keys](https://www.rfc-editor.org/rfc/rfc7517) (JWK).
+
+    JWKs can be [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
+
+    through the `secrets.keys` options. The API also publishes public cryptographic keys as a
+
+    [JWK set](https://www.rfc-editor.org/rfc/rfc7517#section-2) through the `.well-known/jwks.json` endpoint
+
+    to enable clients to verify token signatures.
+
+    JWTs must be provided on requests to protected endpoints using one of the following schemes:
+
+
+    ### CookieAuth
+
+
+    **Security Scheme Type**: `API Key`
+
+
+    **Cookie parameter name**: `hanko`
+
+
+    The JWT must be provided in a Cookie with the name `hanko`.
+
+
+    ### BearerTokenAuth
+
+
+    **Security Scheme Type**: `http`
+
+
+    **HTTP Authorization Scheme**: `Bearer`
+
+
+    **Bearer format**: `JWT`
+
+
+    The JWT must be provided in an HTTP Authorization header with bearer type: `Authorization: Bearer <JWT>`.
+
+
+    ## Cross-Origin Resource Sharing
+
+    Cross-Origin Resource Sharing (CORS) can be currently
+
+    [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
+
+    for public endpoints via the `server.public.cors` options.
 
 
     ---
@@ -23,7 +71,7 @@ info:
     name: AGPL-3.0-or-later
     url: https://www.gnu.org/licenses/agpl-3.0.txt
 servers:
-- url: https://{tenant_id}.hanko.io/admin
+- url: https://{tenant_id}.hanko.io
   variables:
     tenant_id:
       default: ''
@@ -150,12 +198,73 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    RequestTimeOut:
+      description: Request Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 408
+            message: Request Timeout
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    Gone:
+      description: Gone
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 410
+            message: Gone
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Forbidden
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Unauthorized
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   schemas:
-    X-Session-Lifetime:
-      description: 'Contains the seconds until the session expires.
-
-        '
-      type: number
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     Passcode:
       description: Representation of a passcode
       type: object
@@ -176,17 +285,10 @@ components:
       type: string
       format: uuid4
       example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
     X-Auth-Token:
       description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
 
@@ -197,71 +299,20 @@ components:
       format: JWT
       externalDocs:
         url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 403
-            message: Forbidden
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 401
-            message: Unauthorized
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    Gone:
-      description: Gone
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 410
-            message: Gone
-    RequestTimeOut:
-      description: Request Timeout
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 408
-            message: Request Timeout
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
+    X-Session-Lifetime:
+      description: 'Contains the seconds until the session expires.
+
+        '
+      type: number
   securitySchemes:
-    BearerApiKeyAuth:
-      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: hanko
+    BearerTokenAuth:
       type: http
       scheme: bearer
-      bearerFormat: API Key
+      bearerFormat: JWT
 externalDocs:
   description: More about Hanko
   url: https://github.com/teamhanko/hanko

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   version: 1.2.0
-  title: Hanko Admin Audit Logs Users API
+  title: Hanko Admin Users API
   description: '## Introduction
 
 
@@ -422,16 +422,44 @@ paths:
       tags:
       - Users
 components:
+  responses:
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   schemas:
-    CreatePassword:
-      type: object
-      properties:
-        password:
-          type: string
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     Error:
       type: object
       required:
@@ -475,35 +503,6 @@ components:
       - created_at
       - updated_at
       - last_used
-    Password:
-      description: The password credential of a user
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-          description: The ID of the password credential
-          example: 28a7206b-e789-435a-b87c-108e034135c2
-        created_at:
-          description: Time of creation of the password credential
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the password credential
-          type: string
-          format: date-time
-    OTP:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - created_at
     Email:
       type: object
       required:
@@ -535,6 +534,44 @@ components:
           format: date-time
         updated_at:
           description: Time of last update of the email
+          type: string
+          format: date-time
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    OTP:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - created_at
+    CreatePassword:
+      type: object
+      properties:
+        password:
+          type: string
+    Password:
+      description: The password credential of a user
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          description: The ID of the password credential
+          example: 28a7206b-e789-435a-b87c-108e034135c2
+        created_at:
+          description: Time of creation of the password credential
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the password credential
           type: string
           format: date-time
     WebAuthnCredential:
@@ -614,43 +651,6 @@ components:
                 type: boolean
             required:
             - address
-  responses:
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 409
-            message: Conflict
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

@@ -1,29 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  version: 1.2.0
-  title: Hanko Admin Audit Logs webauthn API
-  description: '## Introduction
-
-
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
-
-
-    ## Authentication
-
-
-    The Admin API must be protected by an access management system.
-
-
-    ---
-
-    '
-  contact:
-    email: developers@hanko.io
-  license:
-    name: AGPL-3.0-or-later
-    url: https://www.gnu.org/licenses/agpl-3.0.txt
+  title: Hanko Webauthn API
+  version: '1.0'
+  description: 'Operations tagged webauthn across 2 of this provider''s published API definitions: hanko-passkey-api-openapi.yml, hanko-public-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://{tenant_id}.hanko.io/admin
+- url: https://passkeys.hanko.io
+- url: https://{tenant_id}.hanko.io
   variables:
     tenant_id:
       default: ''
@@ -46,6 +28,8 @@ paths:
           $ref: '#/components/responses/jwks'
       servers:
       - url: https://passkeys.hanko.io
+    servers:
+    - url: https://passkeys.hanko.io
   /webauthn/login/initialize:
     post:
       summary: Initialize WebAuthn login
@@ -116,6 +100,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
   /webauthn/login/finalize:
     post:
       summary: Finalize WebAuthn login
@@ -176,6 +166,12 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
   /webauthn/registration/initialize:
     post:
       summary: Initialize WebAuthn registration
@@ -213,6 +209,12 @@ paths:
           $ref: '#/components/responses/unprocessableEntity'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
   /webauthn/registration/finalize:
     post:
       summary: Finalize WebAuthn registration
@@ -261,6 +263,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
   /webauthn/credentials:
     get:
       summary: Get a list of WebAuthn credentials
@@ -285,6 +293,12 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
   /webauthn/credentials/{id}:
     patch:
       summary: Updates a WebAuthn credential
@@ -355,46 +369,119 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/InternalServerError'
+    servers:
+    - url: https://{tenant_id}.hanko.io
+      variables:
+        tenant_id:
+          default: ''
+          description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
 components:
+  parameters:
+    tenant_id:
+      name: tenant_id
+      in: path
+      description: UUID of the tenant
+      required: true
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        example:
+        - 1f496bcd-49da-4839-a02f-7ce681ccb488
+  responses:
+    jwks:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              keys:
+                type: array
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  additionalProperties: false
+                  properties:
+                    alg:
+                      type: string
+                      readOnly: true
+                      example:
+                      - RS256
+                    e:
+                      type: string
+                      readOnly: true
+                      example:
+                      - AAAA
+                    kid:
+                      type: string
+                      format: uuid
+                      readOnly: true
+                      example:
+                      - 483b2499-1ed7-4325-94e3-97e8118ceee9
+                    kty:
+                      type: string
+                      readOnly: true
+                      example:
+                      - RSA
+                    n:
+                      type: string
+                      readOnly: true
+                    use:
+                      type: string
+                      readOnly: true
+                      example:
+                      - sig
+                  minProperties: 6
+            minProperties: 1
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    unprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 422
+            message: Unprocessable Entity
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Unauthorized
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   schemas:
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
-    PublicKeyCredentialAssertionResponse:
-      description: WebAuthn API response to a navigator.credentials.get() call
-      type: object
-      properties:
-        id:
-          type: string
-          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
-        rawId:
-          type: string
-          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
-        type:
-          type: string
-          enum:
-          - public-key
-          example: public-key
-        response:
-          type: object
-          properties:
-            clientDataJson:
-              type: string
-              format: base64url
-              example: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...
-            authenticatorData:
-              type: string
-              format: base64url
-              example: SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MF...
-            signature:
-              type: string
-              format: base64url
-              example: MEQCIHe2RXqh6dyZw1LNXgeTTxljCV_qK2ydQjp02CiF...
-            userHandle:
-              type: string
-              format: base64url
-              example: rpe_EkgaSEeZG0TwzZyZJw
     CredentialCreationOptions:
       description: Options for credential creation with the WebAuthn API
       externalDocs:
@@ -481,42 +568,36 @@ components:
               - direct
               - enterprise
               example: none
-    PublicKeyCredentialAttestationResponse:
-      description: WebAuthn API response to a navigator.credentials.create() call
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    WebauthnLoginResponse:
+      description: Response after a successful login with webauthn
       type: object
       properties:
-        id:
+        credential_id:
           type: string
-          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
-        rawId:
+          format: base64url
+        user_id:
           type: string
-          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
-        type:
-          type: string
-          enum:
-          - public-key
-          example: public-key
-        response:
-          type: object
-          properties:
-            clientDataJson:
-              type: string
-              format: base64url
-              example: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...
-            attestationObject:
-              type: string
-              format: base64url
-              example: o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjfSZYN...
-            transports:
-              type: array
-              items:
-                type: string
-                enum:
-                - usb
-                - nfc
-                - ble
-                - internal
-                example: internal
+          format: uuid4
+    X-Session-Lifetime:
+      description: 'Contains the seconds until the session expires.
+
+        '
+      type: number
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     X-Auth-Token:
       description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
 
@@ -527,11 +608,40 @@ components:
       format: JWT
       externalDocs:
         url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
-    X-Session-Lifetime:
-      description: 'Contains the seconds until the session expires.
-
-        '
-      type: number
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
+    WebauthnCredentials:
+      description: A list of WebAuthn credentials
+      type: array
+      items:
+        $ref: '#/components/schemas/WebauthnCredential'
+      example:
+      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
+        name: iCloud
+        public_key: pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...
+        attestation_type: packed
+        aaguid: 01020304-0506-0708-0102-030405060708
+        last_used_at: '2026-02-24T21:40:36.26936Z'
+        created_at: '2026-02-24T21:40:36.26936Z'
+        transports:
+        - internal
+        backup_eligible: true
+        backup_state: true
+        mfa_only: false
+      - id: f826013e-e7e3-4366-a6d8-9359effc8cdd
+        name: Yubikey Bio
+        public_key: aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...
+        attestation_type: packed
+        aaguid: 90636e1f-ef82-43bf-bdcf-5255f139d12f
+        last_used_at: '2026-02-24T21:40:36.26936Z'
+        created_at: '2026-02-24T21:40:36.26936Z'
+        transports:
+        - usb
+        backup_eligible: true
+        backup_state: false
+        mfa_only: true
     CredentialRequestOptions:
       description: Options for assertion generation with the WebAuthn API
       externalDocs:
@@ -573,27 +683,40 @@ components:
               - preferred
               - discouraged
               example: required
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    WebauthnLoginResponse:
-      description: Response after a successful login with webauthn
+    PublicKeyCredentialAssertionResponse:
+      description: WebAuthn API response to a navigator.credentials.get() call
       type: object
       properties:
-        credential_id:
+        id:
           type: string
-          format: base64url
-        user_id:
+          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
+        rawId:
           type: string
-          format: uuid4
+          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
+        type:
+          type: string
+          enum:
+          - public-key
+          example: public-key
+        response:
+          type: object
+          properties:
+            clientDataJson:
+              type: string
+              format: base64url
+              example: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...
+            authenticatorData:
+              type: string
+              format: base64url
+              example: SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MF...
+            signature:
+              type: string
+              format: base64url
+              example: MEQCIHe2RXqh6dyZw1LNXgeTTxljCV_qK2ydQjp02CiF...
+            userHandle:
+              type: string
+              format: base64url
+              example: rpe_EkgaSEeZG0TwzZyZJw
     WebauthnCredential:
       type: object
       properties:
@@ -638,151 +761,54 @@ components:
             - internal
             - nfc
             - usb
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    WebauthnCredentials:
-      description: A list of WebAuthn credentials
-      type: array
-      items:
-        $ref: '#/components/schemas/WebauthnCredential'
-      example:
-      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
-        name: iCloud
-        public_key: pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...
-        attestation_type: packed
-        aaguid: 01020304-0506-0708-0102-030405060708
-        last_used_at: '2026-02-24T21:40:36.26936Z'
-        created_at: '2026-02-24T21:40:36.26936Z'
-        transports:
-        - internal
-        backup_eligible: true
-        backup_state: true
-        mfa_only: false
-      - id: f826013e-e7e3-4366-a6d8-9359effc8cdd
-        name: Yubikey Bio
-        public_key: aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...
-        attestation_type: packed
-        aaguid: 90636e1f-ef82-43bf-bdcf-5255f139d12f
-        last_used_at: '2026-02-24T21:40:36.26936Z'
-        created_at: '2026-02-24T21:40:36.26936Z'
-        transports:
-        - usb
-        backup_eligible: true
-        backup_state: false
-        mfa_only: true
-  responses:
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
-    unprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 422
-            message: Unprocessable Entity
-    jwks:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              keys:
-                type: array
-                minItems: 1
-                uniqueItems: true
-                items:
-                  type: object
-                  additionalProperties: false
-                  properties:
-                    alg:
-                      type: string
-                      readOnly: true
-                      example:
-                      - RS256
-                    e:
-                      type: string
-                      readOnly: true
-                      example:
-                      - AAAA
-                    kid:
-                      type: string
-                      format: uuid
-                      readOnly: true
-                      example:
-                      - 483b2499-1ed7-4325-94e3-97e8118ceee9
-                    kty:
-                      type: string
-                      readOnly: true
-                      example:
-                      - RSA
-                    n:
-                      type: string
-                      readOnly: true
-                    use:
-                      type: string
-                      readOnly: true
-                      example:
-                      - sig
-                  minProperties: 6
-            minProperties: 1
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 401
-            message: Unauthorized
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-  parameters:
-    tenant_id:
-      name: tenant_id
-      in: path
-      description: UUID of the tenant
-      required: true
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        example:
-        - 1f496bcd-49da-4839-a02f-7ce681ccb488
+    PublicKeyCredentialAttestationResponse:
+      description: WebAuthn API response to a navigator.credentials.create() call
+      type: object
+      properties:
+        id:
+          type: string
+          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
+        rawId:
+          type: string
+          example: _18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...
+        type:
+          type: string
+          enum:
+          - public-key
+          example: public-key
+        response:
+          type: object
+          properties:
+            clientDataJson:
+              type: string
+              format: base64url
+              example: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...
+            attestationObject:
+              type: string
+              format: base64url
+              example: o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjfSZYN...
+            transports:
+              type: array
+              items:
+                type: string
+                enum:
+                - usb
+                - nfc
+                - ble
+                - internal
+                example: internal
   securitySchemes:
-    BearerApiKeyAuth:
-      description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: hanko
+    BearerTokenAuth:
       type: http
       scheme: bearer
-      bearerFormat: API Key
+      bearerFormat: JWT
 externalDocs:
   description: More about Hanko
   url: https://github.com/teamhanko/hanko
+x-refined-from:
+- hanko-passkey-api-openapi.yml
+- hanko-public-api-openapi.yml
