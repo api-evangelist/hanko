@@ -12,6 +12,18 @@ description: >-
   European-hosted infrastructure with a free tier supporting up to 10,000
   monthly active users.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
@@ -50,26 +62,6 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.23'
 apis:
-- aid: hanko:flow-api
-  name: Hanko Flow API
-  description: >-
-    The Hanko Flow API powers structured authentication flows including login initialization and advancement,
-    registration flow management, profile flow handling, and token exchange operations. It underpins the
-    Hanko Elements UI components and supports stateful multi-step authentication journeys.
-  humanURL: https://docs.hanko.io
-  baseURL: https://{tenant_id}.hanko.io
-  tags:
-  - Authentication
-  - Flows
-  - Registration
-  - Login
-  properties:
-  - type: Documentation
-    url: https://docs.hanko.io
-  - type: OpenAPI
-    url: https://docs.hanko.io/openapi-flow.yaml
-  - type: OpenAPI
-    url: openapi/hanko-flow-api-openapi.yml
 - aid: hanko:hanko-audit-logs-api
   name: Hanko Audit Logs API
   description: The Audit Logs API from Hanko — 2 operation(s) for audit logs.
