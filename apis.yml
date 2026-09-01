@@ -138,7 +138,7 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
-  - mfa
+  - MFA
   tags_raw:
   - mfa
   properties:
@@ -238,7 +238,7 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
-  - Third-Party
+  - Third Party
   tags_raw:
   - Third Party
   properties:
@@ -327,7 +327,7 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
-  - webauthn
+  - WebAuthn
   tags_raw:
   - webauthn
   properties:
@@ -359,7 +359,7 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
-  - .well-known
+  - .well Known
   tags_raw:
   - .well-known
   properties:
