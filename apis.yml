@@ -1,16 +1,12 @@
----
 aid: hanko
 name: Hanko
-description: >-
-  Hanko is a passkey-first, open-source authentication platform that serves as
-  a modern alternative to Auth0, Clerk, and WorkOS. It provides a REST API
-  covering passkeys (WebAuthn/FIDO2), passwords, OAuth social login, SAML SSO,
-  multi-factor authentication, and session management. Hanko is available as a
-  managed cloud service and as a self-hosted open-source deployment, targeting
-  developers who want to add passwordless authentication to their applications.
-  The platform is headquartered in Germany and emphasizes privacy-first,
-  European-hosted infrastructure with a free tier supporting up to 10,000
-  monthly active users.
+description: Hanko is a passkey-first, open-source authentication platform that serves as a modern alternative
+  to Auth0, Clerk, and WorkOS. It provides a REST API covering passkeys (WebAuthn/FIDO2), passwords, OAuth
+  social login, SAML SSO, multi-factor authentication, and session management. Hanko is available as a
+  managed cloud service and as a self-hosted open-source deployment, targeting developers who want to
+  add passwordless authentication to their applications. The platform is headquartered in Germany and
+  emphasizes privacy-first, European-hosted infrastructure with a free tier supporting up to 10,000 monthly
+  active users.
 type: Index
 deliveryModel:
   model: saas
@@ -40,27 +36,29 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hanko.png
 tags:
-  - Authentication
-  - Passkeys
-  - WebAuthn
-  - FIDO2
-  - Identity
-  - SAML
-  - Passwordless
-  - Open-Source
+- Authentication
+- Passkeys
+- WebAuthn
+- FIDO2
+- Identity
+- SAML
+- Passwordless
+- Open-Source
+- Identity Federation
 tags_raw:
-  - Authentication
-  - Passkeys
-  - WebAuthn
-  - FIDO2
-  - Identity
-  - OAuth
-  - SAML
-  - Passwordless
-  - Open Source
+- Authentication
+- Passkeys
+- WebAuthn
+- FIDO2
+- Identity
+- OAuth
+- SAML
+- Passwordless
+- Open Source
+- Identity Federation
 url: https://raw.githubusercontent.com/api-evangelist/hanko/refs/heads/main/apis.yml
 created: '2026-06-12'
-modified: '2026-06-12'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: hanko:hanko-audit-logs-api
@@ -293,8 +291,7 @@ apis:
     url: https://docs.hanko.io/passkey-api/introduction
 - aid: hanko:hanko-user-metadata-management-api
   name: Hanko User Metadata Management API
-  description: >-
-    The User Metadata Management API from Hanko — 1 operation(s) for user metadata management.
+  description: The User Metadata Management API from Hanko — 1 operation(s) for user metadata management.
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
@@ -371,38 +368,38 @@ apis:
   - type: Documentation
     url: https://docs.hanko.io/passkey-api/introduction
 common:
-  - type: AgenticAccess
-    url: agentic-access/hanko-agentic-access.yml
-  - type: DomainSecurity
-    url: security/hanko-domain-security.yml
-  - type: Authentication
-    url: authentication/hanko-authentication.yml
-  - type: Website
-    url: https://www.hanko.io
-  - type: Documentation
-    url: https://docs.hanko.io
-  - type: GitHubOrganization
-    url: https://github.com/teamhanko
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/teamhanko
-  - type: Blog
-    url: https://www.hanko.io/blog
-  - type: Pricing
-    url: https://www.hanko.io/pricing
-  - type: StatusPage
-    url: https://status.hanko.io
-  - type: X
-    url: https://twitter.com/hanko
-  - type: Plans
-    url: plans/hanko-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/hanko-rate-limits.yml
-  - type: FinOps
-    url: finops/hanko-finops.yml
-  - type: Vocabulary
-    url: vocabulary/hanko-vocabulary.yml
-  - type: JSONLDContext
-    url: json-ld/hanko-context.jsonld
+- type: AgenticAccess
+  url: agentic-access/hanko-agentic-access.yml
+- type: DomainSecurity
+  url: security/hanko-domain-security.yml
+- type: Authentication
+  url: authentication/hanko-authentication.yml
+- type: Website
+  url: https://www.hanko.io
+- type: Documentation
+  url: https://docs.hanko.io
+- type: GitHubOrganization
+  url: https://github.com/teamhanko
+- type: LinkedIn
+  url: https://www.linkedin.com/company/teamhanko
+- type: Blog
+  url: https://www.hanko.io/blog
+- type: Pricing
+  url: https://www.hanko.io/pricing
+- type: StatusPage
+  url: https://status.hanko.io
+- type: X
+  url: https://twitter.com/hanko
+- type: Plans
+  url: plans/hanko-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/hanko-rate-limits.yml
+- type: FinOps
+  url: finops/hanko-finops.yml
+- type: Vocabulary
+  url: vocabulary/hanko-vocabulary.yml
+- type: JSONLDContext
+  url: json-ld/hanko-context.jsonld
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
