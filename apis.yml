@@ -253,6 +253,8 @@ apis:
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
