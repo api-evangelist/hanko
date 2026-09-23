@@ -5,66 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Public API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#basic-usage).
-
-
-    ## Authentication
-
-
-    The API uses [JSON Web Tokens](https://www.rfc-editor.org/rfc/rfc7519.html) (JWTs) for authentication.
-
-    JWTs are verified using [JSON Web Keys](https://www.rfc-editor.org/rfc/rfc7517) (JWK).
-
-    JWKs can be [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
-
-    through the `secrets.keys` options. The API also publishes public cryptographic keys as a
-
-    [JWK set](https://www.rfc-editor.org/rfc/rfc7517#section-2) through the `.well-known/jwks.json` endpoint
-
-    to enable clients to verify token signatures.
-
-    JWTs must be provided on requests to protected endpoints using one of the following schemes:
-
-
-    ### CookieAuth
-
-
-    **Security Scheme Type**: `API Key`
-
-
-    **Cookie parameter name**: `hanko`
-
-
-    The JWT must be provided in a Cookie with the name `hanko`.
-
-
-    ### BearerTokenAuth
-
-
-    **Security Scheme Type**: `http`
-
-
-    **HTTP Authorization Scheme**: `Bearer`
-
-
-    **Bearer format**: `JWT`
-
-
-    The JWT must be provided in an HTTP Authorization header with bearer type: `Authorization: Bearer <JWT>`.
-
-
-    ## Cross-Origin Resource Sharing
-
-    Cross-Origin Resource Sharing (CORS) can be currently
-
-    [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
-
-    for public endpoints via the `server.public.cors` options.
-
-
-    ---
-
-    '
+    This is the OpenAPI specification for the Hanko Public API.'
   contact:
     email: developers@hanko.io
   license:
@@ -81,7 +22,7 @@ tags:
 paths:
   /emails:
     get:
-      summary: Get a list of emails of the current user.
+      summary: Get a list of emails of the current user
       operationId: listEmails
       tags:
       - Email Management
@@ -102,7 +43,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     post:
       deprecated: true
-      summary: Add a new email address to the current user.
+      summary: Add a new email address to the current user
       operationId: createEmail
       tags:
       - Email Management
@@ -183,22 +124,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Identities:
-      description: The user's third party connections/identities.
-      type: array
-      items:
-        $ref: '#/components/schemas/Identity'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     UUID4:
       type: string
       format: uuid4
@@ -219,6 +144,11 @@ components:
           description: 'Contains the display name of the provider, if available. Otherwise contains the provider ID.
 
             '
+    Identities:
+      description: The user's third party connections/identities.
+      type: array
+      items:
+        $ref: '#/components/schemas/Identity'
     Emails:
       type: array
       items:
@@ -253,16 +183,18 @@ components:
         address: john.doe@example.com
         is_verified: true
         is_primary: false
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
   responses:
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 409
-            message: Conflict
     BadRequest:
       description: Bad Request
       content:
@@ -272,15 +204,15 @@ components:
           example:
             code: 400
             message: Bad Request
-    Unauthorized:
-      description: Unauthorized
+    Conflict:
+      description: Conflict
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
           example:
-            code: 401
-            message: Unauthorized
+            code: 409
+            message: Conflict
     InternalServerError:
       description: Internal server error
       content:
@@ -290,6 +222,15 @@ components:
           example:
             code: 500
             message: Internal Server Error
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Unauthorized
   securitySchemes:
     CookieAuth:
       type: apiKey

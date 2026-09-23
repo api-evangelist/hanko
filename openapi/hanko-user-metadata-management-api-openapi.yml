@@ -5,7 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+    This is the OpenAPI specification for the Hanko Admin API.
 
 
     ## Authentication
@@ -14,9 +14,7 @@ info:
     The Admin API must be protected by an access management system.
 
 
-    ---
-
-    '
+    ---'
   contact:
     email: developers@hanko.io
   license:
@@ -58,7 +56,31 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     patch:
       summary: Patch metadata of a user
-      description: "Updates a users metadata by deep merging the metadata patch from\nthe request with existing metadata.\n\nSet the entire request to `null` to clear all metadata:\nSet any of `public_metadata`, `private_metadata`, `unsafe_metadata` to null to\nclear metadata for that category. \n\nAn empty object (`{}`) for the top level request object or an empty object for\n`public_metadata`, `private_metadata` or the `unsafe_metadata` property represent\na noop patch. \n\nUnknown top level keys besides `public_metadata`, `private_metadata` or `unsafe_metadata`\nare ignored.\n\nAll other top level request values (e.g. an empty string, a non-empty string, an array) result in a bad request.\n"
+      description: 'Updates a users metadata by deep merging the metadata patch from
+
+        the request with existing metadata.
+
+
+        Set the entire request to `null` to clear all metadata:
+
+        Set any of `public_metadata`, `private_metadata`, `unsafe_metadata` to null to
+
+        clear metadata for that category.
+
+
+        An empty object (`{}`) for the top level request object or an empty object for
+
+        `public_metadata`, `private_metadata` or the `unsafe_metadata` property represent
+
+        a noop patch.
+
+
+        Unknown top level keys besides `public_metadata`, `private_metadata` or `unsafe_metadata`
+
+        are ignored.
+
+
+        All other top level request values (e.g. an empty string, a non-empty string, an array) result in a bad request.'
       tags:
       - User Metadata Management
       security:
@@ -99,15 +121,6 @@ components:
           example:
             code: 400
             message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
     InternalServerError:
       description: Internal server error
       content:
@@ -117,18 +130,16 @@ components:
           example:
             code: 500
             message: Internal Server Error
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
   schemas:
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     UserMetadata:
       description: User metadata
       type: object
@@ -148,6 +159,17 @@ components:
           additionalProperties: {}
           example:
             birthday: '2025-05-12'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
   parameters:
     Id:
       name: id

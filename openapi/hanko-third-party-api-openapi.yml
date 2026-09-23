@@ -5,66 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Public API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#basic-usage).
-
-
-    ## Authentication
-
-
-    The API uses [JSON Web Tokens](https://www.rfc-editor.org/rfc/rfc7519.html) (JWTs) for authentication.
-
-    JWTs are verified using [JSON Web Keys](https://www.rfc-editor.org/rfc/rfc7517) (JWK).
-
-    JWKs can be [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
-
-    through the `secrets.keys` options. The API also publishes public cryptographic keys as a
-
-    [JWK set](https://www.rfc-editor.org/rfc/rfc7517#section-2) through the `.well-known/jwks.json` endpoint
-
-    to enable clients to verify token signatures.
-
-    JWTs must be provided on requests to protected endpoints using one of the following schemes:
-
-
-    ### CookieAuth
-
-
-    **Security Scheme Type**: `API Key`
-
-
-    **Cookie parameter name**: `hanko`
-
-
-    The JWT must be provided in a Cookie with the name `hanko`.
-
-
-    ### BearerTokenAuth
-
-
-    **Security Scheme Type**: `http`
-
-
-    **HTTP Authorization Scheme**: `Bearer`
-
-
-    **Bearer format**: `JWT`
-
-
-    The JWT must be provided in an HTTP Authorization header with bearer type: `Authorization: Bearer <JWT>`.
-
-
-    ## Cross-Origin Resource Sharing
-
-    Cross-Origin Resource Sharing (CORS) can be currently
-
-    [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
-
-    for public endpoints via the `server.public.cors` options.
-
-
-    ---
-
-    '
+    This is the OpenAPI specification for the Hanko Public API.'
   contact:
     email: developers@hanko.io
   license:
@@ -85,9 +26,7 @@ paths:
       summary: Initialize third party login
       description: 'Initialize an OAuth-backed (authorization code grant type) login with a third party provider by redirecting to
 
-        the specified provider login URL to retrieve an authorization code.
-
-        '
+        the specified provider login URL to retrieve an authorization code.'
       operationId: thirdPartyAuth
       tags:
       - Third Party
@@ -215,10 +154,6 @@ paths:
                 $ref: '#/components/schemas/CookieSession'
 components:
   schemas:
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
     X-Auth-Token:
       description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
 
@@ -229,6 +164,10 @@ components:
       format: JWT
       externalDocs:
         url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
   securitySchemes:
     CookieAuth:
       type: apiKey

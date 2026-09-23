@@ -69,146 +69,6 @@ paths:
       tags:
       - Transaction
 components:
-  requestBodies:
-    post-login-finalize:
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/public-key-credential'
-            - type: object
-              properties:
-                response:
-                  $ref: '#/components/schemas/autenticator-assertion-response'
-                clientExtensionResults:
-                  type: object
-                  properties:
-                    appid:
-                      type: boolean
-                    appidExclude:
-                      type: boolean
-                    credProps:
-                      type: object
-                      properties:
-                        rk:
-                          type: boolean
-              required:
-              - response
-              - clientExtensionResults
-    post-transaction-initialize:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: string
-              transaction_id:
-                type: string
-                maxLength: 128
-                description: Needs to be a tenant-wide unique identifier
-              transaction_data:
-                type: object
-            required:
-            - user_id
-            - transaction_id
-            - transaction_data
-  parameters:
-    tenant_id:
-      name: tenant_id
-      in: path
-      description: UUID of the tenant
-      required: true
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        example:
-        - 1f496bcd-49da-4839-a02f-7ce681ccb488
-    X-API-KEY:
-      name: apiKey
-      in: header
-      description: Secret API key
-      required: true
-      schema:
-        type: string
-        minLength: 32
-  schemas:
-    public-key-credential:
-      title: public-key-credential
-      allOf:
-      - $ref: '#/components/schemas/credential'
-      - type: object
-        properties:
-          rawId:
-            type: string
-          authenticatorAttachment:
-            type: string
-            enum:
-            - cross-platform
-            - platform
-            - null
-        required:
-        - rawId
-    credential:
-      type: object
-      title: credential
-      properties:
-        id:
-          type: string
-        type:
-          enum:
-          - public-key
-      required:
-      - id
-      - type
-    authenticator-response:
-      type: object
-      title: authenticator-response
-      properties:
-        clientDataJSON:
-          type: string
-      required:
-      - clientDataJSON
-    autenticator-assertion-response:
-      title: autenticator-assertion-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          authenticatorData:
-            type: string
-          signature:
-            type: string
-          userHandle:
-            type: string | null
-        required:
-        - authenticatorData
-        - signature
-    credential-descriptor-entity:
-      type: object
-      title: credential-descriptor-entity
-      properties:
-        type:
-          enum:
-          - public-key
-        id:
-          type: string
-        transports:
-          type: array
-          uniqueItems: true
-          items:
-            type: string
-            enum:
-            - ble
-            - hybrid
-            - internal
-            - nfc
-            - usb
-      required:
-      - type
-      - id
   responses:
     token:
       description: Example response
@@ -220,6 +80,23 @@ components:
               token:
                 type: string
             minProperties: 1
+    error:
+      description: Error Response with detailed information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example:
+                - explanatory title
+              details:
+                type: string
+                example:
+                - Information which helps resolving the problem
+              status:
+                type: integer
     post-login-initialize:
       description: Example response
       content:
@@ -266,20 +143,143 @@ components:
                 - optional
                 - required
                 - silent
-    error:
-      description: Error Response with detailed information
+  schemas:
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
+    public-key-credential:
+      title: public-key-credential
+      allOf:
+      - $ref: '#/components/schemas/credential'
+      - type: object
+        properties:
+          rawId:
+            type: string
+          authenticatorAttachment:
+            type: string
+            enum:
+            - cross-platform
+            - platform
+            - null
+        required:
+        - rawId
+    credential:
+      type: object
+      title: credential
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - public-key
+      required:
+      - id
+      - type
+    credential-descriptor-entity:
+      type: object
+      title: credential-descriptor-entity
+      properties:
+        type:
+          enum:
+          - public-key
+        id:
+          type: string
+        transports:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+            - ble
+            - hybrid
+            - internal
+            - nfc
+            - usb
+      required:
+      - type
+      - id
+    authenticator-response:
+      type: object
+      title: authenticator-response
+      properties:
+        clientDataJSON:
+          type: string
+      required:
+      - clientDataJSON
+  requestBodies:
+    post-login-finalize:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/public-key-credential'
+            - type: object
+              properties:
+                response:
+                  $ref: '#/components/schemas/autenticator-assertion-response'
+                clientExtensionResults:
+                  type: object
+                  properties:
+                    appid:
+                      type: boolean
+                    appidExclude:
+                      type: boolean
+                    credProps:
+                      type: object
+                      properties:
+                        rk:
+                          type: boolean
+              required:
+              - response
+              - clientExtensionResults
+    post-transaction-initialize:
       content:
         application/json:
           schema:
             type: object
             properties:
-              title:
+              user_id:
                 type: string
-                example:
-                - explanatory title
-              details:
+              transaction_id:
                 type: string
-                example:
-                - Information which helps resolving the problem
-              status:
-                type: integer
+                maxLength: 128
+                description: Needs to be a tenant-wide unique identifier
+              transaction_data:
+                type: object
+            required:
+            - user_id
+            - transaction_id
+            - transaction_data
+  parameters:
+    X-API-KEY:
+      name: apiKey
+      in: header
+      description: Secret API key
+      required: true
+      schema:
+        type: string
+        minLength: 32
+    tenant_id:
+      name: tenant_id
+      in: path
+      description: UUID of the tenant
+      required: true
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        example:
+        - 1f496bcd-49da-4839-a02f-7ce681ccb488

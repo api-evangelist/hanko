@@ -68,6 +68,16 @@ paths:
       - Login
 components:
   requestBodies:
+    post-login-initialize:
+      description: Body for login/initialize
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                description: optional - when provided the API Key needs to be sent to the server too.
     post-login-finalize:
       content:
         application/json:
@@ -93,30 +103,22 @@ components:
               required:
               - response
               - clientExtensionResults
-    post-login-initialize:
-      description: Body for login/initialize
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: string
-                description: optional - when provided the API Key needs to be sent to the server too.
-  parameters:
-    tenant_id:
-      name: tenant_id
-      in: path
-      description: UUID of the tenant
-      required: true
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        example:
-        - 1f496bcd-49da-4839-a02f-7ce681ccb488
   schemas:
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
     public-key-credential:
       title: public-key-credential
       allOf:
@@ -145,29 +147,6 @@ components:
       required:
       - id
       - type
-    authenticator-response:
-      type: object
-      title: authenticator-response
-      properties:
-        clientDataJSON:
-          type: string
-      required:
-      - clientDataJSON
-    autenticator-assertion-response:
-      title: autenticator-assertion-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          authenticatorData:
-            type: string
-          signature:
-            type: string
-          userHandle:
-            type: string | null
-        required:
-        - authenticatorData
-        - signature
     credential-descriptor-entity:
       type: object
       title: credential-descriptor-entity
@@ -191,6 +170,14 @@ components:
       required:
       - type
       - id
+    authenticator-response:
+      type: object
+      title: authenticator-response
+      properties:
+        clientDataJSON:
+          type: string
+      required:
+      - clientDataJSON
   responses:
     token:
       description: Example response
@@ -202,6 +189,23 @@ components:
               token:
                 type: string
             minProperties: 1
+    error:
+      description: Error Response with detailed information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example:
+                - explanatory title
+              details:
+                type: string
+                example:
+                - Information which helps resolving the problem
+              status:
+                type: integer
     post-login-initialize:
       description: Example response
       content:
@@ -248,20 +252,16 @@ components:
                 - optional
                 - required
                 - silent
-    error:
-      description: Error Response with detailed information
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              title:
-                type: string
-                example:
-                - explanatory title
-              details:
-                type: string
-                example:
-                - Information which helps resolving the problem
-              status:
-                type: integer
+  parameters:
+    tenant_id:
+      name: tenant_id
+      in: path
+      description: UUID of the tenant
+      required: true
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        example:
+        - 1f496bcd-49da-4839-a02f-7ce681ccb488

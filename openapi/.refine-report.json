@@ -88,13 +88,13 @@
     "tag 'Audit Logs' spans 2 source specs (hanko-admin-api-openapi.yml, hanko-passkey-api-openapi.yml): per-path servers applied",
     "tag 'Status' spans 2 source specs (hanko-admin-api-openapi.yml, hanko-public-api-openapi.yml): per-path servers applied",
     "tag 'User Management' spans 2 source specs (hanko-admin-api-openapi.yml, hanko-public-api-openapi.yml): per-path servers applied",
-    "tag 'webauthn' spans 2 source specs (hanko-passkey-api-openapi.yml, hanko-public-api-openapi.yml): per-path servers applied"
+    "tag 'webauthn' spans 2 source specs (hanko-passkey-api-openapi.yml, hanko-public-api-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "hanko-audit-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hanko-credentials-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hanko-email-management-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "hanko-flow-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hanko-login-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hanko-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "hanko-mfa-api-openapi.yml: previously refined output, superseded by openapi/_original/",

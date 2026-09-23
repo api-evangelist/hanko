@@ -5,7 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+    This is the OpenAPI specification for the Hanko Admin API.
 
 
     ## Authentication
@@ -14,9 +14,7 @@ info:
     The Admin API must be protected by an access management system.
 
 
-    ---
-
-    '
+    ---'
   contact:
     email: developers@hanko.io
   license:
@@ -68,15 +66,6 @@ components:
           example:
             code: 400
             message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
     InternalServerError:
       description: Internal server error
       content:
@@ -86,7 +75,29 @@ components:
           example:
             code: 500
             message: Internal Server Error
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
   schemas:
+    CreateSession:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        user_agent:
+          type: string
+        ip_address:
+          type: string
+          format: ip_address
+      required:
+      - user_id
     Error:
       type: object
       required:
@@ -104,19 +115,6 @@ components:
         session_token:
           type: string
           format: JWT
-    CreateSession:
-      type: object
-      properties:
-        user_id:
-          type: string
-          format: uuid
-        user_agent:
-          type: string
-        ip_address:
-          type: string
-          format: ip_address
-      required:
-      - user_id
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

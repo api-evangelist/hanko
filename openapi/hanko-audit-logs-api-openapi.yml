@@ -191,17 +191,10 @@ paths:
     - url: https://passkeys.hanko.io
 components:
   schemas:
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     AuditLog:
       type: object
       required:
@@ -248,6 +241,17 @@ components:
           type: string
           format: date-time
           example: '2022-09-14T12:15:09.788784Z'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     AuditLogTypes:
       description: The type of the audit log
       type: string
@@ -293,10 +297,6 @@ components:
       - username_deleted
       - password_changed
       - password_deleted
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     audit_log:
       type: object
       title: audit_log
@@ -334,17 +334,6 @@ components:
       - created_at
       - updated_at
       - tenant_id
-  headers:
-    X-Total-Count:
-      schema:
-        type: string
-      description: The total count of the requested resource considering query parameter
-      example: 1234
-    Link:
-      schema:
-        type: string
-      description: Web Linking as described in RFC5988
-      example: <http://localhost:8001/resource?page=1&per_page=10>; rel="first",<http://localhost:8001/resource?page=16&per_page=10>; rel="last",<http://localhost:8001/resource?page=6&per_page=10>; rel="next",<http://localhost:8001/resource?page=4&per_page=10>; rel="prev"
   responses:
     InternalServerError:
       description: Internal server error
@@ -372,6 +361,17 @@ components:
                 - Information which helps resolving the problem
               status:
                 type: integer
+  headers:
+    X-Total-Count:
+      schema:
+        type: string
+      description: The total count of the requested resource considering query parameter
+      example: 1234
+    Link:
+      schema:
+        type: string
+      description: Web Linking as described in RFC5988
+      example: <http://localhost:8001/resource?page=1&per_page=10>; rel="first",<http://localhost:8001/resource?page=16&per_page=10>; rel="last",<http://localhost:8001/resource?page=6&per_page=10>; rel="next",<http://localhost:8001/resource?page=4&per_page=10>; rel="prev"
   parameters:
     tenant_id:
       name: tenant_id

@@ -5,7 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+    This is the OpenAPI specification for the Hanko Admin API.
 
 
     ## Authentication
@@ -14,9 +14,7 @@ info:
     The Admin API must be protected by an access management system.
 
 
-    ---
-
-    '
+    ---'
   contact:
     email: developers@hanko.io
   license:
@@ -422,87 +420,28 @@ paths:
       tags:
       - Users
 components:
-  responses:
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 409
-            message: Conflict
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
   schemas:
-    Error:
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    CreatePassword:
       type: object
-      required:
-      - code
-      - message
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
+        password:
           type: string
-    Session:
+    OTP:
       type: object
       properties:
         id:
           type: string
           format: uuid
-        user_id:
-          type: string
-          format: uuid
-        user_agent:
-          type: string
-        ip_address:
-          type: string
-          format: ip_address
         created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        last_used:
-          type: string
-          format: date-time
-        expires_at:
           type: string
           format: date-time
       required:
       - id
-      - user_id
       - created_at
-      - updated_at
-      - last_used
     Email:
       type: object
       required:
@@ -536,27 +475,6 @@ components:
           description: Time of last update of the email
           type: string
           format: date-time
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    OTP:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - created_at
-    CreatePassword:
-      type: object
-      properties:
-        password:
-          type: string
     Password:
       description: The password credential of a user
       type: object
@@ -574,6 +492,49 @@ components:
           description: Time of last update of the password credential
           type: string
           format: date-time
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        user_agent:
+          type: string
+        ip_address:
+          type: string
+          format: ip_address
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+        expires_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - user_id
+      - created_at
+      - updated_at
+      - last_used
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     WebAuthnCredential:
       type: object
       required:
@@ -625,15 +586,43 @@ components:
         mfa_only:
           description: Indicates if the credential can only be used as a MFA credential
           type: boolean
-  parameters:
-    Id:
-      name: id
-      in: path
-      description: UUID of the requested object
-      required: true
-      schema:
-        type: string
-        format: uuid
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
   requestBodies:
     CreateEmail:
       description: Request Body for creating an email for a user
@@ -651,6 +640,15 @@ components:
                 type: boolean
             required:
             - address
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: UUID of the requested object
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

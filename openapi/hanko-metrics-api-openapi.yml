@@ -5,7 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).
+    This is the OpenAPI specification for the Hanko Admin API.
 
 
     ## Authentication
@@ -14,9 +14,7 @@ info:
     The Admin API must be protected by an access management system.
 
 
-    ---
-
-    '
+    ---'
   contact:
     email: developers@hanko.io
   license:
@@ -33,7 +31,7 @@ tags:
 paths:
   /metrics:
     get:
-      summary: Get Prometheus metrics.
+      summary: Get Prometheus metrics
       security:
       - BearerApiKeyAuth: []
       operationId: getMetrics

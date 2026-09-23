@@ -5,66 +5,7 @@ info:
   description: '## Introduction
 
 
-    This is the OpenAPI specification for the [Hanko Public API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#basic-usage).
-
-
-    ## Authentication
-
-
-    The API uses [JSON Web Tokens](https://www.rfc-editor.org/rfc/rfc7519.html) (JWTs) for authentication.
-
-    JWTs are verified using [JSON Web Keys](https://www.rfc-editor.org/rfc/rfc7517) (JWK).
-
-    JWKs can be [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
-
-    through the `secrets.keys` options. The API also publishes public cryptographic keys as a
-
-    [JWK set](https://www.rfc-editor.org/rfc/rfc7517#section-2) through the `.well-known/jwks.json` endpoint
-
-    to enable clients to verify token signatures.
-
-    JWTs must be provided on requests to protected endpoints using one of the following schemes:
-
-
-    ### CookieAuth
-
-
-    **Security Scheme Type**: `API Key`
-
-
-    **Cookie parameter name**: `hanko`
-
-
-    The JWT must be provided in a Cookie with the name `hanko`.
-
-
-    ### BearerTokenAuth
-
-
-    **Security Scheme Type**: `http`
-
-
-    **HTTP Authorization Scheme**: `Bearer`
-
-
-    **Bearer format**: `JWT`
-
-
-    The JWT must be provided in an HTTP Authorization header with bearer type: `Authorization: Bearer <JWT>`.
-
-
-    ## Cross-Origin Resource Sharing
-
-    Cross-Origin Resource Sharing (CORS) can be currently
-
-    [configured](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#all-available-config-options)
-
-    for public endpoints via the `server.public.cors` options.
-
-
-    ---
-
-    '
+    This is the OpenAPI specification for the Hanko Public API.'
   contact:
     email: developers@hanko.io
   license:
@@ -77,19 +18,17 @@ servers:
       default: ''
       description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
 tags:
-- name: .well-known
+- name: .well Known
 paths:
   /.well-known/jwks.json:
     get:
       summary: Get JSON Web Key Set
-      description: 'Retrieve a [JSON Web Key Set](https://www.rfc-editor.org/rfc/rfc7517#section-5) (JWKS) object containing the public `keys` used to verify
+      description: 'Retrieve a JSON Web Key Set (JWKS) object containing the public `keys` used to verify
 
-        JSON Web Tokens (JWT) issued by the Hanko API and signed using the RS256 signing algorithm.
-
-        '
+        JSON Web Tokens (JWT) issued by the Hanko API and signed using the RS256 signing algorithm.'
       operationId: getJwks
       tags:
-      - .well-known
+      - .well Known
       responses:
         '200':
           description: JSON Web Key Set
@@ -108,12 +47,10 @@ paths:
 
         Useful for example for conditionally constructing a UI based on the options (e.g. don''t show password
 
-        inputs when they are disabled).
-
-        '
+        inputs when they are disabled).'
       operationId: getConfig
       tags:
-      - .well-known
+      - .well Known
       responses:
         '200':
           description: Hanko configuration
@@ -122,6 +59,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/HankoConfiguration'
 components:
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   schemas:
     JSONWebKey:
       type: object
@@ -167,17 +114,6 @@ components:
           externalDocs:
             description: RFC7517 - JSON Web Key (JWK) - Section 4.2
             url: https://www.rfc-editor.org/rfc/rfc7517#section-4.2
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     HankoConfiguration:
       description: Public backend configuration options
       type: object
@@ -213,6 +149,17 @@ components:
             allow_signup:
               description: Indicates users are able to create new accounts.
               type: boolean
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     JSONWebKeySet:
       type: object
       properties:
@@ -226,16 +173,6 @@ components:
       externalDocs:
         description: RFC7517 - JSON Web Key (JWK) - Section 5
         url: https://www.rfc-editor.org/rfc/rfc7517#section-5
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
   securitySchemes:
     CookieAuth:
       type: apiKey

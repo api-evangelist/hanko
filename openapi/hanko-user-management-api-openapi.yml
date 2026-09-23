@@ -199,9 +199,7 @@ paths:
       description: 'Updates a subset of user-level attributes.
 
 
-        Other sub-resources (e.g. emails, credentials) are managed via dedicated endpoints and are not updated via this endpoint.
-
-        '
+        Other sub-resources (e.g. emails, credentials) are managed via dedicated endpoints and are not updated via this endpoint.'
       security:
       - BearerApiKeyAuth: []
       operationId: patchUser
@@ -347,37 +345,18 @@ paths:
           description: The (UU)ID of a tenant. Replace the default value with your tenant ID.
 components:
   schemas:
-    UserBase:
+    OTP:
       type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
       required:
       - id
       - created_at
-      - updated_at
-      properties:
-        id:
-          description: The ID of the user
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-        created_at:
-          description: Time of creation of the user
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the user
-          type: string
-          format: date-time
-        webauthn_credentials:
-          description: List of registered Webauthn credentials
-          type: array
-          items:
-            $ref: '#/components/schemas/WebAuthnCredential'
-        emails:
-          description: List of emails associated to the user
-          type: array
-          items:
-            $ref: '#/components/schemas/Email'
-        username:
-          $ref: '#/components/schemas/Username'
     Identity:
       description: A third party provider identity
       type: object
@@ -406,23 +385,25 @@ components:
           description: Time of last update of the password credential
           type: string
           format: date-time
-    Password:
-      description: The password credential of a user
+    UserMetadata:
+      description: User metadata
       type: object
       properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-          description: The ID of the password credential
-          example: 28a7206b-e789-435a-b87c-108e034135c2
-        created_at:
-          description: Time of creation of the password credential
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the password credential
-          type: string
-          format: date-time
+        public_metadata:
+          type: object
+          additionalProperties: {}
+          example:
+            role: admin
+        private_metadata:
+          type: object
+          additionalProperties: {}
+          example:
+            internal_id: e6c19cfb-09a2-41e5-a908-e33193b7ca0a
+        unsafe_metadata:
+          type: object
+          additionalProperties: {}
+          example:
+            birthday: '2025-05-12'
     Error:
       type: object
       required:
@@ -434,32 +415,6 @@ components:
           format: int32
         message:
           type: string
-    Username:
-      description: The username of the user
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-          description: The ID of the username
-          example: 8cbed467-554b-4d17-b23f-bce1b4f1db92
-        created_at:
-          description: Time of creation of the username
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the username
-          type: string
-          format: date-time
-        username:
-          description: The username of the user
-          type: string
-          example: john_doe_123
-    Identities:
-      description: A list of third party provider identities
-      type: array
-      items:
-        $ref: '#/components/schemas/Identity'
     WebAuthnCredential:
       type: object
       required:
@@ -511,19 +466,10 @@ components:
         mfa_only:
           description: Indicates if the credential can only be used as a MFA credential
           type: boolean
-    User:
-      allOf:
-      - $ref: '#/components/schemas/UserBase'
-      - type: object
-        properties:
-          otp:
-            $ref: '#/components/schemas/OTP'
-          password:
-            $ref: '#/components/schemas/Password'
-          identities:
-            $ref: '#/components/schemas/Identities'
-          metadata:
-            $ref: '#/components/schemas/UserMetadata'
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     Email:
       type: object
       required:
@@ -557,41 +503,256 @@ components:
           description: Time of last update of the email
           type: string
           format: date-time
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    OTP:
+    Username:
+      description: The username of the user
       type: object
       properties:
         id:
-          type: string
-          format: uuid
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          description: The ID of the username
+          example: 8cbed467-554b-4d17-b23f-bce1b4f1db92
         created_at:
+          description: Time of creation of the username
           type: string
           format: date-time
+        updated_at:
+          description: Time of last update of the username
+          type: string
+          format: date-time
+        username:
+          description: The username of the user
+          type: string
+          example: john_doe_123
+    Password:
+      description: The password credential of a user
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          description: The ID of the password credential
+          example: 28a7206b-e789-435a-b87c-108e034135c2
+        created_at:
+          description: Time of creation of the password credential
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the password credential
+          type: string
+          format: date-time
+    Identities:
+      description: A list of third party provider identities
+      type: array
+      items:
+        $ref: '#/components/schemas/Identity'
+    UserBase:
+      type: object
       required:
       - id
       - created_at
-    UserMetadata:
-      description: User metadata
+      - updated_at
+      properties:
+        id:
+          description: The ID of the user
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+        created_at:
+          description: Time of creation of the user
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the user
+          type: string
+          format: date-time
+        webauthn_credentials:
+          description: List of registered Webauthn credentials
+          type: array
+          items:
+            $ref: '#/components/schemas/WebAuthnCredential'
+        emails:
+          description: List of emails associated to the user
+          type: array
+          items:
+            $ref: '#/components/schemas/Email'
+        username:
+          $ref: '#/components/schemas/Username'
+    User:
+      allOf:
+      - $ref: '#/components/schemas/UserBase'
+      - type: object
+        properties:
+          otp:
+            $ref: '#/components/schemas/OTP'
+          password:
+            $ref: '#/components/schemas/Password'
+          identities:
+            $ref: '#/components/schemas/Identities'
+          metadata:
+            $ref: '#/components/schemas/UserMetadata'
+    Identity_2:
+      type: object
+      description: Representation of a user's third party connection/identity.
+      properties:
+        id:
+          type: string
+          description: The ID of the user at the provider
+        identity_id:
+          type: string
+          description: The identity's ID
+          format: uuid4
+        provider:
+          type: string
+          description: 'Contains the display name of the provider, if available. Otherwise contains the provider ID.
+
+            '
+    UserMetadata_2:
+      description: The public and unsafe metadata of a user
       type: object
       properties:
         public_metadata:
           type: object
-          additionalProperties: {}
+          additionalProperties: true
           example:
             role: admin
-        private_metadata:
-          type: object
-          additionalProperties: {}
-          example:
-            internal_id: e6c19cfb-09a2-41e5-a908-e33193b7ca0a
         unsafe_metadata:
           type: object
-          additionalProperties: {}
+          additionalProperties: true
           example:
             birthday: '2025-05-12'
+    WebauthnCredentials:
+      description: A list of WebAuthn credentials
+      type: array
+      items:
+        $ref: '#/components/schemas/WebauthnCredential'
+      example:
+      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
+        name: iCloud
+        public_key: pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...
+        attestation_type: packed
+        aaguid: 01020304-0506-0708-0102-030405060708
+        last_used_at: '2026-02-24T21:40:36.26936Z'
+        created_at: '2026-02-24T21:40:36.26936Z'
+        transports:
+        - internal
+        backup_eligible: true
+        backup_state: true
+        mfa_only: false
+      - id: f826013e-e7e3-4366-a6d8-9359effc8cdd
+        name: Yubikey Bio
+        public_key: aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...
+        attestation_type: packed
+        aaguid: 90636e1f-ef82-43bf-bdcf-5255f139d12f
+        last_used_at: '2026-02-24T21:40:36.26936Z'
+        created_at: '2026-02-24T21:40:36.26936Z'
+        transports:
+        - usb
+        backup_eligible: true
+        backup_state: false
+        mfa_only: true
+    Username_2:
+      description: The representation of a username of the user
+      type: object
+      properties:
+        id:
+          description: The ID of the user
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+        created_at:
+          description: Time of creation of the username
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the username
+          type: string
+          format: date-time
+        username:
+          description: The username of the user
+          type: string
+          example: john_doe
+    WebauthnCredential:
+      type: object
+      properties:
+        aaguid:
+          type: string
+          format: uuid
+        attestation_type:
+          type: string
+          enum:
+          - none
+          - packed
+          - tpm
+          - android-key
+          - android-safetynet
+          - fido-u2f
+          - apple
+        backup_eligible:
+          type: boolean
+        backup_state:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+          format: uuid
+        last_used_at:
+          type: string
+          format: date-time
+        mfa_only:
+          type: boolean
+        name:
+          type: string
+        public-key:
+          type: string
+        transports:
+          type: array
+          items:
+            type: string
+            enum:
+            - ble
+            - internal
+            - nfc
+            - usb
+    Identities_2:
+      description: The user's third party connections/identities.
+      type: array
+      items:
+        $ref: '#/components/schemas/Identity_2'
+    Emails:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            description: The ID of the email address
+            allOf:
+            - $ref: '#/components/schemas/UUID4'
+          address:
+            description: The email address
+            type: string
+            format: email
+          is_verified:
+            description: Indicated the email has been verified.
+            type: boolean
+          is_primary:
+            description: Indicates it's the primary email address.
+            type: boolean
+          identity:
+            allOf:
+            - $ref: '#/components/schemas/Identity_2'
+            - deprecated: true
+            - description: Deprecated, use `user.identities` instead.
+          identities:
+            allOf:
+            - $ref: '#/components/schemas/Identities_2'
+            - deprecated: true
+            - description: Deprecated, use `user.identities` instead.
+      example:
+      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
+        address: john.doe@example.com
+        is_verified: true
+        is_primary: false
     UserBase_2:
       type: object
       properties:
@@ -668,111 +829,6 @@ components:
               type: boolean
             security_key_enabled:
               type: boolean
-    Identity_2:
-      type: object
-      description: Representation of a user's third party connection/identity.
-      properties:
-        id:
-          type: string
-          description: The ID of the user at the provider
-        identity_id:
-          type: string
-          description: The identity's ID
-          format: uuid4
-        provider:
-          type: string
-          description: 'Contains the display name of the provider, if available. Otherwise contains the provider ID.
-
-            '
-    Username_2:
-      description: The representation of a username of the user
-      type: object
-      properties:
-        id:
-          description: The ID of the user
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-        created_at:
-          description: Time of creation of the username
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the username
-          type: string
-          format: date-time
-        username:
-          description: The username of the user
-          type: string
-          example: john_doe
-    Emails:
-      type: array
-      items:
-        type: object
-        properties:
-          id:
-            description: The ID of the email address
-            allOf:
-            - $ref: '#/components/schemas/UUID4'
-          address:
-            description: The email address
-            type: string
-            format: email
-          is_verified:
-            description: Indicated the email has been verified.
-            type: boolean
-          is_primary:
-            description: Indicates it's the primary email address.
-            type: boolean
-          identity:
-            allOf:
-            - $ref: '#/components/schemas/Identity_2'
-            - deprecated: true
-            - description: Deprecated, use `user.identities` instead.
-          identities:
-            allOf:
-            - $ref: '#/components/schemas/Identities_2'
-            - deprecated: true
-            - description: Deprecated, use `user.identities` instead.
-      example:
-      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
-        address: john.doe@example.com
-        is_verified: true
-        is_primary: false
-    WebauthnCredentials:
-      description: A list of WebAuthn credentials
-      type: array
-      items:
-        $ref: '#/components/schemas/WebauthnCredential'
-      example:
-      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
-        name: iCloud
-        public_key: pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...
-        attestation_type: packed
-        aaguid: 01020304-0506-0708-0102-030405060708
-        last_used_at: '2026-02-24T21:40:36.26936Z'
-        created_at: '2026-02-24T21:40:36.26936Z'
-        transports:
-        - internal
-        backup_eligible: true
-        backup_state: true
-        mfa_only: false
-      - id: f826013e-e7e3-4366-a6d8-9359effc8cdd
-        name: Yubikey Bio
-        public_key: aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...
-        attestation_type: packed
-        aaguid: 90636e1f-ef82-43bf-bdcf-5255f139d12f
-        last_used_at: '2026-02-24T21:40:36.26936Z'
-        created_at: '2026-02-24T21:40:36.26936Z'
-        transports:
-        - usb
-        backup_eligible: true
-        backup_state: false
-        mfa_only: true
-    Identities_2:
-      description: The user's third party connections/identities.
-      type: array
-      items:
-        $ref: '#/components/schemas/Identity_2'
     CreateUserResponseObject:
       type: object
       properties:
@@ -784,75 +840,92 @@ components:
           description: The ID of the newly created email address
           allOf:
           - $ref: '#/components/schemas/UUID4'
-    UserMetadata_2:
-      description: The public and unsafe metadata of a user
-      type: object
-      properties:
-        public_metadata:
-          type: object
-          additionalProperties: true
+  responses:
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
           example:
-            role: admin
-        unsafe_metadata:
-          type: object
-          additionalProperties: true
+            code: 409
+            message: Conflict
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
           example:
-            birthday: '2025-05-12'
-    WebauthnCredential:
-      type: object
-      properties:
-        aaguid:
-          type: string
-          format: uuid
-        attestation_type:
-          type: string
-          enum:
-          - none
-          - packed
-          - tpm
-          - android-key
-          - android-safetynet
-          - fido-u2f
-          - apple
-        backup_eligible:
-          type: boolean
-        backup_state:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: string
-          format: uuid
-        last_used_at:
-          type: string
-          format: date-time
-        mfa_only:
-          type: boolean
-        name:
-          type: string
-        public-key:
-          type: string
-        transports:
-          type: array
-          items:
-            type: string
-            enum:
-            - ble
-            - internal
-            - nfc
-            - usb
-  headers:
-    Link:
-      schema:
-        type: string
-      description: Web Linking as described in RFC5988
-      example: <http://localhost:8001/resource?page=1&per_page=10>; rel="first",<http://localhost:8001/resource?page=16&per_page=10>; rel="last",<http://localhost:8001/resource?page=6&per_page=10>; rel="next",<http://localhost:8001/resource?page=4&per_page=10>; rel="prev"
-    X-Total-Count:
-      schema:
-        type: string
-      description: The total count of the requested resource considering query parameter
-      example: 1234
+            code: 400
+            message: Bad Request
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 401
+            message: Unauthorized
+    GetUserByIdResponse:
+      description: Details for a user retrieved by ID
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+            - $ref: '#/components/schemas/UserBase_2'
+            - type: object
+              properties:
+                email:
+                  description: The email address of the user
+                  type: string
+                  format: email
+                username:
+                  description: The username of the user
+                  type: string
+                webauthn_credentials:
+                  $ref: '#/components/schemas/WebauthnCredentials'
+    MeResponse:
+      description: Details for the current user
+      content:
+        application/json:
+          schema:
+            type: object
+            allOf:
+            - $ref: '#/components/schemas/UserBase_2'
+            - type: object
+              properties:
+                username:
+                  $ref: '#/components/schemas/Username_2'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 403
+            message: Forbidden
   requestBodies:
     PatchUser:
       content:
@@ -925,92 +998,17 @@ components:
                 - 'null'
                 maxLength: 2048
                 format: uri
-  responses:
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 409
-            message: Conflict
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 403
-            message: Forbidden
-    MeResponse:
-      description: Details for the current user
-      content:
-        application/json:
-          schema:
-            type: object
-            allOf:
-            - $ref: '#/components/schemas/UserBase_2'
-            - type: object
-              properties:
-                username:
-                  $ref: '#/components/schemas/Username_2'
-    GetUserByIdResponse:
-      description: Details for a user retrieved by ID
-      content:
-        application/json:
-          schema:
-            type: object
-            allOf:
-            - $ref: '#/components/schemas/UserBase_2'
-            - type: object
-              properties:
-                email:
-                  description: The email address of the user
-                  type: string
-                  format: email
-                username:
-                  description: The username of the user
-                  type: string
-                webauthn_credentials:
-                  $ref: '#/components/schemas/WebauthnCredentials'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 401
-            message: Unauthorized
+  headers:
+    X-Total-Count:
+      schema:
+        type: string
+      description: The total count of the requested resource considering query parameter
+      example: 1234
+    Link:
+      schema:
+        type: string
+      description: Web Linking as described in RFC5988
+      example: <http://localhost:8001/resource?page=1&per_page=10>; rel="first",<http://localhost:8001/resource?page=16&per_page=10>; rel="last",<http://localhost:8001/resource?page=6&per_page=10>; rel="next",<http://localhost:8001/resource?page=4&per_page=10>; rel="prev"
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.
