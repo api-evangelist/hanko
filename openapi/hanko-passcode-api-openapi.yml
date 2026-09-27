@@ -136,15 +136,26 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     X-Session-Lifetime:
       description: 'Contains the seconds until the session expires.
 
         '
       type: number
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     X-Auth-Token:
       description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
 
@@ -159,17 +170,6 @@ components:
       type: string
       description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
       example: hanko=<JWT>; Path=/; HttpOnly
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     Passcode:
       description: Representation of a passcode
       type: object
@@ -187,42 +187,6 @@ components:
           type: string
           format: date-time
   responses:
-    RequestTimeOut:
-      description: Request Timeout
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 408
-            message: Request Timeout
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    Gone:
-      description: Gone
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 410
-            message: Gone
     Unauthorized:
       description: Unauthorized
       content:
@@ -232,6 +196,33 @@ components:
           example:
             code: 401
             message: Unauthorized
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    RequestTimeOut:
+      description: Request Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 408
+            message: Request Timeout
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
     Forbidden:
       description: Forbidden
       content:
@@ -241,6 +232,15 @@ components:
           example:
             code: 403
             message: Forbidden
+    Gone:
+      description: Gone
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 410
+            message: Gone
   securitySchemes:
     CookieAuth:
       type: apiKey

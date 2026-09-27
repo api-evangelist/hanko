@@ -67,58 +67,7 @@ paths:
       tags:
       - Login
 components:
-  requestBodies:
-    post-login-initialize:
-      description: Body for login/initialize
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: string
-                description: optional - when provided the API Key needs to be sent to the server too.
-    post-login-finalize:
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/public-key-credential'
-            - type: object
-              properties:
-                response:
-                  $ref: '#/components/schemas/autenticator-assertion-response'
-                clientExtensionResults:
-                  type: object
-                  properties:
-                    appid:
-                      type: boolean
-                    appidExclude:
-                      type: boolean
-                    credProps:
-                      type: object
-                      properties:
-                        rk:
-                          type: boolean
-              required:
-              - response
-              - clientExtensionResults
   schemas:
-    autenticator-assertion-response:
-      title: autenticator-assertion-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          authenticatorData:
-            type: string
-          signature:
-            type: string
-          userHandle:
-            type: string | null
-        required:
-        - authenticatorData
-        - signature
     public-key-credential:
       title: public-key-credential
       allOf:
@@ -178,6 +127,21 @@ components:
           type: string
       required:
       - clientDataJSON
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
   responses:
     token:
       description: Example response
@@ -252,6 +216,42 @@ components:
                 - optional
                 - required
                 - silent
+  requestBodies:
+    post-login-finalize:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/public-key-credential'
+            - type: object
+              properties:
+                response:
+                  $ref: '#/components/schemas/autenticator-assertion-response'
+                clientExtensionResults:
+                  type: object
+                  properties:
+                    appid:
+                      type: boolean
+                    appidExclude:
+                      type: boolean
+                    credProps:
+                      type: object
+                      properties:
+                        rk:
+                          type: boolean
+              required:
+              - response
+              - clientExtensionResults
+    post-login-initialize:
+      description: Body for login/initialize
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                description: optional - when provided the API Key needs to be sent to the server too.
   parameters:
     tenant_id:
       name: tenant_id

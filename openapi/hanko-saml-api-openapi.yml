@@ -180,16 +180,6 @@ paths:
                 type: string
               description: On error, redirect to the `saml.default_redirect_url` set in the backend-configuration. Error details are provided in the location URL in the form of `error` and `error_description`query params.
 components:
-  responses:
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
   schemas:
     Error:
       type: object
@@ -202,6 +192,16 @@ components:
           format: int32
         message:
           type: string
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
   securitySchemes:
     CookieAuth:
       type: apiKey

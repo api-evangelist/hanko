@@ -85,19 +85,6 @@ components:
             code: 404
             message: Not found
   schemas:
-    CreateSession:
-      type: object
-      properties:
-        user_id:
-          type: string
-          format: uuid
-        user_agent:
-          type: string
-        ip_address:
-          type: string
-          format: ip_address
-      required:
-      - user_id
     Error:
       type: object
       required:
@@ -115,6 +102,19 @@ components:
         session_token:
           type: string
           format: JWT
+    CreateSession:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        user_agent:
+          type: string
+        ip_address:
+          type: string
+          format: ip_address
+      required:
+      - user_id
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

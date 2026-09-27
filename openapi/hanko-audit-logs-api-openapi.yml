@@ -195,52 +195,6 @@ components:
       type: string
       format: uuid4
       example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    AuditLog:
-      type: object
-      required:
-      - id
-      - type
-      - meta_http_request_id
-      - meta_source_ip
-      - meta_user_agent
-      - created_at
-      - updated_at
-      properties:
-        id:
-          description: The ID of the audit log
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-        type:
-          allOf:
-          - $ref: '#/components/schemas/AuditLogTypes'
-        error:
-          description: A more detailed message why something failed
-          type: string
-        meta_http_request_id:
-          description: The ID of the corresponding http request
-          type: string
-          example: 0a2xsrhlhiQv49FIpq8KV8uQVq6ky9Bw
-        meta_source_ip:
-          description: The IP from where the http request came from
-          type: string
-          format: ip-address
-          example: 172.27.0.1
-        meta_user_agent:
-          description: The user agent from where the http request came from
-          type: string
-        actor_user_id:
-          description: The userID from the actor
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-        actor_email:
-          description: The email from the actor
-          type: string
-          format: email
-        created_at:
-          description: Time of creation of the audit log
-          type: string
-          format: date-time
-          example: '2022-09-14T12:15:09.788784Z'
     Error:
       type: object
       required:
@@ -297,6 +251,52 @@ components:
       - username_deleted
       - password_changed
       - password_deleted
+    AuditLog:
+      type: object
+      required:
+      - id
+      - type
+      - meta_http_request_id
+      - meta_source_ip
+      - meta_user_agent
+      - created_at
+      - updated_at
+      properties:
+        id:
+          description: The ID of the audit log
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+        type:
+          allOf:
+          - $ref: '#/components/schemas/AuditLogTypes'
+        error:
+          description: A more detailed message why something failed
+          type: string
+        meta_http_request_id:
+          description: The ID of the corresponding http request
+          type: string
+          example: 0a2xsrhlhiQv49FIpq8KV8uQVq6ky9Bw
+        meta_source_ip:
+          description: The IP from where the http request came from
+          type: string
+          format: ip-address
+          example: 172.27.0.1
+        meta_user_agent:
+          description: The user agent from where the http request came from
+          type: string
+        actor_user_id:
+          description: The userID from the actor
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+        actor_email:
+          description: The email from the actor
+          type: string
+          format: email
+        created_at:
+          description: Time of creation of the audit log
+          type: string
+          format: date-time
+          example: '2022-09-14T12:15:09.788784Z'
     audit_log:
       type: object
       title: audit_log

@@ -140,6 +140,17 @@ components:
             code: 404
             message: Not found
   schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     UserMetadata:
       description: User metadata
       type: object
@@ -159,17 +170,6 @@ components:
           additionalProperties: {}
           example:
             birthday: '2025-05-12'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
   parameters:
     Id:
       name: id

@@ -43,7 +43,7 @@ tags:
 - Identity
 - SAML
 - Passwordless
-- Open-Source
+- Open Source
 - Identity Federation
 tags_raw:
 - Authentication
@@ -56,6 +56,7 @@ tags_raw:
 - Passwordless
 - Open Source
 - Identity Federation
+- Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/hanko/refs/heads/main/apis.yml
 created: '2026-06-12'
 modified: '2026-09-16'
@@ -132,7 +133,7 @@ apis:
   - type: Documentation
     url: https://docs.hanko.io/passkey-api/introduction
 - aid: hanko:hanko-mfa-api
-  name: Hanko mfa API
+  name: Hanko Mfa API
   description: Represents all objects which are related to MFA in common
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io
@@ -322,7 +323,7 @@ apis:
   - type: Documentation
     url: https://docs.hanko.io/passkey-api/introduction
 - aid: hanko:hanko-webauthn-api
-  name: Hanko webauthn API
+  name: Hanko Webauthn API
   description: Represents all objects which are related to WebAuthn in common
   humanURL: https://docs.hanko.io
   baseURL: https://{tenant_id}.hanko.io

@@ -154,6 +154,10 @@ paths:
                 $ref: '#/components/schemas/CookieSession'
 components:
   schemas:
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
     X-Auth-Token:
       description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
 
@@ -164,10 +168,6 @@ components:
       format: JWT
       externalDocs:
         url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
   securitySchemes:
     CookieAuth:
       type: apiKey

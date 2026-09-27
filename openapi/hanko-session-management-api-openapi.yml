@@ -121,10 +121,6 @@ components:
             required:
             - isValid
   schemas:
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     Error:
       type: object
       required:
@@ -136,6 +132,10 @@ components:
           format: int32
         message:
           type: string
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     JWTClaims:
       type: object
       description: The claims extracted from a JWT.
