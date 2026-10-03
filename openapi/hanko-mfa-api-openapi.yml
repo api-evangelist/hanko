@@ -140,247 +140,7 @@ paths:
       servers:
       - url: https://passkeys.hanko.io
 components:
-  requestBodies:
-    post-registration-initialize:
-      description: ''
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: string
-              username:
-                type: string
-                maxLength: 128
-              icon:
-                type: string
-              display_name:
-                type: string
-                maxLength: 128
-            required:
-            - user_id
-            - username
-    post-login-finalize:
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/public-key-credential'
-            - type: object
-              properties:
-                response:
-                  $ref: '#/components/schemas/autenticator-assertion-response'
-                clientExtensionResults:
-                  type: object
-                  properties:
-                    appid:
-                      type: boolean
-                    appidExclude:
-                      type: boolean
-                    credProps:
-                      type: object
-                      properties:
-                        rk:
-                          type: boolean
-              required:
-              - response
-              - clientExtensionResults
-    post-mfa-login-initialize:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: string
-            required:
-            - user_id
-    post-registration-finalize:
-      content:
-        application/json:
-          schema:
-            allOf:
-            - $ref: '#/components/schemas/public-key-credential'
-            - type: object
-              properties:
-                response:
-                  $ref: '#/components/schemas/authenticator-attestation-response'
-                transports:
-                  type: array
-                  uniqueItems: true
-                  items:
-                    type: string
-              required:
-              - response
-  schemas:
-    relying-party-entity:
-      title: relying-party-entity
-      allOf:
-      - type: object
-        properties:
-          id:
-            type: string
-      - $ref: '#/components/schemas/credential-entity'
-    authenticator-response:
-      type: object
-      title: authenticator-response
-      properties:
-        clientDataJSON:
-          type: string
-      required:
-      - clientDataJSON
-    public-key-user:
-      type: object
-      title: public-key-user
-      properties:
-        id:
-          type: string
-        displayName:
-          type: string
-        name:
-          type: string
-      required:
-      - id
-      - displayName
-      - name
-    public-key-credential:
-      title: public-key-credential
-      allOf:
-      - $ref: '#/components/schemas/credential'
-      - type: object
-        properties:
-          rawId:
-            type: string
-          authenticatorAttachment:
-            type: string
-            enum:
-            - cross-platform
-            - platform
-            - null
-        required:
-        - rawId
-    authentication-selection-entity:
-      type: object
-      title: authentication-selection-entity
-      properties:
-        authenticatorAttachement:
-          type: string
-          enum:
-          - cross-platform
-          - platform
-        requireResidentKey:
-          type: boolean
-          default: false
-        residentKey:
-          type: string
-          enum:
-          - discouraged
-          - preferred
-          - required
-        userVerification:
-          type: string
-          enum:
-          - discouraged
-          - preferred
-          - required
-    credential:
-      type: object
-      title: credential
-      properties:
-        id:
-          type: string
-        type:
-          enum:
-          - public-key
-      required:
-      - id
-      - type
-    credential-descriptor-entity:
-      type: object
-      title: credential-descriptor-entity
-      properties:
-        type:
-          enum:
-          - public-key
-        id:
-          type: string
-        transports:
-          type: array
-          uniqueItems: true
-          items:
-            type: string
-            enum:
-            - ble
-            - hybrid
-            - internal
-            - nfc
-            - usb
-      required:
-      - type
-      - id
-    credential-parameter-entity:
-      type: object
-      title: credential-parameter-entity
-      properties:
-        type:
-          enum:
-          - public-key
-        alg:
-          type: integer
-          format: int32
-      required:
-      - type
-      - alg
-    authenticator-attestation-response:
-      title: authenticator-attestation-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          attestationObject:
-            type: string
-          transports:
-            type: array
-            uniqueItems: true
-            items:
-              type: string
-        required:
-        - attestationObject
-    autenticator-assertion-response:
-      title: autenticator-assertion-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          authenticatorData:
-            type: string
-          signature:
-            type: string
-          userHandle:
-            type: string | null
-        required:
-        - authenticatorData
-        - signature
-    credential-entity:
-      type: object
-      title: credential-entity
-      properties:
-        name:
-          type: string
-      required:
-      - name
   responses:
-    token:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                type: string
-            minProperties: 1
     post-registration-initialize:
       description: Example response
       content:
@@ -495,6 +255,246 @@ components:
                 - Information which helps resolving the problem
               status:
                 type: integer
+    token:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+            minProperties: 1
+  schemas:
+    credential:
+      type: object
+      title: credential
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - public-key
+      required:
+      - id
+      - type
+    credential-entity:
+      type: object
+      title: credential-entity
+      properties:
+        name:
+          type: string
+      required:
+      - name
+    credential-parameter-entity:
+      type: object
+      title: credential-parameter-entity
+      properties:
+        type:
+          enum:
+          - public-key
+        alg:
+          type: integer
+          format: int32
+      required:
+      - type
+      - alg
+    relying-party-entity:
+      title: relying-party-entity
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: string
+      - $ref: '#/components/schemas/credential-entity'
+    public-key-user:
+      type: object
+      title: public-key-user
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+      required:
+      - id
+      - displayName
+      - name
+    authenticator-response:
+      type: object
+      title: authenticator-response
+      properties:
+        clientDataJSON:
+          type: string
+      required:
+      - clientDataJSON
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
+    authenticator-attestation-response:
+      title: authenticator-attestation-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          attestationObject:
+            type: string
+          transports:
+            type: array
+            uniqueItems: true
+            items:
+              type: string
+        required:
+        - attestationObject
+    public-key-credential:
+      title: public-key-credential
+      allOf:
+      - $ref: '#/components/schemas/credential'
+      - type: object
+        properties:
+          rawId:
+            type: string
+          authenticatorAttachment:
+            type: string
+            enum:
+            - cross-platform
+            - platform
+            - null
+        required:
+        - rawId
+    credential-descriptor-entity:
+      type: object
+      title: credential-descriptor-entity
+      properties:
+        type:
+          enum:
+          - public-key
+        id:
+          type: string
+        transports:
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+            enum:
+            - ble
+            - hybrid
+            - internal
+            - nfc
+            - usb
+      required:
+      - type
+      - id
+    authentication-selection-entity:
+      type: object
+      title: authentication-selection-entity
+      properties:
+        authenticatorAttachement:
+          type: string
+          enum:
+          - cross-platform
+          - platform
+        requireResidentKey:
+          type: boolean
+          default: false
+        residentKey:
+          type: string
+          enum:
+          - discouraged
+          - preferred
+          - required
+        userVerification:
+          type: string
+          enum:
+          - discouraged
+          - preferred
+          - required
+  requestBodies:
+    post-registration-initialize:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              username:
+                type: string
+                maxLength: 128
+              icon:
+                type: string
+              display_name:
+                type: string
+                maxLength: 128
+            required:
+            - user_id
+            - username
+    post-mfa-login-initialize:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+            required:
+            - user_id
+    post-registration-finalize:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/public-key-credential'
+            - type: object
+              properties:
+                response:
+                  $ref: '#/components/schemas/authenticator-attestation-response'
+                transports:
+                  type: array
+                  uniqueItems: true
+                  items:
+                    type: string
+              required:
+              - response
+    post-login-finalize:
+      content:
+        application/json:
+          schema:
+            allOf:
+            - $ref: '#/components/schemas/public-key-credential'
+            - type: object
+              properties:
+                response:
+                  $ref: '#/components/schemas/autenticator-assertion-response'
+                clientExtensionResults:
+                  type: object
+                  properties:
+                    appid:
+                      type: boolean
+                    appidExclude:
+                      type: boolean
+                    credProps:
+                      type: object
+                      properties:
+                        rk:
+                          type: boolean
+              required:
+              - response
+              - clientExtensionResults
   parameters:
     X-API-KEY:
       name: apiKey

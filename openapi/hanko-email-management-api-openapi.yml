@@ -124,26 +124,31 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    Identity:
+      type: object
+      description: Representation of a user's third party connection/identity.
+      properties:
+        id:
+          type: string
+          description: The ID of the user at the provider
+        identity_id:
+          type: string
+          description: The identity's ID
+          format: uuid4
+        provider:
+          type: string
+          description: 'Contains the display name of the provider, if available. Otherwise contains the provider ID.
+
+            '
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     Identities:
       description: The user's third party connections/identities.
       type: array
       items:
         $ref: '#/components/schemas/Identity'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
     Emails:
       type: array
       items:
@@ -178,23 +183,36 @@ components:
         address: john.doe@example.com
         is_verified: true
         is_primary: false
-    Identity:
+    Error:
       type: object
-      description: Representation of a user's third party connection/identity.
+      required:
+      - code
+      - message
       properties:
-        id:
+        code:
+          type: integer
+          format: int32
+        message:
           type: string
-          description: The ID of the user at the provider
-        identity_id:
-          type: string
-          description: The identity's ID
-          format: uuid4
-        provider:
-          type: string
-          description: 'Contains the display name of the provider, if available. Otherwise contains the provider ID.
-
-            '
   responses:
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
     BadRequest:
       description: Bad Request
       content:
@@ -213,24 +231,6 @@ components:
           example:
             code: 401
             message: Unauthorized
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 409
-            message: Conflict
   securitySchemes:
     CookieAuth:
       type: apiKey

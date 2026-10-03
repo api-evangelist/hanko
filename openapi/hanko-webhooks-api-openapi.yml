@@ -157,15 +157,6 @@ paths:
       - Webhooks
 components:
   responses:
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
     InternalServerError:
       description: Internal server error
       content:
@@ -175,6 +166,15 @@ components:
           example:
             code: 500
             message: Internal Server Error
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
     NotFound:
       description: Not Found
       content:
@@ -215,30 +215,6 @@ components:
       required:
       - callback
       - events
-    DatabaseWebhookEvent:
-      type: object
-      title: DatabaseWebhookEvent
-      properties:
-        id:
-          type: string
-          format: uuid
-        event:
-          type: string
-          enum:
-          - user
-          - user.login
-          - user.create
-          - user.delete
-          - user.update
-          - user.update.email
-          - user.update.email.create
-          - user.update.email.delete
-          - user.update.email.primary
-          - user.update.username
-          - user.update.username.create
-          - user.update.username.delete
-          - user.update.username.update
-          - email.send
     Error:
       type: object
       required:
@@ -280,6 +256,30 @@ components:
           type: string
           format: date-time
           example: '2022-09-14T12:15:09.788784Z'
+    DatabaseWebhookEvent:
+      type: object
+      title: DatabaseWebhookEvent
+      properties:
+        id:
+          type: string
+          format: uuid
+        event:
+          type: string
+          enum:
+          - user
+          - user.login
+          - user.create
+          - user.delete
+          - user.update
+          - user.update.email
+          - user.update.email.create
+          - user.update.email.delete
+          - user.update.email.primary
+          - user.update.username
+          - user.update.username.create
+          - user.update.username.delete
+          - user.update.username.update
+          - email.send
   parameters:
     Id:
       name: id

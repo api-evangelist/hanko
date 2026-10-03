@@ -59,6 +59,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/HankoConfiguration'
 components:
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   schemas:
     JSONWebKeySet:
       type: object
@@ -73,17 +83,6 @@ components:
       externalDocs:
         description: RFC7517 - JSON Web Key (JWK) - Section 5
         url: https://www.rfc-editor.org/rfc/rfc7517#section-5
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     HankoConfiguration:
       description: Public backend configuration options
       type: object
@@ -119,6 +118,17 @@ components:
             allow_signup:
               description: Indicates users are able to create new accounts.
               type: boolean
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     JSONWebKey:
       type: object
       externalDocs:
@@ -163,16 +173,6 @@ components:
           externalDocs:
             description: RFC7517 - JSON Web Key (JWK) - Section 4.2
             url: https://www.rfc-editor.org/rfc/rfc7517#section-4.2
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
   securitySchemes:
     CookieAuth:
       type: apiKey
