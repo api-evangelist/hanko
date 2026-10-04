@@ -59,30 +59,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HankoConfiguration'
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
   schemas:
-    JSONWebKeySet:
-      type: object
-      properties:
-        keys:
-          type: array
-          items:
-            $ref: '#/components/schemas/JSONWebKey'
-          externalDocs:
-            description: RFC7517 - JSON Web Key (JWK) - Section 5.1
-            url: https://www.rfc-editor.org/rfc/rfc7517#section-5.1
-      externalDocs:
-        description: RFC7517 - JSON Web Key (JWK) - Section 5
-        url: https://www.rfc-editor.org/rfc/rfc7517#section-5
     HankoConfiguration:
       description: Public backend configuration options
       type: object
@@ -173,6 +150,29 @@ components:
           externalDocs:
             description: RFC7517 - JSON Web Key (JWK) - Section 4.2
             url: https://www.rfc-editor.org/rfc/rfc7517#section-4.2
+    JSONWebKeySet:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONWebKey'
+          externalDocs:
+            description: RFC7517 - JSON Web Key (JWK) - Section 5.1
+            url: https://www.rfc-editor.org/rfc/rfc7517#section-5.1
+      externalDocs:
+        description: RFC7517 - JSON Web Key (JWK) - Section 5
+        url: https://www.rfc-editor.org/rfc/rfc7517#section-5
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   securitySchemes:
     CookieAuth:
       type: apiKey

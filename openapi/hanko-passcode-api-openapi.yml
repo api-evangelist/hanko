@@ -136,25 +136,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    X-Auth-Token:
-      description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
-
-        for purposes of cross-domain communication between client and Hanko API.
-
-        '
-      type: string
-      format: JWT
-      externalDocs:
-        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
-    X-Session-Lifetime:
-      description: 'Contains the seconds until the session expires.
-
-        '
-      type: number
     Error:
       type: object
       required:
@@ -166,10 +147,6 @@ components:
           format: int32
         message:
           type: string
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
     Passcode:
       description: Representation of a passcode
       type: object
@@ -186,16 +163,30 @@ components:
           description: Time of creation of the passcode
           type: string
           format: date-time
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
+    X-Session-Lifetime:
+      description: 'Contains the seconds until the session expires.
+
+        '
+      type: number
+    X-Auth-Token:
+      description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
+
+        for purposes of cross-domain communication between client and Hanko API.
+
+        '
+      type: string
+      format: JWT
+      externalDocs:
+        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
   responses:
-    Gone:
-      description: Gone
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 410
-            message: Gone
     Forbidden:
       description: Forbidden
       content:
@@ -205,33 +196,6 @@ components:
           example:
             code: 403
             message: Forbidden
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    RequestTimeOut:
-      description: Request Timeout
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 408
-            message: Request Timeout
     Unauthorized:
       description: Unauthorized
       content:
@@ -241,6 +205,42 @@ components:
           example:
             code: 401
             message: Unauthorized
+    Gone:
+      description: Gone
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 410
+            message: Gone
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+    RequestTimeOut:
+      description: Request Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 408
+            message: Request Timeout
   securitySchemes:
     CookieAuth:
       type: apiKey

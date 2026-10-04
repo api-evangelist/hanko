@@ -421,6 +421,17 @@ paths:
       - Users
 components:
   schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     Email:
       type: object
       required:
@@ -454,87 +465,6 @@ components:
           description: Time of last update of the email
           type: string
           format: date-time
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    OTP:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        created_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - created_at
-    Password:
-      description: The password credential of a user
-      type: object
-      properties:
-        id:
-          allOf:
-          - $ref: '#/components/schemas/UUID4'
-          description: The ID of the password credential
-          example: 28a7206b-e789-435a-b87c-108e034135c2
-        created_at:
-          description: Time of creation of the password credential
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the password credential
-          type: string
-          format: date-time
-    CreatePassword:
-      type: object
-      properties:
-        password:
-          type: string
-    Session:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        user_id:
-          type: string
-          format: uuid
-        user_agent:
-          type: string
-        ip_address:
-          type: string
-          format: ip_address
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
-        last_used:
-          type: string
-          format: date-time
-        expires_at:
-          type: string
-          format: date-time
-      required:
-      - id
-      - user_id
-      - created_at
-      - updated_at
-      - last_used
     WebAuthnCredential:
       type: object
       required:
@@ -586,25 +516,77 @@ components:
         mfa_only:
           description: Indicates if the credential can only be used as a MFA credential
           type: boolean
+    Password:
+      description: The password credential of a user
+      type: object
+      properties:
+        id:
+          allOf:
+          - $ref: '#/components/schemas/UUID4'
+          description: The ID of the password credential
+          example: 28a7206b-e789-435a-b87c-108e034135c2
+        created_at:
+          description: Time of creation of the password credential
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the password credential
+          type: string
+          format: date-time
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    OTP:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        created_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - created_at
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        user_agent:
+          type: string
+        ip_address:
+          type: string
+          format: ip_address
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        last_used:
+          type: string
+          format: date-time
+        expires_at:
+          type: string
+          format: date-time
+      required:
+      - id
+      - user_id
+      - created_at
+      - updated_at
+      - last_used
+    CreatePassword:
+      type: object
+      properties:
+        password:
+          type: string
   responses:
-    Conflict:
-      description: Conflict
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 409
-            message: Conflict
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
     BadRequest:
       description: Bad Request
       content:
@@ -623,15 +605,24 @@ components:
           example:
             code: 404
             message: Not found
-  parameters:
-    Id:
-      name: id
-      in: path
-      description: UUID of the requested object
-      required: true
-      schema:
-        type: string
-        format: uuid
+    Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 409
+            message: Conflict
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   requestBodies:
     CreateEmail:
       description: Request Body for creating an email for a user
@@ -649,6 +640,15 @@ components:
                 type: boolean
             required:
             - address
+  parameters:
+    Id:
+      name: id
+      in: path
+      description: UUID of the requested object
+      required: true
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

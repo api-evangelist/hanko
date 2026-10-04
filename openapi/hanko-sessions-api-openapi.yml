@@ -56,16 +56,38 @@ paths:
       tags:
       - Sessions
 components:
+  schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    CreateSessionResponse:
+      type: object
+      properties:
+        session_token:
+          type: string
+          format: JWT
+    CreateSession:
+      type: object
+      properties:
+        user_id:
+          type: string
+          format: uuid
+        user_agent:
+          type: string
+        ip_address:
+          type: string
+          format: ip_address
+      required:
+      - user_id
   responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
     BadRequest:
       description: Bad Request
       content:
@@ -84,37 +106,15 @@ components:
           example:
             code: 404
             message: Not found
-  schemas:
-    CreateSession:
-      type: object
-      properties:
-        user_id:
-          type: string
-          format: uuid
-        user_agent:
-          type: string
-        ip_address:
-          type: string
-          format: ip_address
-      required:
-      - user_id
-    CreateSessionResponse:
-      type: object
-      properties:
-        session_token:
-          type: string
-          format: JWT
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

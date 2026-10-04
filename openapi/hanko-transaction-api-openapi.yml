@@ -69,28 +69,58 @@ paths:
       tags:
       - Transaction
 components:
-  parameters:
-    X-API-KEY:
-      name: apiKey
-      in: header
-      description: Secret API key
-      required: true
-      schema:
-        type: string
-        minLength: 32
-    tenant_id:
-      name: tenant_id
-      in: path
-      description: UUID of the tenant
-      required: true
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        example:
-        - 1f496bcd-49da-4839-a02f-7ce681ccb488
   schemas:
+    authenticator-response:
+      type: object
+      title: authenticator-response
+      properties:
+        clientDataJSON:
+          type: string
+      required:
+      - clientDataJSON
+    public-key-credential:
+      title: public-key-credential
+      allOf:
+      - $ref: '#/components/schemas/credential'
+      - type: object
+        properties:
+          rawId:
+            type: string
+          authenticatorAttachment:
+            type: string
+            enum:
+            - cross-platform
+            - platform
+            - null
+        required:
+        - rawId
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
+    credential:
+      type: object
+      title: credential
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - public-key
+      required:
+      - id
+      - type
     credential-descriptor-entity:
       type: object
       title: credential-descriptor-entity
@@ -114,58 +144,17 @@ components:
       required:
       - type
       - id
-    public-key-credential:
-      title: public-key-credential
-      allOf:
-      - $ref: '#/components/schemas/credential'
-      - type: object
-        properties:
-          rawId:
-            type: string
-          authenticatorAttachment:
-            type: string
-            enum:
-            - cross-platform
-            - platform
-            - null
-        required:
-        - rawId
-    credential:
-      type: object
-      title: credential
-      properties:
-        id:
-          type: string
-        type:
-          enum:
-          - public-key
-      required:
-      - id
-      - type
-    autenticator-assertion-response:
-      title: autenticator-assertion-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          authenticatorData:
-            type: string
-          signature:
-            type: string
-          userHandle:
-            type: string | null
-        required:
-        - authenticatorData
-        - signature
-    authenticator-response:
-      type: object
-      title: authenticator-response
-      properties:
-        clientDataJSON:
-          type: string
-      required:
-      - clientDataJSON
   responses:
+    token:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+            minProperties: 1
     error:
       description: Error Response with detailed information
       content:
@@ -183,16 +172,6 @@ components:
                 - Information which helps resolving the problem
               status:
                 type: integer
-    token:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                type: string
-            minProperties: 1
     post-login-initialize:
       description: Example response
       content:
@@ -239,25 +218,28 @@ components:
                 - optional
                 - required
                 - silent
+  parameters:
+    X-API-KEY:
+      name: apiKey
+      in: header
+      description: Secret API key
+      required: true
+      schema:
+        type: string
+        minLength: 32
+    tenant_id:
+      name: tenant_id
+      in: path
+      description: UUID of the tenant
+      required: true
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        example:
+        - 1f496bcd-49da-4839-a02f-7ce681ccb488
   requestBodies:
-    post-transaction-initialize:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              user_id:
-                type: string
-              transaction_id:
-                type: string
-                maxLength: 128
-                description: Needs to be a tenant-wide unique identifier
-              transaction_data:
-                type: object
-            required:
-            - user_id
-            - transaction_id
-            - transaction_data
     post-login-finalize:
       content:
         application/json:
@@ -283,3 +265,21 @@ components:
               required:
               - response
               - clientExtensionResults
+    post-transaction-initialize:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              transaction_id:
+                type: string
+                maxLength: 128
+                description: Needs to be a tenant-wide unique identifier
+              transaction_data:
+                type: object
+            required:
+            - user_id
+            - transaction_id
+            - transaction_data

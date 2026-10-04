@@ -70,57 +70,18 @@ paths:
       operationId: postSessionsValidate
       x-operation-id-source: derived
 components:
-  responses:
-    ValidateSessionResponse:
-      description: Session validation response
-      content:
-        application/json:
-          schema:
-            properties:
-              is_valid:
-                description: Indicates whether the session is valid or not
-                type: boolean
-              expiration_time:
-                description: Date-time indicating the expiration of the session. Deprecated, please use `claims.expiration` instead.
-                type: string
-                format: date-time
-                deprecated: true
-              user_id:
-                description: The ID of the user the session is associated with. Deprecated, please use `claims.subject` instead.
-                type: string
-                format: uuid4
-                deprecated: true
-              claims:
-                $ref: '#/components/schemas/JWTClaims'
-              idle_expires_at:
-                description: 'Timestamp (in UTC) indicating when the session will expire due to inactivity, assuming no further activity occurs before this time.
-
-                  Only present when idle timeout is configured. The value is capped to the JWT expiration time.
-
-                  '
-                type: string
-                format: date-time
-            required:
-            - isValid
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
   schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     UUID4:
       type: string
       format: uuid4
@@ -196,17 +157,56 @@ components:
       - subject
       - expiration
       - session_id
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+  responses:
+    ValidateSessionResponse:
+      description: Session validation response
+      content:
+        application/json:
+          schema:
+            properties:
+              is_valid:
+                description: Indicates whether the session is valid or not
+                type: boolean
+              expiration_time:
+                description: Date-time indicating the expiration of the session. Deprecated, please use `claims.expiration` instead.
+                type: string
+                format: date-time
+                deprecated: true
+              user_id:
+                description: The ID of the user the session is associated with. Deprecated, please use `claims.subject` instead.
+                type: string
+                format: uuid4
+                deprecated: true
+              claims:
+                $ref: '#/components/schemas/JWTClaims'
+              idle_expires_at:
+                description: 'Timestamp (in UTC) indicating when the session will expire due to inactivity, assuming no further activity occurs before this time.
+
+                  Only present when idle timeout is configured. The value is capped to the JWT expiration time.
+
+                  '
+                type: string
+                format: date-time
+            required:
+            - isValid
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   securitySchemes:
     CookieAuth:
       type: apiKey

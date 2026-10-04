@@ -422,33 +422,6 @@ components:
                       - sig
                   minProperties: 6
             minProperties: 1
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
     unprocessableEntity:
       description: Unprocessable Entity
       content:
@@ -467,136 +440,34 @@ components:
           example:
             code: 401
             message: Unauthorized
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   schemas:
-    WebauthnCredential:
-      type: object
-      properties:
-        aaguid:
-          type: string
-          format: uuid
-        attestation_type:
-          type: string
-          enum:
-          - none
-          - packed
-          - tpm
-          - android-key
-          - android-safetynet
-          - fido-u2f
-          - apple
-        backup_eligible:
-          type: boolean
-        backup_state:
-          type: boolean
-        created_at:
-          type: string
-          format: date-time
-        id:
-          type: string
-          format: uuid
-        last_used_at:
-          type: string
-          format: date-time
-        mfa_only:
-          type: boolean
-        name:
-          type: string
-        public-key:
-          type: string
-        transports:
-          type: array
-          items:
-            type: string
-            enum:
-            - ble
-            - internal
-            - nfc
-            - usb
-    CredentialRequestOptions:
-      description: Options for assertion generation with the WebAuthn API
-      externalDocs:
-        url: https://www.w3.org/TR/webauthn-2/#dictionary-assertion-options
-      type: object
-      properties:
-        publicKey:
-          type: object
-          properties:
-            challenge:
-              type: string
-              format: base64url
-              example: qgOI+0KpGnl9NOqaT6dfsYvi96R87LgpErnvePeOgSU=
-            timeout:
-              type: integer
-              format: int64
-              example: 60000
-            rpId:
-              type: string
-              example: localhost
-            allowCredentials:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - public-key
-                    example: public-key
-                  id:
-                    type: string
-                    format: base64url
-                    example: Mepptysj5ZZrTlg0qiLbsZ068OtQMeGVAikVy2n1hvvG...
-            userVerification:
-              type: string
-              enum:
-              - required
-              - preferred
-              - discouraged
-              example: required
-    WebauthnCredentials:
-      description: A list of WebAuthn credentials
-      type: array
-      items:
-        $ref: '#/components/schemas/WebauthnCredential'
-      example:
-      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
-        name: iCloud
-        public_key: pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...
-        attestation_type: packed
-        aaguid: 01020304-0506-0708-0102-030405060708
-        last_used_at: '2026-02-24T21:40:36.26936Z'
-        created_at: '2026-02-24T21:40:36.26936Z'
-        transports:
-        - internal
-        backup_eligible: true
-        backup_state: true
-        mfa_only: false
-      - id: f826013e-e7e3-4366-a6d8-9359effc8cdd
-        name: Yubikey Bio
-        public_key: aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...
-        attestation_type: packed
-        aaguid: 90636e1f-ef82-43bf-bdcf-5255f139d12f
-        last_used_at: '2026-02-24T21:40:36.26936Z'
-        created_at: '2026-02-24T21:40:36.26936Z'
-        transports:
-        - usb
-        backup_eligible: true
-        backup_state: false
-        mfa_only: true
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    WebauthnLoginResponse:
-      description: Response after a successful login with webauthn
-      type: object
-      properties:
-        credential_id:
-          type: string
-          format: base64url
-        user_id:
-          type: string
-          format: uuid4
     CredentialCreationOptions:
       description: Options for credential creation with the WebAuthn API
       externalDocs:
@@ -683,16 +554,58 @@ components:
               - direct
               - enterprise
               example: none
-    X-Auth-Token:
-      description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
-
-        for purposes of cross-domain communication between client and Hanko API.
-
-        '
-      type: string
-      format: JWT
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    CredentialRequestOptions:
+      description: Options for assertion generation with the WebAuthn API
       externalDocs:
-        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
+        url: https://www.w3.org/TR/webauthn-2/#dictionary-assertion-options
+      type: object
+      properties:
+        publicKey:
+          type: object
+          properties:
+            challenge:
+              type: string
+              format: base64url
+              example: qgOI+0KpGnl9NOqaT6dfsYvi96R87LgpErnvePeOgSU=
+            timeout:
+              type: integer
+              format: int64
+              example: 60000
+            rpId:
+              type: string
+              example: localhost
+            allowCredentials:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - public-key
+                    example: public-key
+                  id:
+                    type: string
+                    format: base64url
+                    example: Mepptysj5ZZrTlg0qiLbsZ068OtQMeGVAikVy2n1hvvG...
+            userVerification:
+              type: string
+              enum:
+              - required
+              - preferred
+              - discouraged
+              example: required
     PublicKeyCredentialAttestationResponse:
       description: WebAuthn API response to a navigator.credentials.create() call
       type: object
@@ -729,26 +642,6 @@ components:
                 - ble
                 - internal
                 example: internal
-    X-Session-Lifetime:
-      description: 'Contains the seconds until the session expires.
-
-        '
-      type: number
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
     PublicKeyCredentialAssertionResponse:
       description: WebAuthn API response to a navigator.credentials.get() call
       type: object
@@ -783,6 +676,113 @@ components:
               type: string
               format: base64url
               example: rpe_EkgaSEeZG0TwzZyZJw
+    WebauthnCredential:
+      type: object
+      properties:
+        aaguid:
+          type: string
+          format: uuid
+        attestation_type:
+          type: string
+          enum:
+          - none
+          - packed
+          - tpm
+          - android-key
+          - android-safetynet
+          - fido-u2f
+          - apple
+        backup_eligible:
+          type: boolean
+        backup_state:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        id:
+          type: string
+          format: uuid
+        last_used_at:
+          type: string
+          format: date-time
+        mfa_only:
+          type: boolean
+        name:
+          type: string
+        public-key:
+          type: string
+        transports:
+          type: array
+          items:
+            type: string
+            enum:
+            - ble
+            - internal
+            - nfc
+            - usb
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    WebauthnLoginResponse:
+      description: Response after a successful login with webauthn
+      type: object
+      properties:
+        credential_id:
+          type: string
+          format: base64url
+        user_id:
+          type: string
+          format: uuid4
+    WebauthnCredentials:
+      description: A list of WebAuthn credentials
+      type: array
+      items:
+        $ref: '#/components/schemas/WebauthnCredential'
+      example:
+      - id: 5333cc5b-c7c4-48cf-8248-9c184ac72b65
+        name: iCloud
+        public_key: pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...
+        attestation_type: packed
+        aaguid: 01020304-0506-0708-0102-030405060708
+        last_used_at: '2026-02-24T21:40:36.26936Z'
+        created_at: '2026-02-24T21:40:36.26936Z'
+        transports:
+        - internal
+        backup_eligible: true
+        backup_state: true
+        mfa_only: false
+      - id: f826013e-e7e3-4366-a6d8-9359effc8cdd
+        name: Yubikey Bio
+        public_key: aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...
+        attestation_type: packed
+        aaguid: 90636e1f-ef82-43bf-bdcf-5255f139d12f
+        last_used_at: '2026-02-24T21:40:36.26936Z'
+        created_at: '2026-02-24T21:40:36.26936Z'
+        transports:
+        - usb
+        backup_eligible: true
+        backup_state: false
+        mfa_only: true
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
+    X-Session-Lifetime:
+      description: 'Contains the seconds until the session expires.
+
+        '
+      type: number
+    X-Auth-Token:
+      description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
+
+        for purposes of cross-domain communication between client and Hanko API.
+
+        '
+      type: string
+      format: JWT
+      externalDocs:
+        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
   securitySchemes:
     CookieAuth:
       type: apiKey

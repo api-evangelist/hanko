@@ -156,76 +156,7 @@ paths:
       tags:
       - Webhooks
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
   schemas:
-    Webhook:
-      type: object
-      title: Webhook
-      properties:
-        callback:
-          type: string
-          format: uri
-        events:
-          type: array
-          minItems: 1
-          items:
-            type: string
-            enum:
-            - user
-            - user.login
-            - user.create
-            - user.delete
-            - user.update
-            - user.update.email
-            - user.update.email.create
-            - user.update.email.delete
-            - user.update.email.primary
-            - user.update.username
-            - user.update.username.create
-            - user.update.username.delete
-            - user.update.username.update
-            - email.send
-      required:
-      - callback
-      - events
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     DatabaseWebhook:
       type: object
       title: DatabaseWebhook
@@ -256,6 +187,47 @@ components:
           type: string
           format: date-time
           example: '2022-09-14T12:15:09.788784Z'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    Webhook:
+      type: object
+      title: Webhook
+      properties:
+        callback:
+          type: string
+          format: uri
+        events:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum:
+            - user
+            - user.login
+            - user.create
+            - user.delete
+            - user.update
+            - user.update.email
+            - user.update.email.create
+            - user.update.email.delete
+            - user.update.email.primary
+            - user.update.username
+            - user.update.username.create
+            - user.update.username.delete
+            - user.update.username.update
+            - email.send
+      required:
+      - callback
+      - events
     DatabaseWebhookEvent:
       type: object
       title: DatabaseWebhookEvent
@@ -280,6 +252,34 @@ components:
           - user.update.username.delete
           - user.update.username.update
           - email.send
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
   parameters:
     Id:
       name: id

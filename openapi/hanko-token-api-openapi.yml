@@ -83,42 +83,16 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
 components:
-  schemas:
-    UUID4:
-      type: string
-      format: uuid4
-      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
-    X-Auth-Token:
-      description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
-
-        for purposes of cross-domain communication between client and Hanko API.
-
-        '
-      type: string
-      format: JWT
-      externalDocs:
-        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
-    X-Session-Lifetime:
-      description: 'Contains the seconds until the session expires.
-
-        '
-      type: number
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
-    CookieSession:
-      type: string
-      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
-      example: hanko=<JWT>; Path=/; HttpOnly
   responses:
+    unprocessableEntity:
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 422
+            message: Unprocessable Entity
     TooManyRequests:
       description: Too Many Requests
       content:
@@ -146,15 +120,41 @@ components:
           example:
             code: 404
             message: Not found
-    unprocessableEntity:
-      description: Unprocessable Entity
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 422
-            message: Unprocessable Entity
+  schemas:
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    UUID4:
+      type: string
+      format: uuid4
+      example: c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c
+    CookieSession:
+      type: string
+      description: Value `<JWT>` is a [JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519.html)
+      example: hanko=<JWT>; Path=/; HttpOnly
+    X-Session-Lifetime:
+      description: 'Contains the seconds until the session expires.
+
+        '
+      type: number
+    X-Auth-Token:
+      description: 'Enable via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`
+
+        for purposes of cross-domain communication between client and Hanko API.
+
+        '
+      type: string
+      format: JWT
+      externalDocs:
+        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config
   securitySchemes:
     CookieAuth:
       type: apiKey
