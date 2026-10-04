@@ -35,6 +35,10 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hanko.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
+x-docs-hosting: vercel
 tags:
 - Authentication
 - Passkeys
@@ -371,6 +375,9 @@ apis:
   - type: Documentation
     url: https://docs.hanko.io/passkey-api/introduction
 common:
+- type: CapabilityMap
+  url: capabilities/hanko-capability-edges.yml
+  name: Hanko Business Capability Map
 - type: AgenticAccess
   url: agentic-access/hanko-agentic-access.yml
 - type: DomainSecurity
