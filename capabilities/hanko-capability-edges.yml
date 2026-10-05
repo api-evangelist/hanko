@@ -1,0 +1,163 @@
+slug: hanko
+provider: Hanko
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 16
+edges:
+- tag: MFA
+  spec_file: hanko-mfa-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.93
+  evidence: '"Start MFA Registration", "Finish MFA Registration", "Start MFA Login", "Finish MFA Login"'
+  reason: Multi-factor authentication enrolment and verification is unambiguously Identity & Access Management.
+- tag: Credentials
+  spec_file: hanko-credentials-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: '"Start Passkey Registration", "Finish Passkey Registration", "List Credentials", "Remove
+    Credential", "Start MFA Registration"; schemas webauthn-credential, public-key-credential'
+  reason: Lifecycle management of user authentication credentials (WebAuthn passkeys and MFA factors)
+    is squarely Identity & Access Management; no other reading of these operations fits.
+- tag: Webauthn
+  spec_file: hanko-webauthn-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.92
+  evidence: POST /webauthn/login/initialize  Initialize WebAuthn login ... POST /webauthn/registration/finalize
+  reason: Passkey (WebAuthn/FIDO2) registration and authentication is unambiguously identity and access
+    management.
+- tag: Login
+  spec_file: hanko-login-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /{tenant_id}/login/initialize "Start Login"; POST /{tenant_id}/login/finalize "Finish
+    Login"; schemas public-key-credential, authenticator-response
+  reason: WebAuthn authentication ceremony endpoints — user authentication is a core Identity & Access
+    Management function.
+- tag: Password
+  spec_file: hanko-password-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /password/login "Do password login"; PUT /password "Create/Set a password"
+  reason: Password credential setting and password-based authentication are core Identity & Access Management
+    operations.
+- tag: Passcode
+  spec_file: hanko-passcode-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: POST /passcode/login/initialize "Initialize passcode login"; POST /passcode/login/finalize
+    "Finalize passcode login"; schemas Passcode, CookieSession
+  reason: One-time passcode authentication flow issuing a session — user authentication, i.e. Identity
+    & Access Management.
+- tag: User Management
+  spec_file: hanko-user-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: 'POST /users  createUser  Create a new user ... POST /logout  Log out the current user ...
+    schemas: WebAuthnCredential, Password'
+  reason: User account lifecycle and authentication state for an auth platform = Identity & Access Management
+    (joiners-movers-leavers).
+- tag: Users
+  spec_file: hanko-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.88
+  evidence: GET /users/{id}/webauthn_credentials  Get a list of all WebAuthn credentials for a user ...
+    DELETE /users/{id}/sessions/{session_id}
+  reason: Administration of user credentials, OTP secrets and sessions is squarely identity and access
+    management.
+- tag: SAML
+  spec_file: hanko-saml-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"Get a SAML provider", "Get SAML Metadata", "SAML identity provider callback"'
+  reason: SAML single sign-on against an external identity provider is identity federation, explicitly
+    within Identity & Access Management ("IAM, PAM, federation"). Tenant-level federation is a plausible
+    alternative framing, slightly lowering confidence.
+- tag: Session Management
+  spec_file: hanko-session-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: 'GET /sessions/validate  Validate a session ... schemas: JWTClaims'
+  reason: Session validation is core identity and access management functionality of an authentication
+    platform.
+- tag: Sessions
+  spec_file: hanko-sessions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /sessions  Create a new session token for a user
+  reason: Admin creation of user session tokens is identity/access management.
+- tag: Third Party
+  spec_file: hanko-third-party-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /thirdparty/auth  Initialize third party login ... GET /thirdparty/callback  Third party
+    provider callback
+  reason: OAuth social login / federated authentication flows = identity and access management (federation).
+- tag: Token
+  spec_file: hanko-token-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /token  Exchange one time token for session
+  reason: Token-for-session exchange is an authentication/IAM operation, not a financial token.
+- tag: Transaction
+  spec_file: hanko-transaction-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: 'POST /{tenant_id}/transaction/initialize ... schemas: public-key-credential, autenticator-assertion-response'
+  reason: Despite the name, this is WebAuthn transaction confirmation (step-up authentication with passkey
+    credentials), i.e. IAM — not payment processing.
+- tag: Email Management
+  spec_file: hanko-email-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"Get a list of emails of the current user", "Add a new email address to the current user",
+    "Marks the email address as primary email"; schemas Identity, Identities'
+  reason: Manages the email identifiers attached to an authenticated identity in an auth platform — identity
+    attribute management, not marketing email. The Identity/Identities schemas ground the IAM reading,
+    though the surface is narrow.
+- tag: User Metadata Management
+  spec_file: hanko-user-metadata-management-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /users/{id}/metadata  Get metadata of a user
+  reason: Attributes on identity records within the auth platform; IAM user account stewardship.
