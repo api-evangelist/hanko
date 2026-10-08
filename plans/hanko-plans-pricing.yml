@@ -238,3 +238,53 @@ plans:
         unit: 1
         price: '0.00'
         userMultiplied: false
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - metered
+  units:
+  - active-user
+  - feature
+  - object
+  plans:
+  - name: Starter
+    access: free
+    model: free
+    model_how: derived
+    units:
+    - active-user
+    - feature
+    - object
+    periods:
+    - month
+  - name: Pro
+    access: paid
+    model: metered
+    model_how: derived
+    units:
+    - active-user
+    - feature
+    - object
+    - other
+    periods:
+    - month
+  - name: Enterprise
+    access: enterprise
+    model: free
+    model_how: derived
+    units:
+    - active-user
+    - feature
+    - object
+    periods:
+    - month
+  - name: Startup Plan
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - active-user
+    periods:
+    - month
