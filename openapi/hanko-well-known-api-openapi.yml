@@ -60,52 +60,6 @@ paths:
                 $ref: '#/components/schemas/HankoConfiguration'
 components:
   schemas:
-    HankoConfiguration:
-      description: Public backend configuration options
-      type: object
-      externalDocs:
-        description: Hanko Configuration
-        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md
-      properties:
-        emails:
-          description: Controls the behavior regarding email addresses.
-          type: object
-          properties:
-            require_verification:
-              description: Require email verification after account registration and prevent signing in with unverified email addresses. Also, email addresses can only be marked as primary when they have been verified before.
-              type: boolean
-        password:
-          description: Configuration options concerning passwords
-          type: object
-          properties:
-            enabled:
-              description: Indicates whether passwords are enabled or not
-              type: boolean
-            min_password_length:
-              description: Describes the minimum password length
-              type: number
-              example: 8
-        account:
-          description: Controls the behavior regarding user account.
-          type: object
-          properties:
-            allow_deletion:
-              description: Indicates the user account can be deleted by the current user.
-              type: boolean
-            allow_signup:
-              description: Indicates users are able to create new accounts.
-              type: boolean
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
     JSONWebKey:
       type: object
       externalDocs:
@@ -150,6 +104,17 @@ components:
           externalDocs:
             description: RFC7517 - JSON Web Key (JWK) - Section 4.2
             url: https://www.rfc-editor.org/rfc/rfc7517#section-4.2
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
     JSONWebKeySet:
       type: object
       properties:
@@ -163,6 +128,41 @@ components:
       externalDocs:
         description: RFC7517 - JSON Web Key (JWK) - Section 5
         url: https://www.rfc-editor.org/rfc/rfc7517#section-5
+    HankoConfiguration:
+      description: Public backend configuration options
+      type: object
+      externalDocs:
+        description: Hanko Configuration
+        url: https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md
+      properties:
+        emails:
+          description: Controls the behavior regarding email addresses.
+          type: object
+          properties:
+            require_verification:
+              description: Require email verification after account registration and prevent signing in with unverified email addresses. Also, email addresses can only be marked as primary when they have been verified before.
+              type: boolean
+        password:
+          description: Configuration options concerning passwords
+          type: object
+          properties:
+            enabled:
+              description: Indicates whether passwords are enabled or not
+              type: boolean
+            min_password_length:
+              description: Describes the minimum password length
+              type: number
+              example: 8
+        account:
+          description: Controls the behavior regarding user account.
+          type: object
+          properties:
+            allow_deletion:
+              description: Indicates the user account can be deleted by the current user.
+              type: boolean
+            allow_signup:
+              description: Indicates users are able to create new accounts.
+              type: boolean
   responses:
     InternalServerError:
       description: Internal server error

@@ -157,36 +157,30 @@ paths:
       - Webhooks
 components:
   schemas:
-    DatabaseWebhook:
+    DatabaseWebhookEvent:
       type: object
-      title: DatabaseWebhook
+      title: DatabaseWebhookEvent
       properties:
         id:
           type: string
           format: uuid
-        callback:
+        event:
           type: string
-          format: uri
-        enabled:
-          type: boolean
-        failures:
-          type: integer
-          minimum: 0
-        expires_at:
-          type: string
-          format: date-time
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabaseWebhookEvent'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          description: Time of last update of the audit log
-          type: string
-          format: date-time
-          example: '2022-09-14T12:15:09.788784Z'
+          enum:
+          - user
+          - user.login
+          - user.create
+          - user.delete
+          - user.update
+          - user.update.email
+          - user.update.email.create
+          - user.update.email.delete
+          - user.update.email.primary
+          - user.update.username
+          - user.update.username.create
+          - user.update.username.delete
+          - user.update.username.update
+          - email.send
     Error:
       type: object
       required:
@@ -228,58 +222,36 @@ components:
       required:
       - callback
       - events
-    DatabaseWebhookEvent:
+    DatabaseWebhook:
       type: object
-      title: DatabaseWebhookEvent
+      title: DatabaseWebhook
       properties:
         id:
           type: string
           format: uuid
-        event:
+        callback:
           type: string
-          enum:
-          - user
-          - user.login
-          - user.create
-          - user.delete
-          - user.update
-          - user.update.email
-          - user.update.email.create
-          - user.update.email.delete
-          - user.update.email.primary
-          - user.update.username
-          - user.update.username.create
-          - user.update.username.delete
-          - user.update.username.update
-          - email.send
-  responses:
-    BadRequest:
-      description: Bad Request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 400
-            message: Bad Request
-    NotFound:
-      description: Not Found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 404
-            message: Not found
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
+          format: uri
+        enabled:
+          type: boolean
+        failures:
+          type: integer
+          minimum: 0
+        expires_at:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseWebhookEvent'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          description: Time of last update of the audit log
+          type: string
+          format: date-time
+          example: '2022-09-14T12:15:09.788784Z'
   parameters:
     Id:
       name: id
@@ -289,6 +261,34 @@ components:
       schema:
         type: string
         format: uuid
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 404
+            message: Not found
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 400
+            message: Bad Request
   securitySchemes:
     BearerApiKeyAuth:
       description: Bearer authentication header of the form `Bearer <token>`, where `<token>` is your API key. Must only be used when using Hanko Cloud.

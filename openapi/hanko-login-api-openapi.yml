@@ -92,21 +92,6 @@ components:
             - null
         required:
         - rawId
-    autenticator-assertion-response:
-      title: autenticator-assertion-response
-      allOf:
-      - $ref: '#/components/schemas/authenticator-response'
-      - type: object
-        properties:
-          authenticatorData:
-            type: string
-          signature:
-            type: string
-          userHandle:
-            type: string | null
-        required:
-        - authenticatorData
-        - signature
     credential:
       type: object
       title: credential
@@ -142,34 +127,22 @@ components:
       required:
       - type
       - id
+    autenticator-assertion-response:
+      title: autenticator-assertion-response
+      allOf:
+      - $ref: '#/components/schemas/authenticator-response'
+      - type: object
+        properties:
+          authenticatorData:
+            type: string
+          signature:
+            type: string
+          userHandle:
+            type: string | null
+        required:
+        - authenticatorData
+        - signature
   responses:
-    token:
-      description: Example response
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              token:
-                type: string
-            minProperties: 1
-    error:
-      description: Error Response with detailed information
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              title:
-                type: string
-                example:
-                - explanatory title
-              details:
-                type: string
-                example:
-                - Information which helps resolving the problem
-              status:
-                type: integer
     post-login-initialize:
       description: Example response
       content:
@@ -216,17 +189,34 @@ components:
                 - optional
                 - required
                 - silent
-  requestBodies:
-    post-login-initialize:
-      description: Body for login/initialize
+    token:
+      description: Example response
       content:
         application/json:
           schema:
             type: object
             properties:
-              user_id:
+              token:
                 type: string
-                description: optional - when provided the API Key needs to be sent to the server too.
+            minProperties: 1
+    error:
+      description: Error Response with detailed information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example:
+                - explanatory title
+              details:
+                type: string
+                example:
+                - Information which helps resolving the problem
+              status:
+                type: integer
+  requestBodies:
     post-login-finalize:
       content:
         application/json:
@@ -252,6 +242,16 @@ components:
               required:
               - response
               - clientExtensionResults
+    post-login-initialize:
+      description: Body for login/initialize
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+                description: optional - when provided the API Key needs to be sent to the server too.
   parameters:
     tenant_id:
       name: tenant_id

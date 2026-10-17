@@ -158,6 +158,15 @@ components:
       - expiration
       - session_id
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            code: 500
+            message: Internal Server Error
     ValidateSessionResponse:
       description: Session validation response
       content:
@@ -198,15 +207,6 @@ components:
           example:
             code: 400
             message: Bad Request
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            code: 500
-            message: Internal Server Error
   securitySchemes:
     CookieAuth:
       type: apiKey
