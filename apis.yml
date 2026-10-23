@@ -375,6 +375,8 @@ apis:
   - type: Documentation
     url: https://docs.hanko.io/passkey-api/introduction
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/hanko/overview
 - type: CapabilityMap
   url: capabilities/hanko-capability-edges.yml
   name: Hanko Business Capability Map
