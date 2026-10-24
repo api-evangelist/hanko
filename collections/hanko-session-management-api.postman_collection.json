@@ -1,421 +1,425 @@
 {
+  "info": {
+    "_postman_id": "83d156c0-b0fd-401d-b8cf-e9e6f2bd3e4b",
+    "name": "Hanko Public Session Management API",
+    "description": "## Introduction\n\nThis is the OpenAPI specification for the Hanko Public API.\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:38.000Z",
+    "updatedAt": "2026-10-22T01:18:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-83d156c0-b0fd-401d-b8cf-e9e6f2bd3e4b"
+  },
   "item": [
     {
-      "id": "6ffdd912-6b43-4abe-975b-306d290cf468",
-      "name": "Session Management",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "sessions",
       "item": [
         {
-          "id": "3af6aa50-e794-457a-a6e1-5c55c7729bec",
-          "name": "Validate a session",
-          "request": {
-            "name": "Validate a session",
-            "description": {
-              "content": "Validate a session using a cookie header or an authorization header.\nThis is a passive check that does not update the session's internal last activity timestamp.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sessions",
-                "validate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
+          "name": "validate",
+          "item": [
             {
-              "id": "5e901bbf-8da3-4fe1-9016-de3ad753106b",
-              "name": "Session validation response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sessions",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "Validate a session",
+              "id": "28b7009d-3361-42c2-94cf-a8c96fc93422",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
                     {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                      "key": "key",
+                      "value": "hanko",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
                     }
                   ]
                 },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"is_valid\": false,\n  \"expiration_time\": \"1977-07-29T21:07:53.955Z\",\n  \"user_id\": \"string\",\n  \"claims\": {\n    \"subject\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"expiration\": \"1979-10-22T08:23:31.408Z\",\n    \"session_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"issued_at\": \"1951-09-05T13:28:56.835Z\",\n    \"audience\": [\n      \"string\",\n      \"string\"\n    ],\n    \"issuer\": \"string\",\n    \"email\": {\n      \"address\": \"wVrgqdiGG@PCFOLw.qgy\",\n      \"is_primary\": true,\n      \"is_verified\": false\n    },\n    \"amr\": [\n      \"otp\",\n      \"passkey\"\n    ]\n  },\n  \"idle_expires_at\": \"2000-07-18T06:48:46.051Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "86bd12cb-b5d4-4a46-88af-7755ee3ca6c3",
-              "name": "Bad Request",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "sessions",
-                    "validate"
-                  ],
+                  "raw": "{{baseUrl}}/sessions/validate",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
+                  "path": [
+                    "sessions",
+                    "validate"
                   ]
                 },
+                "description": "Validate a session using a cookie header or an authorization header.\nThis is a passive check that does not update the session's internal last activity timestamp."
+              },
+              "response": [
+                {
+                  "id": "ed30621c-f20a-49c2-8ad9-3295504429e2",
+                  "name": "Session validation response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"is_valid\": \"<boolean>\",\n  \"expiration_time\": \"<dateTime>\",\n  \"user_id\": \"<string>\",\n  \"claims\": {\n    \"subject\": \"<string>\",\n    \"expiration\": \"<dateTime>\",\n    \"session_id\": \"<string>\",\n    \"issued_at\": \"<dateTime>\",\n    \"audience\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"issuer\": \"<string>\",\n    \"email\": {\n      \"address\": \"<email>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    \"amr\": [\n      \"ext:<provider>\",\n      \"otp\"\n    ]\n  },\n  \"idle_expires_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:18:38.000Z",
+                  "updatedAt": "2026-10-22T01:18:38.000Z",
+                  "uid": "35240-ed30621c-f20a-49c2-8ad9-3295504429e2"
+                },
+                {
+                  "id": "32fa7923-ffe7-44cb-ab9f-11210efdd273",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:18:38.000Z",
+                  "updatedAt": "2026-10-22T01:18:38.000Z",
+                  "uid": "35240-32fa7923-ffe7-44cb-ab9f-11210efdd273"
+                },
+                {
+                  "id": "4c5d78ee-ce23-4356-b3ba-5ad8d63b1084",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:18:38.000Z",
+                  "updatedAt": "2026-10-22T01:18:38.000Z",
+                  "uid": "35240-4c5d78ee-ce23-4356-b3ba-5ad8d63b1084"
+                }
+              ],
+              "createdAt": "2026-10-22T01:18:38.000Z",
+              "updatedAt": "2026-10-22T01:18:38.000Z",
+              "uid": "35240-28b7009d-3361-42c2-94cf-a8c96fc93422"
+            },
+            {
+              "name": "Validate a session",
+              "id": "65757b6c-e46b-4d2d-acc6-ae1e73da1dc4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0a0a47a9-204d-4c81-bc3e-ee3638cecd12",
-              "name": "Internal server error",
-              "originalRequest": {
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"session_token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
-                  "path": [
-                    "sessions",
-                    "validate"
-                  ],
+                  "raw": "{{baseUrl}}/sessions/validate",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
+                  "path": [
+                    "sessions",
+                    "validate"
                   ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Validate a session using a session token in a request body.\nThis endpoint updates the session's internal last activity timestamp. This extends the idle timeout window\nif configured)."
               },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "bedaa3b4-0485-48bf-8d13-1a26a6c25ec9",
+                  "name": "Session validation response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"is_valid\": \"<boolean>\",\n  \"expiration_time\": \"<dateTime>\",\n  \"user_id\": \"<string>\",\n  \"claims\": {\n    \"subject\": \"<string>\",\n    \"expiration\": \"<dateTime>\",\n    \"session_id\": \"<string>\",\n    \"issued_at\": \"<dateTime>\",\n    \"audience\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"issuer\": \"<string>\",\n    \"email\": {\n      \"address\": \"<email>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    \"amr\": [\n      \"ext:<provider>\",\n      \"otp\"\n    ]\n  },\n  \"idle_expires_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:18:38.000Z",
+                  "updatedAt": "2026-10-22T01:18:38.000Z",
+                  "uid": "35240-bedaa3b4-0485-48bf-8d13-1a26a6c25ec9"
+                },
+                {
+                  "id": "09cdf766-0ee1-4ae8-b934-85e37bcea486",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:18:38.000Z",
+                  "updatedAt": "2026-10-22T01:18:38.000Z",
+                  "uid": "35240-09cdf766-0ee1-4ae8-b934-85e37bcea486"
+                },
+                {
+                  "id": "bfab0e52-286f-4806-8beb-b7ba76cefa11",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"session_token\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/validate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        "validate"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:18:38.000Z",
+                  "updatedAt": "2026-10-22T01:18:38.000Z",
+                  "uid": "35240-bfab0e52-286f-4806-8beb-b7ba76cefa11"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:18:38.000Z",
+              "updatedAt": "2026-10-22T01:18:38.000Z",
+              "uid": "35240-65757b6c-e46b-4d2d-acc6-ae1e73da1dc4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c8a4fd45-115a-4465-b92f-13cd63322025",
-          "name": "Validate a session",
-          "request": {
-            "name": "Validate a session",
-            "description": {
-              "content": "Validate a session using a session token in a request body.\nThis endpoint updates the session's internal last activity timestamp. This extends the idle timeout window\nif configured).\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sessions",
-                "validate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "30e3edc4-7518-466c-9a88-aea294be5490",
-              "name": "Session validation response",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sessions",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"is_valid\": true,\n  \"expiration_time\": \"2019-04-26T13:02:22.843Z\",\n  \"user_id\": \"string\",\n  \"claims\": {\n    \"subject\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"expiration\": \"1952-02-16T09:24:46.836Z\",\n    \"session_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"issued_at\": \"2024-09-26T01:29:48.756Z\",\n    \"audience\": [\n      \"string\",\n      \"string\"\n    ],\n    \"issuer\": \"string\",\n    \"email\": {\n      \"address\": \"XDi86J3sSa@GcreiaSGSHwsvHKBZgEJZFpx.uhxx\",\n      \"is_primary\": true,\n      \"is_verified\": false\n    },\n    \"amr\": [\n      \"ext:<provider>\",\n      \"pwd\"\n    ]\n  },\n  \"idle_expires_at\": \"2011-08-14T12:27:33.128Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "97603bd2-1046-4028-b790-c08645d687ee",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sessions",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "02c2a8a6-557c-46ff-9d62-58ef9238b7db",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sessions",
-                    "validate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"session_token\": \"<JWT>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a88cb942-565a-4ec4-b20f-42914a3affe8",
+          "createdAt": "2026-10-22T01:18:38.000Z",
+          "updatedAt": "2026-10-22T01:18:38.000Z",
+          "uid": "35240-a88cb942-565a-4ec4-b20f-42914a3affe8"
         }
       ],
-      "event": []
+      "id": "5761c507-a66d-4f3c-bb75-aa0dc48fddaf",
+      "createdAt": "2026-10-22T01:18:38.000Z",
+      "updatedAt": "2026-10-22T01:18:38.000Z",
+      "uid": "35240-5761c507-a66d-4f3c-bb75-aa0dc48fddaf"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io"
     }
-  ],
-  "info": {
-    "_postman_id": "6f349e15-1d07-469c-9a9c-9142e9b3b448",
-    "name": "Hanko Admin Audit Logs Session Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

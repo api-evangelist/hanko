@@ -1,277 +1,267 @@
 {
+  "info": {
+    "_postman_id": "8e709757-1ac8-489c-9468-6633ff3acf9c",
+    "name": "Hanko Public Third Party API",
+    "description": "## Introduction\n\nThis is the OpenAPI specification for the Hanko Public API.\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:54.000Z",
+    "updatedAt": "2026-10-22T01:18:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8e709757-1ac8-489c-9468-6633ff3acf9c"
+  },
   "item": [
     {
-      "id": "e7e7ce7f-8d9b-4404-a2a0-2b73862db1d4",
-      "name": "Third Party",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "thirdparty",
       "item": [
         {
-          "id": "ff0bd6ce-dfa1-49b8-8897-0a8816761ebe",
-          "name": "Initialize third party login",
-          "request": {
-            "name": "Initialize third party login",
-            "description": {
-              "content": "Initialize an OAuth-backed (authorization code grant type) login with a third party provider by redirecting to\nthe specified provider login URL to retrieve an authorization code.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "thirdparty",
-                "auth"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "provider",
-                  "value": "<string>",
-                  "description": "(Required) The name of the third party provider to log in with. Only providers enabled in the\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nvia the `thirdparty.providers` option can be used. Requesting an unsupported provider results in a\nredirect with error details in the location query.\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "redirect_to",
-                  "value": "<base64url>",
-                  "description": "(Required) Base64url encoded string representing the URL the\n[`/callback`](#tag/Third-Party/operation/thirdPartyCallback) eventually redirects to after successful login\nwith the third party provider. It must match one of the allowed redirect URLs set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nthrough the `third_party.allowed_redirect_urls`.\n"
-                }
-              ],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "auth",
+          "item": [
             {
-              "id": "ed82f1ef-746a-48ec-b617-edd5c04cc52d",
-              "name": "Redirect to third party provider",
-              "originalRequest": {
+              "name": "Initialize third party login",
+              "id": "76994602-f0a5-4582-a43e-b034efc6a680",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
                 "url": {
+                  "raw": "{{baseUrl}}/thirdparty/auth?provider=google&redirect_to=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "thirdparty",
                     "auth"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) The name of the third party provider to log in with. Only providers enabled in the\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nvia the `thirdparty.providers` option can be used. Requesting an unsupported provider results in a\nredirect with error details in the location query.\n",
                       "key": "provider",
-                      "value": "<string>"
+                      "value": "google"
                     },
                     {
+                      "description": "(Required) Base64url encoded string representing the URL the\n[`/callback`](#tag/Third-Party/operation/thirdPartyCallback) eventually redirects to after successful login\nwith the third party provider. It must match one of the allowed redirect URLs set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nthrough the `third_party.allowed_redirect_urls`.\n",
                       "key": "redirect_to",
-                      "value": "<base64url>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                      "value": "<string>"
                     }
                   ]
                 },
-                "method": "GET",
-                "body": {}
+                "description": "Initialize an OAuth-backed (authorization code grant type) login with a third party provider by redirecting to\nthe specified provider login URL to retrieve an authorization code."
               },
-              "status": "Temporary Redirect (since HTTP/1.1)",
-              "code": 307,
-              "header": [
+              "response": [
                 {
-                  "disabled": false,
-                  "description": "Redirect to the third party provider on success. On error, redirects to the `Referer`. If `Referer` is\nnot present, redirects to the `third_party.error_redirect_url` set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config).\nError details are provided in the location URL in the form of `error` and `error_description`\nquery params.\n",
-                  "key": "Location",
-                  "value": "string"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "7d40f79c-af22-490f-a570-6d9a95b9cefc",
+                  "name": "Redirect to third party provider",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/thirdparty/auth?provider=google&redirect_to=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "thirdparty",
+                        "auth"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) The name of the third party provider to log in with. Only providers enabled in the\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nvia the `thirdparty.providers` option can be used. Requesting an unsupported provider results in a\nredirect with error details in the location query.\n",
+                          "key": "provider",
+                          "value": "google"
+                        },
+                        {
+                          "description": "(Required) Base64url encoded string representing the URL the\n[`/callback`](#tag/Third-Party/operation/thirdPartyCallback) eventually redirects to after successful login\nwith the third party provider. It must match one of the allowed redirect URLs set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config)\nthrough the `third_party.allowed_redirect_urls`.\n",
+                          "key": "redirect_to",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Temporary Redirect (since HTTP/1.1)",
+                  "code": 307,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Redirect to the third party provider on success. On error, redirects to the `Referer`. If `Referer` is\nnot present, redirects to the `third_party.error_redirect_url` set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config).\nError details are provided in the location URL in the form of `error` and `error_description`\nquery params.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:18:54.000Z",
+                  "updatedAt": "2026-10-22T01:18:54.000Z",
+                  "uid": "35240-7d40f79c-af22-490f-a570-6d9a95b9cefc"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:18:54.000Z",
+              "updatedAt": "2026-10-22T01:18:54.000Z",
+              "uid": "35240-76994602-f0a5-4582-a43e-b034efc6a680"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ec19c019-1bb6-459e-b95b-23a16f3d5c7a",
+          "createdAt": "2026-10-22T01:18:54.000Z",
+          "updatedAt": "2026-10-22T01:18:54.000Z",
+          "uid": "35240-ec19c019-1bb6-459e-b95b-23a16f3d5c7a"
         },
         {
-          "id": "bac3c0fa-69af-484d-9db7-7db7d9266312",
-          "name": "Third party provider callback",
-          "request": {
-            "name": "Third party provider callback",
-            "description": {
-              "content": "Callback endpoint called by the third party provider after successful login.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "thirdparty",
-                "callback"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "code",
-                  "value": "<string>",
-                  "description": "The authorization code that can be exchanged for an access token and to retrieve user provider data\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "state",
-                  "value": "<string>",
-                  "description": "(Required) The state"
-                },
-                {
-                  "disabled": false,
-                  "key": "error",
-                  "value": "<string>",
-                  "description": "An error returned from the third party provider\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "error_description",
-                  "value": "<string>",
-                  "description": "The description of the error that occurred (if any)"
-                }
-              ],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "callback",
+          "item": [
             {
-              "id": "39bdaf4f-391b-4f80-923b-1251dc63559b",
-              "name": "Redirect to requested redirect URL or to configured site redirect URL",
-              "originalRequest": {
+              "name": "Third party provider callback",
+              "id": "7bf21dea-a671-4972-8438-90b66d0c8c11",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
                 "url": {
+                  "raw": "{{baseUrl}}/thirdparty/callback?code=<string>&state=<string>&error=<string>&error_description=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "thirdparty",
                     "callback"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "The authorization code that can be exchanged for an access token and to retrieve user provider data\n",
                       "key": "code",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) The state",
                       "key": "state",
                       "value": "<string>"
                     },
                     {
+                      "description": "An error returned from the third party provider\n",
                       "key": "error",
                       "value": "<string>"
                     },
                     {
+                      "description": "The description of the error that occurred (if any)",
                       "key": "error_description",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
                   ]
                 },
-                "method": "GET",
-                "body": {}
+                "description": "Callback endpoint called by the third party provider after successful login."
               },
-              "status": "Temporary Redirect (since HTTP/1.1)",
-              "code": 307,
-              "header": [
+              "response": [
                 {
-                  "disabled": false,
-                  "description": "Redirect to the URL requested via `redirect_to` query parameter during third party\nprovider login via [`/auth`](#tag/Third-Party/operation/thirdPartyAuth) endpoint on success. On error,\nredirect to the `third_party.error_redirect_url` set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config).\nError details are provided in the location URL in the form of `error` and `error_description`\nquery params.\n",
-                  "key": "Location",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "Present only on successful callback and when enabled via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n",
-                  "key": "X-Auth-Token",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "Present only on successful callback. Contains the JSON Web Token (JWT) that must be provided to protected endpoints.\nCookie attributes (e.g. domain) can be set via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.cookie`.\n",
-                  "key": "Set-Cookie",
-                  "value": "hanko=<JWT>; Path=/; HttpOnly"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "5d80bc82-2b42-440b-a9ac-1efddc2745cb",
+                  "name": "Redirect to requested redirect URL or to configured site redirect URL",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/thirdparty/callback?code=<string>&state=<string>&error=<string>&error_description=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "thirdparty",
+                        "callback"
+                      ],
+                      "query": [
+                        {
+                          "description": "The authorization code that can be exchanged for an access token and to retrieve user provider data\n",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) The state",
+                          "key": "state",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "An error returned from the third party provider\n",
+                          "key": "error",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The description of the error that occurred (if any)",
+                          "key": "error_description",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Temporary Redirect (since HTTP/1.1)",
+                  "code": 307,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Redirect to the URL requested via `redirect_to` query parameter during third party\nprovider login via [`/auth`](#tag/Third-Party/operation/thirdPartyAuth) endpoint on success. On error,\nredirect to the `third_party.error_redirect_url` set in the backend\n[configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config).\nError details are provided in the location URL in the form of `error` and `error_description`\nquery params.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Present only on successful callback and when enabled via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "X-Auth-Token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Present only on successful callback. Contains the JSON Web Token (JWT) that must be provided to protected endpoints.\nCookie attributes (e.g. domain) can be set via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.cookie`.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "Set-Cookie",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:18:54.000Z",
+                  "updatedAt": "2026-10-22T01:18:54.000Z",
+                  "uid": "35240-5d80bc82-2b42-440b-a9ac-1efddc2745cb"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:18:54.000Z",
+              "updatedAt": "2026-10-22T01:18:54.000Z",
+              "uid": "35240-7bf21dea-a671-4972-8438-90b66d0c8c11"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d47701c5-3689-4fdc-92c8-8c5b3a017cf4",
+          "createdAt": "2026-10-22T01:18:54.000Z",
+          "updatedAt": "2026-10-22T01:18:54.000Z",
+          "uid": "35240-d47701c5-3689-4fdc-92c8-8c5b3a017cf4"
         }
       ],
-      "event": []
+      "id": "6e983a5c-3a66-49d7-a856-189be42bb56b",
+      "createdAt": "2026-10-22T01:18:54.000Z",
+      "updatedAt": "2026-10-22T01:18:54.000Z",
+      "uid": "35240-6e983a5c-3a66-49d7-a856-189be42bb56b"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io"
     }
-  ],
-  "info": {
-    "_postman_id": "43f21d8d-4168-49b4-b297-1f6446d1a8d6",
-    "name": "Hanko Admin Audit Logs Third Party API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

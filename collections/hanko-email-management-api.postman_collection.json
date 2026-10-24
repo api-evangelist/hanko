@@ -1,200 +1,729 @@
 {
+  "info": {
+    "_postman_id": "6713bd68-2323-47cf-8f12-bdef26f887ae",
+    "name": "Hanko Public Email Management API",
+    "description": "## Introduction\n\nThis is the OpenAPI specification for the Hanko Public API.\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:17:53.000Z",
+    "updatedAt": "2026-10-22T01:17:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6713bd68-2323-47cf-8f12-bdef26f887ae"
+  },
   "item": [
     {
-      "id": "da3ef460-6fc9-4032-a934-c0f549aa4b11",
-      "name": "Email Management",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "emails",
       "item": [
         {
-          "id": "7907665a-2caf-440c-9637-3d3cb77e016a",
-          "name": "Get a list of emails of the current user.",
-          "request": {
-            "name": "Get a list of emails of the current user.",
-            "description": {},
-            "url": {
-              "path": [
-                "emails"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "set_primary",
+              "item": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "name": "Marks the email address as primary email",
+                  "id": "69edcc11-e28c-4458-9c07-edfbb15f701c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "hanko",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/emails/:id/set_primary",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "emails",
+                        ":id",
+                        "set_primary"
+                      ],
+                      "variable": [
+                        {
+                          "id": "db71a607-6dd5-4fd1-ac62-6caf2d52bdd3",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the email address"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e307d834-6757-4ceb-a515-3285a4884f16",
+                      "name": "Email has been set as primary",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/emails/:id/set_primary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "emails",
+                            ":id",
+                            "set_primary"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:17:53.000Z",
+                      "updatedAt": "2026-10-22T01:17:53.000Z",
+                      "uid": "35240-e307d834-6757-4ceb-a515-3285a4884f16"
+                    },
+                    {
+                      "id": "18d84b34-47eb-4778-aa94-0b8dfba68ce6",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/emails/:id/set_primary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "emails",
+                            ":id",
+                            "set_primary"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:17:53.000Z",
+                      "updatedAt": "2026-10-22T01:17:53.000Z",
+                      "uid": "35240-18d84b34-47eb-4778-aa94-0b8dfba68ce6"
+                    },
+                    {
+                      "id": "2b77c1ac-1812-4591-ac25-65a7065b1a6e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/emails/:id/set_primary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "emails",
+                            ":id",
+                            "set_primary"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:17:53.000Z",
+                      "updatedAt": "2026-10-22T01:17:53.000Z",
+                      "uid": "35240-2b77c1ac-1812-4591-ac25-65a7065b1a6e"
+                    },
+                    {
+                      "id": "e0b6b7cb-ee63-42c8-9bab-ad287210bf22",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/emails/:id/set_primary",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "emails",
+                            ":id",
+                            "set_primary"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:17:53.000Z",
+                      "updatedAt": "2026-10-22T01:17:53.000Z",
+                      "uid": "35240-e0b6b7cb-ee63-42c8-9bab-ad287210bf22"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:17:53.000Z",
+                  "updatedAt": "2026-10-22T01:17:53.000Z",
+                  "uid": "35240-69edcc11-e28c-4458-9c07-edfbb15f701c"
+                }
+              ],
+              "id": "e75192ad-09e3-44ed-988c-0b681e08b4d2",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-e75192ad-09e3-44ed-988c-0b681e08b4d2"
+            },
+            {
+              "name": "Delete an email address",
+              "id": "5c341aa1-df17-41e2-add0-6f6b96ad2132",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "hanko",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/emails/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "94e6afeb-2039-4cef-b327-4523ba1cade1",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the email address"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d3add798-eb1c-4949-b2f6-f5f2ecbfd54c",
+                  "name": "Email has been deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/emails/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "emails",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:17:53.000Z",
+                  "updatedAt": "2026-10-22T01:17:53.000Z",
+                  "uid": "35240-d3add798-eb1c-4949-b2f6-f5f2ecbfd54c"
+                },
+                {
+                  "id": "e46b6311-a7f4-4b88-943f-f4b5546b4350",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/emails/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "emails",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:17:53.000Z",
+                  "updatedAt": "2026-10-22T01:17:53.000Z",
+                  "uid": "35240-e46b6311-a7f4-4b88-943f-f4b5546b4350"
+                },
+                {
+                  "id": "37730bb0-72a2-4b09-a417-8fdbdfc7342d",
+                  "name": "Conflict",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/emails/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "emails",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:17:53.000Z",
+                  "updatedAt": "2026-10-22T01:17:53.000Z",
+                  "uid": "35240-37730bb0-72a2-4b09-a417-8fdbdfc7342d"
+                },
+                {
+                  "id": "82df50f9-3d01-4c55-a027-84767371b680",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/emails/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "emails",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:17:53.000Z",
+                  "updatedAt": "2026-10-22T01:17:53.000Z",
+                  "uid": "35240-82df50f9-3d01-4c55-a027-84767371b680"
+                }
+              ],
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-5c341aa1-df17-41e2-add0-6f6b96ad2132"
+            }
+          ],
+          "id": "869a585d-0c84-4ae6-b670-ad39417b26d0",
+          "createdAt": "2026-10-22T01:17:53.000Z",
+          "updatedAt": "2026-10-22T01:17:53.000Z",
+          "uid": "35240-869a585d-0c84-4ae6-b670-ad39417b26d0"
+        },
+        {
+          "name": "Get a list of emails of the current user",
+          "id": "e8a108b0-79da-4f10-a6c9-6261502a6ab7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "hanko",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
                 }
               ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET"
-          },
-          "response": [
-            {
-              "id": "421c1c71-e751-4b0c-a6ae-3127e7e8c415",
-              "name": "A list of emails assigned to the current user",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"address\": \"john.doe@example.com\",\n    \"is_verified\": true,\n    \"is_primary\": false\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d3d0109a-1ea7-41fe-93cc-4aaa25ce99e7",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "db6f3548-2b7e-444b-b9fa-540aac6eac62",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0c629d34-3a13-4100-9b45-e8f292cb3cba",
-          "name": "Add a new email address to the current user.",
-          "request": {
-            "name": "Add a new email address to the current user.",
-            "description": {},
             "url": {
-              "path": [
-                "emails"
-              ],
+              "raw": "{{baseUrl}}/emails",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": [
+              "path": [
+                "emails"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "10478e3d-1f10-4245-855f-64c6c4df7f49",
+              "name": "A list of emails assigned to the current user",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"address\": \"<email>\",\n    \"is_verified\": \"<boolean>\",\n    \"is_primary\": \"<boolean>\",\n    \"identity\": {\n      \"id\": \"<string>\",\n      \"identity_id\": \"<string>\",\n      \"provider\": \"<string>\"\n    },\n    \"identities\": [\n      {\n        \"id\": \"<string>\",\n        \"identity_id\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"identity_id\": \"<string>\",\n        \"provider\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"address\": \"<email>\",\n    \"is_verified\": \"<boolean>\",\n    \"is_primary\": \"<boolean>\",\n    \"identity\": {\n      \"id\": \"<string>\",\n      \"identity_id\": \"<string>\",\n      \"provider\": \"<string>\"\n    },\n    \"identities\": [\n      {\n        \"id\": \"<string>\",\n        \"identity_id\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"identity_id\": \"<string>\",\n        \"provider\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-10478e3d-1f10-4245-855f-64c6c4df7f49"
+            },
+            {
+              "id": "fe5aef52-ceea-43a2-9c8f-db556536356f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-fe5aef52-ceea-43a2-9c8f-db556536356f"
+            },
+            {
+              "id": "0bf1ef20-3050-40b6-b7e3-8ad2b4826468",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-0bf1ef20-3050-40b6-b7e3-8ad2b4826468"
+            }
+          ],
+          "createdAt": "2026-10-22T01:17:53.000Z",
+          "updatedAt": "2026-10-22T01:17:53.000Z",
+          "uid": "35240-e8a108b0-79da-4f10-a6c9-6261502a6ab7"
+        },
+        {
+          "name": "Add a new email address to the current user",
+          "id": "5e869976-6eea-4e7d-a99b-017c37bdf4fd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "hanko",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
                 }
               ]
             },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -205,731 +734,262 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
             "body": {
               "mode": "raw",
               "raw": "{\n  \"address\": \"<email>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emails",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emails"
+              ]
             }
           },
           "response": [
             {
-              "id": "73bd7b3c-92ae-48f6-83dd-d9b7d612ec07",
+              "id": "fcee7ae5-7989-44b2-9bb7-0ca3b9730195",
               "name": "Email successfully added",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
                 "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
+                  }
+                ],
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"address\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-fcee7ae5-7989-44b2-9bb7-0ca3b9730195"
             },
             {
-              "id": "68d681d9-5b90-4f2d-8b23-0e861fa2fc9e",
+              "id": "5ca41d67-6926-44fb-a2cf-65ff2b2f399c",
               "name": "Bad Request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"address\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-5ca41d67-6926-44fb-a2cf-65ff2b2f399c"
             },
             {
-              "id": "8cc8198f-0fa8-473f-b9b5-e176a90a2831",
+              "id": "d4c0cd04-433c-4c90-9ab9-3027f3b94e37",
               "name": "Conflict",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"address\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
                 }
               },
               "status": "Conflict",
               "code": 409,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 409,\n  \"message\": \"Conflict\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-d4c0cd04-433c-4c90-9ab9-3027f3b94e37"
             },
             {
-              "id": "88fdec19-f67d-46b7-a7ab-84175e7f956d",
+              "id": "73f6d2f5-4784-464c-a874-f0ea1d5c3716",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"address\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/emails",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "emails"
+                  ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:17:53.000Z",
+              "updatedAt": "2026-10-22T01:17:53.000Z",
+              "uid": "35240-73f6d2f5-4784-464c-a874-f0ea1d5c3716"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ec571359-5506-495b-b0f7-b133e3da7fcf",
-          "name": "Marks the email address as primary email",
-          "request": {
-            "name": "Marks the email address as primary email",
-            "description": {},
-            "url": {
-              "path": [
-                "emails",
-                ":id",
-                "set_primary"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the email address"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST"
-          },
-          "response": [
-            {
-              "id": "3b8e0d71-1851-4aae-8056-b498420defae",
-              "name": "Email has been set as primary",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id",
-                    "set_primary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "20a85148-bdbf-4fab-ba63-c73c581411a6",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id",
-                    "set_primary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6ebc1be5-386d-49a2-897d-1ca1bb006f1b",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id",
-                    "set_primary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fa1aa35b-e3a9-4be6-8ac1-bc4e7842e01a",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id",
-                    "set_primary"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c215ca6b-1ea6-4f58-aeac-be2ec4122dea",
-          "name": "Delete an email address",
-          "request": {
-            "name": "Delete an email address",
-            "description": {},
-            "url": {
-              "path": [
-                "emails",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the email address"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE"
-          },
-          "response": [
-            {
-              "id": "3a4fa894-526b-4e26-b953-e72722ec99b4",
-              "name": "Email has been deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "47273629-a1ae-4dc1-90b5-22634a75a172",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cf746e24-35e7-456b-b25d-4cac9a4616e4",
-              "name": "Conflict",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Conflict",
-              "code": 409,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 409,\n  \"message\": \"Conflict\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4560e95e-3c66-403c-9f42-31856bef5345",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "emails",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the email address"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:17:53.000Z",
+          "updatedAt": "2026-10-22T01:17:53.000Z",
+          "uid": "35240-5e869976-6eea-4e7d-a99b-017c37bdf4fd"
         }
       ],
-      "event": []
+      "id": "4d095dba-6da7-458b-ada8-2777ab3b86e2",
+      "createdAt": "2026-10-22T01:17:53.000Z",
+      "updatedAt": "2026-10-22T01:17:53.000Z",
+      "uid": "35240-4d095dba-6da7-458b-ada8-2777ab3b86e2"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io"
     }
-  ],
-  "info": {
-    "_postman_id": "62abb2bd-9e72-473e-b0f6-5aae0d113060",
-    "name": "Hanko Admin Audit Logs Email Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

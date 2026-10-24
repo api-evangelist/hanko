@@ -1,1358 +1,1621 @@
 {
+  "info": {
+    "_postman_id": "d72e226e-ad34-40c6-81da-f81e1b053c6e",
+    "name": "passkey-server Mfa API",
+    "description": "This API shall represent the private and public endpoints for passkey registration, management and authentication\n\nContact Support:\n Name: Hanko Dev Team\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:16.000Z",
+    "updatedAt": "2026-10-22T01:18:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d72e226e-ad34-40c6-81da-f81e1b053c6e"
+  },
   "item": [
     {
-      "id": "2464a2dc-69e1-4de2-92d7-207960b0b5db",
-      "name": "mfa",
-      "description": {
-        "content": "Represents all objects which are related to MFA in common",
-        "type": "text/plain"
-      },
+      "name": "{tenant_id}",
       "item": [
         {
-          "id": "4de5b96e-8a2f-4e44-8929-8699f81772da",
-          "name": "Start MFA Registration",
-          "request": {
-            "name": "Start MFA Registration",
-            "description": {
-              "content": "Initialize a registration for mfa credentials",
-              "type": "text/plain"
-            },
-            "url": {
-              "protocol": "https",
-              "path": [
-                ":tenant_id",
-                "mfa",
-                "registration",
-                "initialize"
-              ],
-              "host": [
-                "passkeys",
-                "hanko",
-                "io"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant_id",
-                  "description": "(Required) Tenant ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Secret API key",
-                "key": "apiKey",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"display_name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "mfa",
+          "item": [
             {
-              "id": "e63d0dea-9ce3-488d-8f50-e23fb3bab2bd",
-              "name": "Example response",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "registration",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "initialize",
+                  "item": [
+                    {
+                      "name": "Start MFA Registration",
+                      "id": "6f705d95-6c25-43f6-a6f4-6b6053edd4e8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Secret API key",
+                            "key": "apiKey",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"display_name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/initialize",
+                          "protocol": "https",
+                          "host": [
+                            "passkeys",
+                            "hanko",
+                            "io"
+                          ],
+                          "path": [
+                            ":tenant_id",
+                            "mfa",
+                            "registration",
+                            "initialize"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b8f39a82-4de2-4e3b-a893-90e242f3b6ed",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) Tenant ID"
+                            }
+                          ]
+                        },
+                        "description": "Initialize a registration for mfa credentials"
+                      },
+                      "response": [
+                        {
+                          "id": "d2e39c47-4b41-4235-b746-9cc934f02329",
+                          "name": "Example response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"display_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"publicKey\": {\n    \"rp\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"user\": {\n      \"id\": \"<string>\",\n      \"displayName\": \"<string>\",\n      \"name\": \"<string>\"\n    },\n    \"challenge\": \"<string>\",\n    \"pubKeyCredParams\": [\n      {\n        \"type\": \"public-key\",\n        \"alg\": \"<integer>\"\n      },\n      {\n        \"type\": \"public-key\",\n        \"alg\": \"<integer>\"\n      }\n    ],\n    \"timeout\": \"<integer>\",\n    \"excludeCredentials\": [\n      {\n        \"type\": \"public-key\",\n        \"id\": \"<string>\",\n        \"transports\": [\n          \"ble\",\n          \"internal\"\n        ]\n      },\n      {\n        \"type\": \"public-key\",\n        \"id\": \"<string>\",\n        \"transports\": [\n          \"internal\",\n          \"internal\"\n        ]\n      }\n    ],\n    \"authenticatorSelection\": {\n      \"authenticatorAttachement\": \"platform\",\n      \"requireResidentKey\": false,\n      \"residentKey\": \"preferred\",\n      \"userVerification\": \"discouraged\"\n    },\n    \"attestation\": \"none\",\n    \"extensions\": {\n      \"appid\": \"<string>\",\n      \"appidExclude\": \"<string>\",\n      \"credProps\": \"<boolean>\"\n    }\n  }\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-d2e39c47-4b41-4235-b746-9cc934f02329"
+                        },
+                        {
+                          "id": "42f5c333-6c1c-4d99-8ad2-dd44b3aa658d",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"display_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-42f5c333-6c1c-4d99-8ad2-dd44b3aa658d"
+                        },
+                        {
+                          "id": "27b9c3c1-fb59-4f40-a721-5b04bb82b8ab",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"display_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-27b9c3c1-fb59-4f40-a721-5b04bb82b8ab"
+                        },
+                        {
+                          "id": "2239cf28-2c94-484a-8bba-05ed85ffc2c9",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"display_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-2239cf28-2c94-484a-8bba-05ed85ffc2c9"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:18:16.000Z",
+                      "updatedAt": "2026-10-22T01:18:16.000Z",
+                      "uid": "35240-6f705d95-6c25-43f6-a6f4-6b6053edd4e8"
+                    }
+                  ],
+                  "id": "b837c4d0-ebf0-4b77-af36-03a4a861f9cc",
+                  "createdAt": "2026-10-22T01:18:16.000Z",
+                  "updatedAt": "2026-10-22T01:18:16.000Z",
+                  "uid": "35240-b837c4d0-ebf0-4b77-af36-03a4a861f9cc"
+                },
+                {
+                  "name": "finalize",
+                  "item": [
+                    {
+                      "name": "Finish MFA Registration",
+                      "id": "08881b8d-7055-4794-a342-ce4af8f7109c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Secret API key",
+                            "key": "apiKey",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/finalize",
+                          "protocol": "https",
+                          "host": [
+                            "passkeys",
+                            "hanko",
+                            "io"
+                          ],
+                          "path": [
+                            ":tenant_id",
+                            "mfa",
+                            "registration",
+                            "finalize"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9c13c950-7182-4f1d-af7b-cc8ae5a4035c",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) Tenant ID"
+                            }
+                          ]
+                        },
+                        "description": "Finish credential registration process"
+                      },
+                      "response": [
+                        {
+                          "id": "872b5be5-4ea3-45fa-aab0-4ed4609b18ae",
+                          "name": "Example response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"token\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-872b5be5-4ea3-45fa-aab0-4ed4609b18ae"
+                        },
+                        {
+                          "id": "2c2b6ca2-d122-4c9e-9d5c-943d6531429b",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-2c2b6ca2-d122-4c9e-9d5c-943d6531429b"
+                        },
+                        {
+                          "id": "4391f215-f97e-41ec-aeab-4b3846425751",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-4391f215-f97e-41ec-aeab-4b3846425751"
+                        },
+                        {
+                          "id": "a64792a5-c272-4734-b750-7050e5587670",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-a64792a5-c272-4734-b750-7050e5587670"
+                        },
+                        {
+                          "id": "e90cfcc5-0b87-479a-a51a-6b713a20eff1",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/registration/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "registration",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-e90cfcc5-0b87-479a-a51a-6b713a20eff1"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:18:16.000Z",
+                      "updatedAt": "2026-10-22T01:18:16.000Z",
+                      "uid": "35240-08881b8d-7055-4794-a342-ce4af8f7109c"
+                    }
+                  ],
+                  "id": "e8a0cbbc-f26e-4989-bdc8-67e67ed0cc3c",
+                  "createdAt": "2026-10-22T01:18:16.000Z",
+                  "updatedAt": "2026-10-22T01:18:16.000Z",
+                  "uid": "35240-e8a0cbbc-f26e-4989-bdc8-67e67ed0cc3c"
                 }
               ],
-              "body": "{\n  \"publicKey\": {\n    \"rp\": {\n      \"name\": \"string\",\n      \"id\": \"string\"\n    },\n    \"user\": {\n      \"id\": \"string\",\n      \"displayName\": \"string\",\n      \"name\": \"string\"\n    },\n    \"challenge\": \"string\",\n    \"pubKeyCredParams\": [\n      {\n        \"type\": \"string\",\n        \"alg\": 5364\n      },\n      {\n        \"type\": \"string\",\n        \"alg\": 1749\n      }\n    ],\n    \"timeout\": 6707,\n    \"excludeCredentials\": [\n      {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"transports\": [\n          \"hybrid\",\n          \"nfc\"\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"transports\": [\n          \"ble\",\n          \"usb\"\n        ]\n      }\n    ],\n    \"authenticatorSelection\": {\n      \"authenticatorAttachement\": \"cross-platform\",\n      \"requireResidentKey\": false,\n      \"residentKey\": \"discouraged\",\n      \"userVerification\": \"preferred\"\n    },\n    \"attestation\": \"direct\",\n    \"extensions\": {\n      \"appid\": \"string\",\n      \"appidExclude\": \"string\",\n      \"credProps\": true\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "ad8fa0bb-4de2-465d-84c7-9c2900fe2b06",
+              "createdAt": "2026-10-22T01:18:16.000Z",
+              "updatedAt": "2026-10-22T01:18:16.000Z",
+              "uid": "35240-ad8fa0bb-4de2-465d-84c7-9c2900fe2b06"
             },
             {
-              "id": "69f94e64-d8da-4482-b4a6-dd9424d6006f",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "name": "login",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "initialize",
+                  "item": [
+                    {
+                      "name": "Start MFA Login",
+                      "id": "95275972-d6dd-4482-975e-ea551543344b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Secret API key",
+                            "key": "apiKey",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/initialize",
+                          "protocol": "https",
+                          "host": [
+                            "passkeys",
+                            "hanko",
+                            "io"
+                          ],
+                          "path": [
+                            ":tenant_id",
+                            "mfa",
+                            "login",
+                            "initialize"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b439a086-f5c6-420a-bb88-c0d6358ecefe",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) Tenant ID"
+                            }
+                          ]
+                        },
+                        "description": "Initialize a login flow for MFA"
+                      },
+                      "response": [
+                        {
+                          "id": "0fafa3f7-694f-4d4f-9427-a2e04db4620e",
+                          "name": "Example response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"publicKey\": {\n    \"challenge\": \"<string>\",\n    \"timeout\": \"<integer>\",\n    \"rpId\": \"<string>\",\n    \"allowCredentials\": [\n      {\n        \"type\": \"public-key\",\n        \"id\": \"<string>\",\n        \"transports\": [\n          \"internal\",\n          \"internal\"\n        ]\n      },\n      {\n        \"type\": \"public-key\",\n        \"id\": \"<string>\",\n        \"transports\": [\n          \"internal\",\n          \"nfc\"\n        ]\n      }\n    ],\n    \"userVerification\": \"discouraged\",\n    \"extensions\": {\n      \"appid\": \"<boolean>\",\n      \"appidExclude\": \"<boolean>\",\n      \"credProps\": {\n        \"rk\": \"<boolean>\"\n      }\n    }\n  },\n  \"mediation\": \"required\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-0fafa3f7-694f-4d4f-9427-a2e04db4620e"
+                        },
+                        {
+                          "id": "99c3473c-8985-422d-aa58-0de9389ab389",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-99c3473c-8985-422d-aa58-0de9389ab389"
+                        },
+                        {
+                          "id": "c5f2db43-9269-4bba-bffb-eef730683b95",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-c5f2db43-9269-4bba-bffb-eef730683b95"
+                        },
+                        {
+                          "id": "e4d9ffe7-c255-421d-b9d3-5e88057d0776",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-e4d9ffe7-c255-421d-b9d3-5e88057d0776"
+                        },
+                        {
+                          "id": "486ed2a2-da10-4201-bf17-1a36f2b590e5",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/initialize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "initialize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-486ed2a2-da10-4201-bf17-1a36f2b590e5"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:18:16.000Z",
+                      "updatedAt": "2026-10-22T01:18:16.000Z",
+                      "uid": "35240-95275972-d6dd-4482-975e-ea551543344b"
+                    }
+                  ],
+                  "id": "170e1304-85f4-4ef1-be00-d6a5934154b2",
+                  "createdAt": "2026-10-22T01:18:16.000Z",
+                  "updatedAt": "2026-10-22T01:18:16.000Z",
+                  "uid": "35240-170e1304-85f4-4ef1-be00-d6a5934154b2"
+                },
+                {
+                  "name": "finalize",
+                  "item": [
+                    {
+                      "name": "Finish MFA Login",
+                      "id": "323b59d2-e508-4df2-8d82-553477c9b6af",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) Secret API key",
+                            "key": "apiKey",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/finalize",
+                          "protocol": "https",
+                          "host": [
+                            "passkeys",
+                            "hanko",
+                            "io"
+                          ],
+                          "path": [
+                            ":tenant_id",
+                            "mfa",
+                            "login",
+                            "finalize"
+                          ],
+                          "variable": [
+                            {
+                              "id": "449944a6-88a0-4f61-a4ee-0814a3cfcdb6",
+                              "key": "tenant_id",
+                              "value": "<string>",
+                              "description": "(Required) Tenant ID"
+                            }
+                          ]
+                        },
+                        "description": "Finalize the login operation"
+                      },
+                      "response": [
+                        {
+                          "id": "d5ca454e-88f4-4b2b-a375-5b2f644273d4",
+                          "name": "Example response",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"token\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-d5ca454e-88f4-4b2b-a375-5b2f644273d4"
+                        },
+                        {
+                          "id": "62087241-6630-41cd-966b-67901d31aee3",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-62087241-6630-41cd-966b-67901d31aee3"
+                        },
+                        {
+                          "id": "f8328082-1ee5-426c-bb15-6a06db10ef95",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-f8328082-1ee5-426c-bb15-6a06db10ef95"
+                        },
+                        {
+                          "id": "c0276428-249f-414f-a0e5-c947a69c11eb",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-c0276428-249f-414f-a0e5-c947a69c11eb"
+                        },
+                        {
+                          "id": "0eed2ae9-ba5e-4b98-b6f4-bae5d2702dd1",
+                          "name": "Error Response with detailed information",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) Secret API key",
+                                "key": "apiKey",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"public-key\",\n  \"authenticatorAttachment\": \"null\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "https://passkeys.hanko.io/:tenant_id/mfa/login/finalize",
+                              "protocol": "https",
+                              "host": [
+                                "passkeys",
+                                "hanko",
+                                "io"
+                              ],
+                              "path": [
+                                ":tenant_id",
+                                "mfa",
+                                "login",
+                                "finalize"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tenant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"title\": \"<string>\",\n  \"details\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:18:16.000Z",
+                          "updatedAt": "2026-10-22T01:18:16.000Z",
+                          "uid": "35240-0eed2ae9-ba5e-4b98-b6f4-bae5d2702dd1"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:18:16.000Z",
+                      "updatedAt": "2026-10-22T01:18:16.000Z",
+                      "uid": "35240-323b59d2-e508-4df2-8d82-553477c9b6af"
+                    }
+                  ],
+                  "id": "cc17b7ef-ea98-4761-a957-b8a074afdbc0",
+                  "createdAt": "2026-10-22T01:18:16.000Z",
+                  "updatedAt": "2026-10-22T01:18:16.000Z",
+                  "uid": "35240-cc17b7ef-ea98-4761-a957-b8a074afdbc0"
                 }
               ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "53762a40-365e-4c11-893f-d2be7b7e266f",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cc2faacb-2c28-4b57-a7ae-48e36227f270",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "1228c4c0-293b-4d02-872a-e4a62b6f6545",
+              "createdAt": "2026-10-22T01:18:16.000Z",
+              "updatedAt": "2026-10-22T01:18:16.000Z",
+              "uid": "35240-1228c4c0-293b-4d02-872a-e4a62b6f6545"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3c333bd1-5a13-4ed3-ae60-615a1daab285",
-          "name": "Finish MFA Registration",
-          "request": {
-            "name": "Finish MFA Registration",
-            "description": {
-              "content": "Finish credential registration process",
-              "type": "text/plain"
-            },
-            "url": {
-              "protocol": "https",
-              "path": [
-                ":tenant_id",
-                "mfa",
-                "registration",
-                "finalize"
-              ],
-              "host": [
-                "passkeys",
-                "hanko",
-                "io"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant_id",
-                  "description": "(Required) Tenant ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Secret API key",
-                "key": "apiKey",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"attestationObject\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"type\": \"<string>\",\n  \"authenticatorAttachment\": \"<string>\",\n  \"transports\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f1ce22c9-5289-4132-be0a-b8f9e863265b",
-              "name": "Example response",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"token\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d22617cb-74ec-4882-b546-a1d9c718e3d1",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f4825c33-995d-4a38-a869-d09f25a9f145",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "92370f68-6f45-4e5a-a139-9454a766dc98",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "28f6c46c-9534-4f29-a75a-609e2fdcb161",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3f9b40fa-93d0-4953-8283-449188230389",
-          "name": "Start MFA Login",
-          "request": {
-            "name": "Start MFA Login",
-            "description": {
-              "content": "Initialize a login flow for MFA",
-              "type": "text/plain"
-            },
-            "url": {
-              "protocol": "https",
-              "path": [
-                ":tenant_id",
-                "mfa",
-                "login",
-                "initialize"
-              ],
-              "host": [
-                "passkeys",
-                "hanko",
-                "io"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant_id",
-                  "description": "(Required) Tenant ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Secret API key",
-                "key": "apiKey",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user_id\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "f5e9a84f-702c-432b-ac22-25c5e415fb6a",
-              "name": "Example response",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"publicKey\": {\n    \"challenge\": \"string\",\n    \"timeout\": 4445,\n    \"rpId\": \"string\",\n    \"allowCredentials\": [\n      {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"transports\": [\n          \"hybrid\",\n          \"usb\"\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"id\": \"string\",\n        \"transports\": [\n          \"hybrid\",\n          \"ble\"\n        ]\n      }\n    ],\n    \"userVerification\": \"preferred\",\n    \"extensions\": {\n      \"appid\": false,\n      \"appidExclude\": true,\n      \"credProps\": {\n        \"rk\": false\n      }\n    }\n  },\n  \"mediation\": \"silent\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8109c21f-d41d-4ad8-abb2-13aba7738ac4",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "663501ab-fed4-47e7-aced-2edec7c0be80",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d7feac47-ceb3-42ac-8014-3ed6739fb90b",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "347db6e6-479f-41c4-90e1-562a1818a2e6",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "660534c9-2201-4829-bd04-5bc5dec3373a",
-          "name": "Finish MFA Login",
-          "request": {
-            "name": "Finish MFA Login",
-            "description": {
-              "content": "Finalize the login operation",
-              "type": "text/plain"
-            },
-            "url": {
-              "protocol": "https",
-              "path": [
-                ":tenant_id",
-                "mfa",
-                "login",
-                "finalize"
-              ],
-              "host": [
-                "passkeys",
-                "hanko",
-                "io"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tenant_id",
-                  "description": "(Required) Tenant ID"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) Secret API key",
-                "key": "apiKey",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clientExtensionResults\": {\n    \"appid\": \"<boolean>\",\n    \"appidExclude\": \"<boolean>\",\n    \"credProps\": {\n      \"rk\": \"<boolean>\"\n    }\n  },\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"response\": {\n    \"authenticatorData\": \"<string>\",\n    \"clientDataJSON\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string | null>\"\n  },\n  \"type\": \"<string>\",\n  \"authenticatorAttachment\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "5f002a6e-d6a3-4661-8b00-a19be4b16b36",
-              "name": "Example response",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"token\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d7ed60d0-8819-407e-864c-3c206a175f09",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b27d52cd-66c2-465b-b250-9bec4d41ad20",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3c8b4c12-7488-419d-9dd9-5cce9ae6a279",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fdc25459-75cb-4fbd-9dae-1cd2bc958271",
-              "name": "Error Response with detailed information",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    "mfa",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tenant_id",
-                      "description": "(Required) Tenant ID"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "disabled": false,
-                    "description": "(Required) Secret API key",
-                    "key": "apiKey",
-                    "value": "<string>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"title\": \"string\",\n  \"details\": \"string\",\n  \"status\": 4003\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "715fd315-24bf-49f6-8862-be8fbe9e3b84",
+          "createdAt": "2026-10-22T01:18:16.000Z",
+          "updatedAt": "2026-10-22T01:18:16.000Z",
+          "uid": "35240-715fd315-24bf-49f6-8862-be8fbe9e3b84"
         }
       ],
-      "event": []
+      "id": "06beeae9-cacd-4088-b5db-7faa7c9fa42f",
+      "createdAt": "2026-10-22T01:18:16.000Z",
+      "updatedAt": "2026-10-22T01:18:16.000Z",
+      "uid": "35240-06beeae9-cacd-4088-b5db-7faa7c9fa42f"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
-    },
-    {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://passkeys.hanko.io"
     }
-  ],
-  "info": {
-    "_postman_id": "616c074e-7927-42e4-a9f6-ab8ca6895410",
-    "name": "Hanko Admin Audit Logs mfa API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

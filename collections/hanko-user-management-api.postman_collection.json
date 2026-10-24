@@ -1,339 +1,1074 @@
 {
+  "info": {
+    "_postman_id": "4f0ca306-083e-4d86-a0dd-4933258a66e9",
+    "name": "Hanko User Management API",
+    "description": "Operations tagged User Management across 2 of this provider's published API definitions: hanko-admin-api-openapi.yml, hanko-public-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:19:26.000Z",
+    "updatedAt": "2026-10-22T01:19:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f0ca306-083e-4d86-a0dd-4933258a66e9"
+  },
   "item": [
     {
-      "id": "78c3cbaf-38de-4ef6-9b40-8a504233a9a7",
-      "name": "User Management",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "62114410-6374-4d2e-96bc-f75da6a23bb6",
-          "name": "Get a list of users",
-          "request": {
-            "name": "Get a list of users",
-            "description": {},
-            "url": {
-              "path": [
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Delete a user by ID",
+              "id": "721974ef-40cd-49b3-8770-d219a3502a80",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0a5f3d75-2d64-42ab-9079-c342ca5803a5",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                }
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "1",
-                  "description": "The page which should be returned"
+                  "id": "57ea55ac-8631-471f-92ed-09825e14accf",
+                  "name": "Deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-57ea55ac-8631-471f-92ed-09825e14accf"
                 },
                 {
-                  "disabled": false,
-                  "key": "per_page",
-                  "value": "20",
-                  "description": "The number of returned items"
+                  "id": "cd168892-82d9-4984-88b6-2801db55eba5",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-cd168892-82d9-4984-88b6-2801db55eba5"
                 },
                 {
-                  "disabled": false,
-                  "key": "user_id",
-                  "value": "<uuid4>",
-                  "description": "A single ID or a comma-separated list of IDs. Only users with the specified IDs are included in the result.\n"
-                },
-                {
-                  "disabled": false,
-                  "key": "email",
-                  "value": "<email>",
-                  "description": "Only users with the specified email are included"
-                },
-                {
-                  "disabled": false,
-                  "key": "sort_direction",
-                  "value": "<string>",
-                  "description": "The sort direction of the returned list (always sorted by created_at)"
+                  "id": "93add11b-86b5-4d72-9c69-f28b911f7b51",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-93add11b-86b5-4d72-9c69-f28b911f7b51"
                 }
               ],
-              "variable": [
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-721974ef-40cd-49b3-8770-d219a3502a80"
+            },
+            {
+              "name": "Get a user by ID",
+              "id": "53eaea93-28b3-4327-ab9b-6366ac0b2340",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3944f801-6d01-4fe9-aac1-b54b9a89ef5c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                }
+              },
+              "response": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "id": "e3403ac5-e452-403d-b764-9d6f46b354f8",
+                  "name": "Details about the user",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"webauthn_credentials\": [\n    {\n      \"id\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"attestation_type\": \"<string>\",\n      \"aaguid\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"transports\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_used_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"attestation_type\": \"<string>\",\n      \"aaguid\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"transports\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_used_at\": \"<dateTime>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"username\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"username\": \"<string>\"\n  },\n  \"otp\": {\n    \"id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  \"password\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"identities\": [\n    {\n      \"id\": \"<string>\",\n      \"email_id\": \"<string>\",\n      \"provider_id\": \"<string>\",\n      \"provider_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email_id\": \"<string>\",\n      \"provider_id\": \"<string>\",\n      \"provider_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {},\n    \"private_metadata\": {},\n    \"unsafe_metadata\": {}\n  }\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-e3403ac5-e452-403d-b764-9d6f46b354f8"
+                },
+                {
+                  "id": "d91aa0a8-ce5c-4db9-b3a1-1c0d23c6d68f",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-d91aa0a8-ce5c-4db9-b3a1-1c0d23c6d68f"
+                },
+                {
+                  "id": "42f40d05-e7c9-4f8d-a044-5d8482c7fc5c",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-42f40d05-e7c9-4f8d-a044-5d8482c7fc5c"
+                },
+                {
+                  "id": "23d03ff0-b484-4871-b1ad-406c0fadf07e",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-23d03ff0-b484-4871-b1ad-406c0fadf07e"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-53eaea93-28b3-4327-ab9b-6366ac0b2340"
+            },
+            {
+              "name": "Update a user by ID",
+              "id": "6ed5a16f-72d2-41be-b77d-a9b9e6487bcf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string,null>\",\n  \"name\": \"<string,null>\",\n  \"given_name\": \"<string,null>\",\n  \"family_name\": \"<string,null>\",\n  \"picture\": \"<string,null-uri>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e33aa94c-c89d-4bb1-95fc-1ef99fa58668",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) ID of the user"
+                    }
+                  ]
+                },
+                "description": "Updates a subset of user-level attributes.\n\nOther sub-resources (e.g. emails, credentials) are managed via dedicated endpoints and are not updated via this endpoint."
+              },
+              "response": [
+                {
+                  "id": "60493278-b340-4d50-b572-fda7088ade1b",
+                  "name": "Details about the user",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string,null>\",\n  \"name\": \"<string,null>\",\n  \"given_name\": \"<string,null>\",\n  \"family_name\": \"<string,null>\",\n  \"picture\": \"<string,null-uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"webauthn_credentials\": [\n    {\n      \"id\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"attestation_type\": \"<string>\",\n      \"aaguid\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"transports\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_used_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"attestation_type\": \"<string>\",\n      \"aaguid\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"transports\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_used_at\": \"<dateTime>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"username\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"username\": \"<string>\"\n  },\n  \"otp\": {\n    \"id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  \"password\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"identities\": [\n    {\n      \"id\": \"<string>\",\n      \"email_id\": \"<string>\",\n      \"provider_id\": \"<string>\",\n      \"provider_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email_id\": \"<string>\",\n      \"provider_id\": \"<string>\",\n      \"provider_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {},\n    \"private_metadata\": {},\n    \"unsafe_metadata\": {}\n  }\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-60493278-b340-4d50-b572-fda7088ade1b"
+                },
+                {
+                  "id": "3e53ea4a-b5d4-4d35-aa8a-169acc159732",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string,null>\",\n  \"name\": \"<string,null>\",\n  \"given_name\": \"<string,null>\",\n  \"family_name\": \"<string,null>\",\n  \"picture\": \"<string,null-uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-3e53ea4a-b5d4-4d35-aa8a-169acc159732"
+                },
+                {
+                  "id": "1a1b69cd-ceba-44d6-bb83-748bc6c06940",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string,null>\",\n  \"name\": \"<string,null>\",\n  \"given_name\": \"<string,null>\",\n  \"family_name\": \"<string,null>\",\n  \"picture\": \"<string,null-uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-1a1b69cd-ceba-44d6-bb83-748bc6c06940"
+                },
+                {
+                  "id": "8130c7bd-cd84-4cfd-b1be-4457d0964b56",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string,null>\",\n  \"name\": \"<string,null>\",\n  \"given_name\": \"<string,null>\",\n  \"family_name\": \"<string,null>\",\n  \"picture\": \"<string,null-uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:27.000Z",
+                  "updatedAt": "2026-10-22T01:19:27.000Z",
+                  "uid": "35240-8130c7bd-cd84-4cfd-b1be-4457d0964b56"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-6ed5a16f-72d2-41be-b77d-a9b9e6487bcf"
+            }
+          ],
+          "id": "d3e42cb0-0d9b-4a2c-a934-e4c685a9fb17",
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-d3e42cb0-0d9b-4a2c-a934-e4c685a9fb17"
+        },
+        {
+          "name": "Get a list of users",
+          "id": "29aa52a6-562d-4df6-9e34-fda4a276a3d5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
               ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
+            "url": {
+              "raw": "{{baseUrl}}/users?page=1&per_page=20&user_id=<string>&email=<email>&sort_direction=asc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
                 {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
+                  "description": "The page which should be returned",
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "The number of returned items",
+                  "key": "per_page",
+                  "value": "20"
+                },
+                {
+                  "description": "A single ID or a comma-separated list of IDs. Only users with the specified IDs are included in the result.\n",
+                  "key": "user_id",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Only users with the specified email are included",
+                  "key": "email",
+                  "value": "<email>"
+                },
+                {
+                  "description": "The sort direction of the returned list (always sorted by created_at)",
+                  "key": "sort_direction",
+                  "value": "asc"
                 }
               ]
             }
           },
           "response": [
             {
-              "id": "3c9f1406-f168-4d7d-93d0-03f19d8b0842",
+              "id": "97ab38c3-cb2c-4f59-8125-f060a898b9ef",
               "name": "Details about users",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?page=1&per_page=20&user_id=<string>&email=<email>&sort_direction=asc",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "users"
+                  ],
                   "query": [
                     {
+                      "description": "The page which should be returned",
                       "key": "page",
                       "value": "1"
                     },
                     {
+                      "description": "The number of returned items",
                       "key": "per_page",
                       "value": "20"
                     },
                     {
+                      "description": "A single ID or a comma-separated list of IDs. Only users with the specified IDs are included in the result.\n",
                       "key": "user_id",
-                      "value": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
-                    },
-                    {
-                      "key": "email",
-                      "value": "example@example.com"
-                    },
-                    {
-                      "key": "sort_direction",
                       "value": "<string>"
-                    }
-                  ],
-                  "variable": [
+                    },
                     {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                      "description": "Only users with the specified email are included",
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "The sort direction of the returned list (always sorted by created_at)",
+                      "key": "sort_direction",
+                      "value": "asc"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The total count of the requested resource considering query parameter",
-                  "key": "X-Total-Count",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "Web Linking as described in RFC5988",
-                  "key": "Link",
-                  "value": "<http://localhost:8001/resource?page=1&per_page=10>; rel=\"first\",<http://localhost:8001/resource?page=16&per_page=10>; rel=\"last\",<http://localhost:8001/resource?page=6&per_page=10>; rel=\"next\",<http://localhost:8001/resource?page=4&per_page=10>; rel=\"prev\""
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "X-Total-Count",
+                  "value": ""
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Link",
+                  "value": ""
                 }
               ],
-              "body": "[\n  {\n    \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"created_at\": \"1979-07-01T22:17:29.730Z\",\n    \"updated_at\": \"1957-01-20T13:09:58.722Z\",\n    \"webauthn_credentials\": [\n      {\n        \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n        \"public_key\": \"string\",\n        \"attestation_type\": \"string\",\n        \"aaguid\": \"string\",\n        \"created_at\": \"2006-04-24T23:19:10.527Z\",\n        \"backup_eligible\": false,\n        \"backup_state\": true,\n        \"mfa_only\": true,\n        \"name\": \"string\",\n        \"transports\": [\n          \"string\",\n          \"string\"\n        ],\n        \"last_used_at\": \"2019-03-28T18:08:32.871Z\"\n      },\n      {\n        \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n        \"public_key\": \"string\",\n        \"attestation_type\": \"string\",\n        \"aaguid\": \"string\",\n        \"created_at\": \"2007-04-16T07:08:11.676Z\",\n        \"backup_eligible\": true,\n        \"backup_state\": true,\n        \"mfa_only\": false,\n        \"name\": \"string\",\n        \"transports\": [\n          \"string\",\n          \"string\"\n        ],\n        \"last_used_at\": \"1955-04-23T20:26:00.964Z\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n        \"address\": \"xkN2mFjJ6Dr@oOFKMJDmYKwwSyvZaSsTBZ.jblw\",\n        \"is_verified\": false,\n        \"is_primary\": false,\n        \"created_at\": \"2001-01-28T15:00:47.904Z\",\n        \"updated_at\": \"2012-04-19T05:51:00.224Z\"\n      },\n      {\n        \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n        \"address\": \"WENKN4rqAkK9jy@oGfPTJJlTRU.fr\",\n        \"is_verified\": false,\n        \"is_primary\": true,\n        \"created_at\": \"2017-12-25T05:17:23.154Z\",\n        \"updated_at\": \"1949-11-07T00:03:18.844Z\"\n      }\n    ],\n    \"username\": {\n      \"id\": \"8cbed467-554b-4d17-b23f-bce1b4f1db92\",\n      \"created_at\": \"1967-02-22T07:51:50.776Z\",\n      \"updated_at\": \"1994-12-12T11:06:17.296Z\",\n      \"username\": \"john_doe_123\"\n    }\n  },\n  {\n    \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"created_at\": \"2000-10-06T07:14:30.350Z\",\n    \"updated_at\": \"2000-10-28T12:54:33.803Z\",\n    \"webauthn_credentials\": [\n      {\n        \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n        \"public_key\": \"string\",\n        \"attestation_type\": \"string\",\n        \"aaguid\": \"string\",\n        \"created_at\": \"2024-08-27T19:09:16.397Z\",\n        \"backup_eligible\": false,\n        \"backup_state\": false,\n        \"mfa_only\": true,\n        \"name\": \"string\",\n        \"transports\": [\n          \"string\",\n          \"string\"\n        ],\n        \"last_used_at\": \"1979-03-14T21:53:43.265Z\"\n      },\n      {\n        \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n        \"public_key\": \"string\",\n        \"attestation_type\": \"string\",\n        \"aaguid\": \"string\",\n        \"created_at\": \"1954-12-30T18:41:13.366Z\",\n        \"backup_eligible\": false,\n        \"backup_state\": false,\n        \"mfa_only\": true,\n        \"name\": \"string\",\n        \"transports\": [\n          \"string\",\n          \"string\"\n        ],\n        \"last_used_at\": \"1970-11-13T19:45:22.286Z\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n        \"address\": \"sipX5g23s8-dt7@BXIotxzjRkwCdBDHO.oahh\",\n        \"is_verified\": false,\n        \"is_primary\": true,\n        \"created_at\": \"1976-02-20T11:47:06.920Z\",\n        \"updated_at\": \"2006-11-05T09:06:38.554Z\"\n      },\n      {\n        \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n        \"address\": \"z1FuVL5i@lmcGkBjkwUs.zgc\",\n        \"is_verified\": false,\n        \"is_primary\": true,\n        \"created_at\": \"1961-11-12T02:34:55.305Z\",\n        \"updated_at\": \"1949-04-05T19:34:54.683Z\"\n      }\n    ],\n    \"username\": {\n      \"id\": \"8cbed467-554b-4d17-b23f-bce1b4f1db92\",\n      \"created_at\": \"1965-12-10T10:12:58.313Z\",\n      \"updated_at\": \"1957-06-25T03:25:41.644Z\",\n      \"username\": \"john_doe_123\"\n    }\n  }\n]",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"webauthn_credentials\": [\n      {\n        \"id\": \"<string>\",\n        \"public_key\": \"<string>\",\n        \"attestation_type\": \"<string>\",\n        \"aaguid\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"backup_eligible\": \"<boolean>\",\n        \"backup_state\": \"<boolean>\",\n        \"mfa_only\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"transports\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_used_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"public_key\": \"<string>\",\n        \"attestation_type\": \"<string>\",\n        \"aaguid\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"backup_eligible\": \"<boolean>\",\n        \"backup_state\": \"<boolean>\",\n        \"mfa_only\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"transports\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_used_at\": \"<dateTime>\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"id\": \"<string>\",\n        \"address\": \"<email>\",\n        \"is_verified\": \"<boolean>\",\n        \"is_primary\": \"<boolean>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"address\": \"<email>\",\n        \"is_verified\": \"<boolean>\",\n        \"is_primary\": \"<boolean>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ],\n    \"username\": {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"webauthn_credentials\": [\n      {\n        \"id\": \"<string>\",\n        \"public_key\": \"<string>\",\n        \"attestation_type\": \"<string>\",\n        \"aaguid\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"backup_eligible\": \"<boolean>\",\n        \"backup_state\": \"<boolean>\",\n        \"mfa_only\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"transports\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_used_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"public_key\": \"<string>\",\n        \"attestation_type\": \"<string>\",\n        \"aaguid\": \"<string>\",\n        \"created_at\": \"<dateTime>\",\n        \"backup_eligible\": \"<boolean>\",\n        \"backup_state\": \"<boolean>\",\n        \"mfa_only\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"transports\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"last_used_at\": \"<dateTime>\"\n      }\n    ],\n    \"emails\": [\n      {\n        \"id\": \"<string>\",\n        \"address\": \"<email>\",\n        \"is_verified\": \"<boolean>\",\n        \"is_primary\": \"<boolean>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      },\n      {\n        \"id\": \"<string>\",\n        \"address\": \"<email>\",\n        \"is_verified\": \"<boolean>\",\n        \"is_primary\": \"<boolean>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    ],\n    \"username\": {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"username\": \"<string>\"\n    }\n  }\n]",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-97ab38c3-cb2c-4f59-8125-f060a898b9ef"
             },
             {
-              "id": "d513e765-c9f2-466c-91ae-3fb66bb731df",
+              "id": "4cc10f48-8e18-4f7f-8a9e-ee545354f079",
               "name": "Bad Request",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?page=1&per_page=20&user_id=<string>&email=<email>&sort_direction=asc",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "users"
+                  ],
                   "query": [
                     {
+                      "description": "The page which should be returned",
                       "key": "page",
                       "value": "1"
                     },
                     {
+                      "description": "The number of returned items",
                       "key": "per_page",
                       "value": "20"
                     },
                     {
+                      "description": "A single ID or a comma-separated list of IDs. Only users with the specified IDs are included in the result.\n",
                       "key": "user_id",
-                      "value": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
-                    },
-                    {
-                      "key": "email",
-                      "value": "example@example.com"
-                    },
-                    {
-                      "key": "sort_direction",
                       "value": "<string>"
-                    }
-                  ],
-                  "variable": [
+                    },
                     {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                      "description": "Only users with the specified email are included",
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "The sort direction of the returned list (always sorted by created_at)",
+                      "key": "sort_direction",
+                      "value": "asc"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-4cc10f48-8e18-4f7f-8a9e-ee545354f079"
             },
             {
-              "id": "c82beb70-5a61-4465-ad0a-07f76c1912b5",
+              "id": "2caa4d05-c20b-4003-af68-041a6461965c",
               "name": "Internal server error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "users"
-                  ],
+                  "raw": "{{baseUrl}}/users?page=1&per_page=20&user_id=<string>&email=<email>&sort_direction=asc",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "users"
+                  ],
                   "query": [
                     {
+                      "description": "The page which should be returned",
                       "key": "page",
                       "value": "1"
                     },
                     {
+                      "description": "The number of returned items",
                       "key": "per_page",
                       "value": "20"
                     },
                     {
+                      "description": "A single ID or a comma-separated list of IDs. Only users with the specified IDs are included in the result.\n",
                       "key": "user_id",
-                      "value": "c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c"
-                    },
-                    {
-                      "key": "email",
-                      "value": "example@example.com"
-                    },
-                    {
-                      "key": "sort_direction",
                       "value": "<string>"
-                    }
-                  ],
-                  "variable": [
+                    },
                     {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                      "description": "Only users with the specified email are included",
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "The sort direction of the returned list (always sorted by created_at)",
+                      "key": "sort_direction",
+                      "value": "asc"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-2caa4d05-c20b-4003-af68-041a6461965c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-29aa52a6-562d-4df6-9e34-fda4a276a3d5"
         },
         {
-          "id": "da065039-d80d-4809-ad63-b4890fe3d401",
           "name": "Create a new user",
+          "id": "37acba3a-99ac-451e-a12b-64ee5f25939f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Create a new user",
-            "description": {},
-            "url": {
-              "path": [
-                "users"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+            "auth": {
+              "type": "bearer",
+              "bearer": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
               ]
             },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -344,1106 +1079,273 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"<uuid4>\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
             }
           },
           "response": [
             {
-              "id": "75cd0c07-c489-42e3-b21a-e2d014219fed",
+              "id": "156d63b5-4d2f-4b84-afa8-4c6f998ccf4b",
               "name": "Details of the newly created user",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"created_at\": \"1983-02-08T22:23:01.340Z\",\n  \"updated_at\": \"1965-12-20T19:56:46.439Z\",\n  \"webauthn_credentials\": [\n    {\n      \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n      \"public_key\": \"string\",\n      \"attestation_type\": \"string\",\n      \"aaguid\": \"string\",\n      \"created_at\": \"1966-08-23T21:13:13.352Z\",\n      \"backup_eligible\": false,\n      \"backup_state\": false,\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"transports\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_used_at\": \"1985-03-01T10:16:14.166Z\"\n    },\n    {\n      \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n      \"public_key\": \"string\",\n      \"attestation_type\": \"string\",\n      \"aaguid\": \"string\",\n      \"created_at\": \"1989-04-03T16:02:56.574Z\",\n      \"backup_eligible\": false,\n      \"backup_state\": true,\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"transports\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_used_at\": \"2006-06-29T08:38:55.325Z\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n      \"address\": \"KYM@x.to\",\n      \"is_verified\": false,\n      \"is_primary\": true,\n      \"created_at\": \"1987-03-07T23:04:26.223Z\",\n      \"updated_at\": \"1991-12-26T09:10:30.869Z\"\n    },\n    {\n      \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n      \"address\": \"T-5TP1oR@qsjyMHPXtLK.ia\",\n      \"is_verified\": true,\n      \"is_primary\": true,\n      \"created_at\": \"2014-05-12T16:53:49.604Z\",\n      \"updated_at\": \"1995-08-31T02:34:18.610Z\"\n    }\n  ],\n  \"username\": {\n    \"id\": \"8cbed467-554b-4d17-b23f-bce1b4f1db92\",\n    \"created_at\": \"1969-08-14T02:57:01.054Z\",\n    \"updated_at\": \"1950-01-30T19:00:34.552Z\",\n    \"username\": \"john_doe_123\"\n  },\n  \"otp\": {\n    \"id\": \"3e44e46c-bb15-cab7-6ec0-87fa3db12070\",\n    \"created_at\": \"1956-07-07T01:25:40.840Z\"\n  },\n  \"password\": {\n    \"id\": \"28a7206b-e789-435a-b87c-108e034135c2\",\n    \"created_at\": \"1969-04-19T07:05:34.913Z\",\n    \"updated_at\": \"1989-09-11T13:17:40.343Z\"\n  },\n  \"identities\": [\n    {\n      \"id\": \"77f8d594-9765-4891-ab2b-f31a797b531d\",\n      \"email_id\": \"d4095586-8318-4a40-a840-b4260496f85a\",\n      \"provider_id\": \"string\",\n      \"provider_name\": \"string\",\n      \"created_at\": \"2002-04-24T11:15:19.387Z\",\n      \"updated_at\": \"1963-04-14T20:43:46.898Z\"\n    },\n    {\n      \"id\": \"77f8d594-9765-4891-ab2b-f31a797b531d\",\n      \"email_id\": \"d4095586-8318-4a40-a840-b4260496f85a\",\n      \"provider_id\": \"string\",\n      \"provider_name\": \"string\",\n      \"created_at\": \"1998-09-22T09:42:47.213Z\",\n      \"updated_at\": \"2019-10-23T17:07:56.717Z\"\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"private_metadata\": {\n      \"key_0\": {}\n    },\n    \"unsafe_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"webauthn_credentials\": [\n    {\n      \"id\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"attestation_type\": \"<string>\",\n      \"aaguid\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"transports\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_used_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"public_key\": \"<string>\",\n      \"attestation_type\": \"<string>\",\n      \"aaguid\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"transports\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_used_at\": \"<dateTime>\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"username\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"username\": \"<string>\"\n  },\n  \"otp\": {\n    \"id\": \"<uuid>\",\n    \"created_at\": \"<dateTime>\"\n  },\n  \"password\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\"\n  },\n  \"identities\": [\n    {\n      \"id\": \"<string>\",\n      \"email_id\": \"<string>\",\n      \"provider_id\": \"<string>\",\n      \"provider_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"email_id\": \"<string>\",\n      \"provider_id\": \"<string>\",\n      \"provider_name\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {},\n    \"private_metadata\": {},\n    \"unsafe_metadata\": {}\n  }\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-156d63b5-4d2f-4b84-afa8-4c6f998ccf4b"
             },
             {
-              "id": "1538d69f-f203-47a3-8a67-70220b7d5aaa",
+              "id": "535032e0-445f-4862-a166-1cc57b593baa",
               "name": "Bad Request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-535032e0-445f-4862-a166-1cc57b593baa"
             },
             {
-              "id": "1a029897-030b-41a8-a856-06080ea74d01",
+              "id": "4e2cdbea-0e48-47c4-a4c7-e5dc090d9030",
               "name": "Conflict",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
                 }
               },
               "status": "Conflict",
               "code": 409,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 409,\n  \"message\": \"Conflict\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-4e2cdbea-0e48-47c4-a4c7-e5dc090d9030"
             },
             {
-              "id": "aee6e7c8-8bbf-43d1-a534-046ee7dd3278",
+              "id": "041f5e06-b9e7-4b23-b1be-117e2b75f23f",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "users"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "raw": "{\n  \"emails\": [\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    },\n    {\n      \"address\": \"<string>\",\n      \"is_primary\": \"<boolean>\",\n      \"is_verified\": \"<boolean>\"\n    }\n  ],\n  \"id\": \"<string>\",\n  \"username\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "users"
+                  ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-041f5e06-b9e7-4b23-b1be-117e2b75f23f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-37acba3a-99ac-451e-a12b-64ee5f25939f"
+        }
+      ],
+      "id": "e76a8a5c-1127-43fe-a0c9-d89995361af0",
+      "createdAt": "2026-10-22T01:19:27.000Z",
+      "updatedAt": "2026-10-22T01:19:27.000Z",
+      "uid": "35240-e76a8a5c-1127-43fe-a0c9-d89995361af0"
+    },
+    {
+      "name": "user",
+      "item": [
         {
-          "id": "009b82d3-1d2c-4798-aae7-fc2491fb0c91",
-          "name": "Delete a user by ID",
-          "request": {
-            "name": "Delete a user by ID",
-            "description": {},
-            "url": {
-              "path": [
-                "users",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the user"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "4812273f-87e1-4d0e-b0d0-a4359ef5ae29",
-              "name": "Deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "3329157c-17f2-4393-a890-b720d518f19e",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8fef35ba-c027-4227-a94b-838422caa985",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bca2408f-a857-41d0-9a84-0346feef93e8",
-          "name": "Get a user by ID",
-          "request": {
-            "name": "Get a user by ID",
-            "description": {},
-            "url": {
-              "path": [
-                "users",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the user"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "9fd22539-9b40-47f6-b6be-dacb4f5f05fc",
-              "name": "Details about the user",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"created_at\": \"1996-12-17T01:59:14.022Z\",\n  \"updated_at\": \"2025-08-23T08:44:21.825Z\",\n  \"webauthn_credentials\": [\n    {\n      \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n      \"public_key\": \"string\",\n      \"attestation_type\": \"string\",\n      \"aaguid\": \"string\",\n      \"created_at\": \"1967-05-10T18:50:18.055Z\",\n      \"backup_eligible\": true,\n      \"backup_state\": false,\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"transports\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_used_at\": \"2000-12-18T13:41:34.538Z\"\n    },\n    {\n      \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n      \"public_key\": \"string\",\n      \"attestation_type\": \"string\",\n      \"aaguid\": \"string\",\n      \"created_at\": \"2022-12-25T12:36:52.566Z\",\n      \"backup_eligible\": false,\n      \"backup_state\": false,\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"transports\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_used_at\": \"1987-04-06T16:58:45.265Z\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n      \"address\": \"QmzojkUGG4gMAZ6@AhuIbxoNKd.my\",\n      \"is_verified\": true,\n      \"is_primary\": false,\n      \"created_at\": \"1966-03-03T08:14:25.639Z\",\n      \"updated_at\": \"1957-09-25T13:42:12.485Z\"\n    },\n    {\n      \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n      \"address\": \"lNKm6kW@WJOOkRLeGISjzkUcnFXxxCyO.dznx\",\n      \"is_verified\": false,\n      \"is_primary\": false,\n      \"created_at\": \"2013-10-08T20:55:10.168Z\",\n      \"updated_at\": \"1956-07-25T03:31:00.059Z\"\n    }\n  ],\n  \"username\": {\n    \"id\": \"8cbed467-554b-4d17-b23f-bce1b4f1db92\",\n    \"created_at\": \"2025-03-03T22:38:59.492Z\",\n    \"updated_at\": \"1968-05-17T14:31:21.575Z\",\n    \"username\": \"john_doe_123\"\n  },\n  \"otp\": {\n    \"id\": \"153809be-b2b4-70f9-17b9-54e0dd56e92d\",\n    \"created_at\": \"2020-06-15T04:28:35.845Z\"\n  },\n  \"password\": {\n    \"id\": \"28a7206b-e789-435a-b87c-108e034135c2\",\n    \"created_at\": \"1998-07-09T11:55:18.795Z\",\n    \"updated_at\": \"2001-12-03T05:57:48.619Z\"\n  },\n  \"identities\": [\n    {\n      \"id\": \"77f8d594-9765-4891-ab2b-f31a797b531d\",\n      \"email_id\": \"d4095586-8318-4a40-a840-b4260496f85a\",\n      \"provider_id\": \"string\",\n      \"provider_name\": \"string\",\n      \"created_at\": \"1990-12-19T03:58:17.196Z\",\n      \"updated_at\": \"1946-09-27T04:53:22.439Z\"\n    },\n    {\n      \"id\": \"77f8d594-9765-4891-ab2b-f31a797b531d\",\n      \"email_id\": \"d4095586-8318-4a40-a840-b4260496f85a\",\n      \"provider_id\": \"string\",\n      \"provider_name\": \"string\",\n      \"created_at\": \"1951-07-06T14:16:11.654Z\",\n      \"updated_at\": \"1990-06-27T06:17:32.424Z\"\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"private_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"unsafe_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "90cd51b7-dd47-43f7-92d0-ddab3a8f3564",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "382e2acf-a1e6-41f7-9417-9e500c259ea9",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2abd0af2-d0a1-4238-b002-bf2e2a3f1913",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "eab2c77a-3585-4dc7-882f-7e0df34b74e9",
-          "name": "Update a user by ID",
-          "request": {
-            "name": "Update a user by ID",
-            "description": {
-              "content": "Updates a subset of user-level attributes.\n\nOther sub-resources (e.g. emails, credentials) are managed via dedicated endpoints and are not updated via this endpoint.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the user"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"given_name\": \"<string>\",\n  \"family_name\": \"<string>\",\n  \"picture\": \"<uri>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a2300b05-fc30-485d-b2e6-260fe7a860b6",
-              "name": "Details about the user",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"created_at\": \"1996-12-17T01:59:14.022Z\",\n  \"updated_at\": \"2025-08-23T08:44:21.825Z\",\n  \"webauthn_credentials\": [\n    {\n      \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n      \"public_key\": \"string\",\n      \"attestation_type\": \"string\",\n      \"aaguid\": \"string\",\n      \"created_at\": \"1967-05-10T18:50:18.055Z\",\n      \"backup_eligible\": true,\n      \"backup_state\": false,\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"transports\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_used_at\": \"2000-12-18T13:41:34.538Z\"\n    },\n    {\n      \"id\": \"f9bebc04-b894-4018-bdb8-8b520a532fef\",\n      \"public_key\": \"string\",\n      \"attestation_type\": \"string\",\n      \"aaguid\": \"string\",\n      \"created_at\": \"2022-12-25T12:36:52.566Z\",\n      \"backup_eligible\": false,\n      \"backup_state\": false,\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"transports\": [\n        \"string\",\n        \"string\"\n      ],\n      \"last_used_at\": \"1987-04-06T16:58:45.265Z\"\n    }\n  ],\n  \"emails\": [\n    {\n      \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n      \"address\": \"QmzojkUGG4gMAZ6@AhuIbxoNKd.my\",\n      \"is_verified\": true,\n      \"is_primary\": false,\n      \"created_at\": \"1966-03-03T08:14:25.639Z\",\n      \"updated_at\": \"1957-09-25T13:42:12.485Z\"\n    },\n    {\n      \"id\": \"802df042-1ac2-496d-af81-6ace729ed055\",\n      \"address\": \"lNKm6kW@WJOOkRLeGISjzkUcnFXxxCyO.dznx\",\n      \"is_verified\": false,\n      \"is_primary\": false,\n      \"created_at\": \"2013-10-08T20:55:10.168Z\",\n      \"updated_at\": \"1956-07-25T03:31:00.059Z\"\n    }\n  ],\n  \"username\": {\n    \"id\": \"8cbed467-554b-4d17-b23f-bce1b4f1db92\",\n    \"created_at\": \"2025-03-03T22:38:59.492Z\",\n    \"updated_at\": \"1968-05-17T14:31:21.575Z\",\n    \"username\": \"john_doe_123\"\n  },\n  \"otp\": {\n    \"id\": \"153809be-b2b4-70f9-17b9-54e0dd56e92d\",\n    \"created_at\": \"2020-06-15T04:28:35.845Z\"\n  },\n  \"password\": {\n    \"id\": \"28a7206b-e789-435a-b87c-108e034135c2\",\n    \"created_at\": \"1998-07-09T11:55:18.795Z\",\n    \"updated_at\": \"2001-12-03T05:57:48.619Z\"\n  },\n  \"identities\": [\n    {\n      \"id\": \"77f8d594-9765-4891-ab2b-f31a797b531d\",\n      \"email_id\": \"d4095586-8318-4a40-a840-b4260496f85a\",\n      \"provider_id\": \"string\",\n      \"provider_name\": \"string\",\n      \"created_at\": \"1990-12-19T03:58:17.196Z\",\n      \"updated_at\": \"1946-09-27T04:53:22.439Z\"\n    },\n    {\n      \"id\": \"77f8d594-9765-4891-ab2b-f31a797b531d\",\n      \"email_id\": \"d4095586-8318-4a40-a840-b4260496f85a\",\n      \"provider_id\": \"string\",\n      \"provider_name\": \"string\",\n      \"created_at\": \"1951-07-06T14:16:11.654Z\",\n      \"updated_at\": \"1990-06-27T06:17:32.424Z\"\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"private_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    \"unsafe_metadata\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2afeb378-ab62-4b3f-aa06-1910325b9631",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "551ae306-7df4-4105-abcf-31afd03b63cf",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "78b9960f-afd9-4712-ad9b-0e41f0df572b",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the user"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e043d82f-ae8b-4292-912a-4b55568efc95",
           "name": "Get user details by email",
+          "id": "094779bc-1249-4e7b-a810-6db9db7206ed",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get user details by email",
-            "description": {
-              "content": "Retrieve details for user corresponding to the given `email`.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "user"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -1454,784 +1356,825 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"email\": \"<email>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "Retrieve details for user corresponding to the given `email`."
           },
           "response": [
             {
-              "id": "1528c7db-6ec6-40a0-a44b-e9eeba8f6dce",
+              "id": "a3a2d94e-c514-480c-b214-9730085a8759",
               "name": "User",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"email\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"email_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"verified\": false,\n  \"has_webauthn_credential\": false\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"email_id\": \"<string>\",\n  \"verified\": \"<boolean>\",\n  \"has_webauthn_credential\": \"<boolean>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-a3a2d94e-c514-480c-b214-9730085a8759"
             },
             {
-              "id": "1dbeeff4-c423-4945-8443-b15acfbfb00d",
+              "id": "68403bb8-d165-495e-b866-5d5c333e880a",
               "name": "Bad Request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"email\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-68403bb8-d165-495e-b866-5d5c333e880a"
             },
             {
-              "id": "0d5dcf6e-5340-4690-b321-a8528cf1f912",
+              "id": "9279ce61-d244-4c88-8e37-ee0268be8b54",
               "name": "Not Found",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"email\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
                 }
               },
               "status": "Not Found",
               "code": 404,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-9279ce61-d244-4c88-8e37-ee0268be8b54"
             },
             {
-              "id": "499d6918-d18c-4b72-b30e-ae012dce6a30",
+              "id": "37fb811e-c761-4f11-a958-39c4a19f9300",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"email\": \"<email>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-37fb811e-c761-4f11-a958-39c4a19f9300"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-094779bc-1249-4e7b-a810-6db9db7206ed"
         },
         {
-          "id": "97fea084-390c-408b-a9db-924ce9d5d480",
           "name": "Deletes the current user",
+          "id": "21138b55-dfe6-41af-a51e-c05e9a4346d9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Deletes the current user",
-            "description": {
-              "content": "Used to delete the current user. Note that `config.account.allow_deletion` must be set to true.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "user"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+            "auth": {
+              "type": "apikey",
+              "apikey": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "key": "key",
+                  "value": "hanko",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
                 }
               ]
             },
+            "method": "DELETE",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "DELETE"
+            "url": {
+              "raw": "{{baseUrl}}/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "user"
+              ]
+            },
+            "description": "Used to delete the current user. Note that `config.account.allow_deletion` must be set to true."
           },
           "response": [
             {
-              "id": "45db9adf-5145-4f72-9953-c5faea58aa40",
+              "id": "ca35dca7-436e-4a05-82e8-81b433cb425a",
               "name": "The user has been deleted",
               "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "user"
-                  ],
+                  "raw": "{{baseUrl}}/user",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
+                  "path": [
+                    "user"
                   ]
-                },
-                "method": "DELETE",
-                "body": {}
+                }
               },
               "status": "No Content",
               "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-ca35dca7-436e-4a05-82e8-81b433cb425a"
             },
             {
-              "id": "754e902f-9405-4e20-b511-f0979eaf6d21",
+              "id": "7a998448-8f60-45e5-859d-73b7f580987f",
               "name": "Unauthorized",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "DELETE",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "DELETE",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-7a998448-8f60-45e5-859d-73b7f580987f"
             },
             {
-              "id": "f66cb48f-ce04-4c8a-8b93-62a0ff86e936",
+              "id": "a18f54c0-7746-49ea-87f3-f6b53ce05035",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "user"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "DELETE",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "DELETE",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/user",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user"
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-a18f54c0-7746-49ea-87f3-f6b53ce05035"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-21138b55-dfe6-41af-a51e-c05e9a4346d9"
+        }
+      ],
+      "id": "d46303c0-c169-4e67-b4c1-e4273c484cb0",
+      "createdAt": "2026-10-22T01:19:27.000Z",
+      "updatedAt": "2026-10-22T01:19:27.000Z",
+      "uid": "35240-d46303c0-c169-4e67-b4c1-e4273c484cb0"
+    },
+    {
+      "name": "me",
+      "item": [
+        {
+          "name": "Get the current user",
+          "id": "26307f32-9827-4c46-a317-8aa47abee954",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d4c88f4e-3af6-4041-9520-96f34a2da46e",
-          "name": "Get the current user",
+          },
           "request": {
-            "name": "Get the current user",
-            "description": {
-              "content": "Retrieve data for the current user (i.e. the subject of the JWT given in a cookie or as a bearer token).",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "me"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+            "auth": {
+              "type": "apikey",
+              "apikey": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "key": "key",
+                  "value": "hanko",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
                 }
               ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET"
+            "url": {
+              "raw": "{{baseUrl}}/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "me"
+              ]
+            },
+            "description": "Retrieve data for the current user (i.e. the subject of the JWT given in a cookie or as a bearer token)."
           },
           "response": [
             {
-              "id": "a355db70-b9b0-4d8b-889e-7eb9ccf46ade",
+              "id": "5698288c-d789-43c1-a905-979a144c83ac",
               "name": "Details for the current user",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n  \"emails\": [\n    {\n      \"address\": \"john.doe@example.com\",\n      \"is_verified\": true,\n      \"is_primary\": false\n    }\n  ],\n  \"created_at\": \"1968-08-13T02:04:43.847Z\",\n  \"updated_at\": \"1995-07-17T03:41:38.464Z\",\n  \"passkeys\": [\n    {\n      \"name\": \"iCloud\",\n      \"public_key\": \"pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...\",\n      \"attestation_type\": \"packed\",\n      \"aaguid\": \"01020304-0506-0708-0102-030405060708\",\n      \"last_used_at\": \"2026-02-24T21:40:36.26936Z\",\n      \"created_at\": \"2026-02-24T21:40:36.26936Z\",\n      \"transports\": [\n        \"internal\"\n      ],\n      \"backup_eligible\": true,\n      \"backup_state\": true,\n      \"mfa_only\": false\n    }\n  ],\n  \"security_keys\": [\n    {\n      \"aaguid\": \"133b3358-188d-c0ec-b11d-aeba74ea7838\",\n      \"attestation_type\": \"fido-u2f\",\n      \"backup_eligible\": false,\n      \"backup_state\": true,\n      \"created_at\": \"1948-02-18T04:04:01.103Z\",\n      \"id\": \"eda01bcb-cfa5-fe9d-7d05-37e4fc52646d\",\n      \"last_used_at\": \"2022-08-08T08:35:31.673Z\",\n      \"mfa_only\": false,\n      \"name\": \"string\",\n      \"public-key\": \"string\",\n      \"transports\": [\n        \"internal\",\n        \"ble\"\n      ]\n    },\n    {\n      \"aaguid\": \"fb9a58af-e7ec-7d87-1f86-b747083c4406\",\n      \"attestation_type\": \"android-key\",\n      \"backup_eligible\": false,\n      \"backup_state\": false,\n      \"created_at\": \"1998-12-07T14:01:23.354Z\",\n      \"id\": \"71de2f1a-20a3-a94c-ced0-1a9296585775\",\n      \"last_used_at\": \"2006-03-11T04:50:47.084Z\",\n      \"mfa_only\": true,\n      \"name\": \"string\",\n      \"public-key\": \"string\",\n      \"transports\": [\n        \"usb\",\n        \"internal\"\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {\n      \"role\": \"admin\"\n    },\n    \"unsafe_metadata\": {\n      \"birthday\": \"2025-05-12\"\n    }\n  },\n  \"name\": \"string\",\n  \"given_name\": \"string\",\n  \"family_name\": \"string\",\n  \"picture\": \"https://BdsAuiquetRUzCBCBBvetEBwrngkdgIr.zuy-wzFgRQ\",\n  \"mfa_config\": {\n    \"auth_app_set_up\": true,\n    \"totp_enabled\": false,\n    \"security_key_enabled\": false\n  },\n  \"username\": {\n    \"id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\",\n    \"created_at\": \"1947-02-22T07:26:40.907Z\",\n    \"updated_at\": \"1971-01-05T02:37:44.587Z\",\n    \"username\": \"john_doe\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"user_id\": \"<string>\",\n  \"emails\": [\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"identity\": {\n        \"id\": \"<string>\",\n        \"identity_id\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"identities\": [\n        {\n          \"id\": \"<string>\",\n          \"identity_id\": \"<string>\",\n          \"provider\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"identity_id\": \"<string>\",\n          \"provider\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"address\": \"<email>\",\n      \"is_verified\": \"<boolean>\",\n      \"is_primary\": \"<boolean>\",\n      \"identity\": {\n        \"id\": \"<string>\",\n        \"identity_id\": \"<string>\",\n        \"provider\": \"<string>\"\n      },\n      \"identities\": [\n        {\n          \"id\": \"<string>\",\n          \"identity_id\": \"<string>\",\n          \"provider\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"identity_id\": \"<string>\",\n          \"provider\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"passkeys\": [\n    {\n      \"aaguid\": \"<uuid>\",\n      \"attestation_type\": \"android-key\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"last_used_at\": \"<dateTime>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"public-key\": \"<string>\",\n      \"transports\": [\n        \"nfc\",\n        \"nfc\"\n      ]\n    },\n    {\n      \"aaguid\": \"<uuid>\",\n      \"attestation_type\": \"fido-u2f\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"last_used_at\": \"<dateTime>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"public-key\": \"<string>\",\n      \"transports\": [\n        \"ble\",\n        \"nfc\"\n      ]\n    }\n  ],\n  \"security_keys\": [\n    {\n      \"aaguid\": \"<uuid>\",\n      \"attestation_type\": \"apple\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"last_used_at\": \"<dateTime>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"public-key\": \"<string>\",\n      \"transports\": [\n        \"ble\",\n        \"nfc\"\n      ]\n    },\n    {\n      \"aaguid\": \"<uuid>\",\n      \"attestation_type\": \"tpm\",\n      \"backup_eligible\": \"<boolean>\",\n      \"backup_state\": \"<boolean>\",\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"last_used_at\": \"<dateTime>\",\n      \"mfa_only\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"public-key\": \"<string>\",\n      \"transports\": [\n        \"usb\",\n        \"nfc\"\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"public_metadata\": {\n      \"in_b\": -60664259.804107964\n    },\n    \"unsafe_metadata\": {\n      \"ullamco_0\": \"sed voluptate ut\",\n      \"aliquip_c\": -38520871,\n      \"nisia8\": \"ut deserunt esse labore laboris\",\n      \"nisidc\": \"sint Duis dolore enim ut\",\n      \"ea9a\": false\n    }\n  },\n  \"name\": \"<string>\",\n  \"given_name\": \"<string>\",\n  \"family_name\": \"<string>\",\n  \"picture\": \"<uri>\",\n  \"mfa_config\": {\n    \"auth_app_set_up\": \"<boolean>\",\n    \"totp_enabled\": \"<boolean>\",\n    \"security_key_enabled\": \"<boolean>\"\n  },\n  \"username\": {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"username\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-5698288c-d789-43c1-a905-979a144c83ac"
             },
             {
-              "id": "f6eea895-c806-4c12-9c67-abddb756c879",
+              "id": "c25a973b-0613-4def-bd2e-7314d9dcbf06",
               "name": "Bad Request",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-c25a973b-0613-4def-bd2e-7314d9dcbf06"
             },
             {
-              "id": "1542662f-754d-41ee-b09b-daf464586047",
+              "id": "21e875ce-bed4-4c4e-a60b-368e53ead851",
               "name": "Unauthorized",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-21e875ce-bed4-4c4e-a60b-368e53ead851"
             },
             {
-              "id": "5db98d79-973a-41ed-85da-9770135ba39f",
+              "id": "3e477fff-fc60-4791-a339-9f260864631f",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "me"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "me"
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-3e477fff-fc60-4791-a339-9f260864631f"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-26307f32-9827-4c46-a317-8aa47abee954"
+        }
+      ],
+      "id": "8b6c9580-f50c-4639-8cbf-17a0f8bd17b1",
+      "createdAt": "2026-10-22T01:19:27.000Z",
+      "updatedAt": "2026-10-22T01:19:27.000Z",
+      "uid": "35240-8b6c9580-f50c-4639-8cbf-17a0f8bd17b1"
+    },
+    {
+      "name": "logout",
+      "item": [
+        {
+          "name": "Log out the current user",
+          "id": "0f54a108-e6dd-4689-b672-bb10cedfe986",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5b7bcf01-559e-4b3f-8dc8-ef9d75aaa9c3",
-          "name": "Log out the current user",
+          },
           "request": {
-            "name": "Log out the current user",
-            "description": {
-              "content": "Logs out the user by removing the authorization cookie.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "logout"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+            "auth": {
+              "type": "apikey",
+              "apikey": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "key": "key",
+                  "value": "hanko",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
                 }
               ]
             },
+            "method": "POST",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST"
+            "url": {
+              "raw": "{{baseUrl}}/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "logout"
+              ]
+            },
+            "description": "Logs out the user by removing the authorization cookie."
           },
           "response": [
             {
-              "id": "d59238bf-9d2a-4309-96e9-b1121e3419a3",
+              "id": "91d4d7cc-454c-429d-8676-bc37bfccf6c1",
               "name": "The user has been logged out",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "logout"
-                  ],
+                  "raw": "{{baseUrl}}/logout",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
+                  "path": [
+                    "logout"
                   ]
-                },
-                "method": "POST",
-                "body": {}
+                }
               },
               "status": "No Content",
               "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
+              "_postman_previewlanguage": "text",
+              "header": [],
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-91d4d7cc-454c-429d-8676-bc37bfccf6c1"
             },
             {
-              "id": "c225ae2b-3951-4b15-9292-6b8fbbf4863e",
+              "id": "34932976-a0dc-4eb0-b77f-e8c52a125046",
               "name": "Unauthorized",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "logout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logout"
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-34932976-a0dc-4eb0-b77f-e8c52a125046"
             },
             {
-              "id": "277647b6-7293-41f8-8c28-54b175c37007",
+              "id": "cf55c429-e389-48f0-8764-984e28f044a0",
               "name": "Internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "logout"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "hanko",
+                    "value": "<API Key>"
                   }
                 ],
-                "method": "POST",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "logout"
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:27.000Z",
+              "updatedAt": "2026-10-22T01:19:27.000Z",
+              "uid": "35240-cf55c429-e389-48f0-8764-984e28f044a0"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:19:27.000Z",
+          "updatedAt": "2026-10-22T01:19:27.000Z",
+          "uid": "35240-0f54a108-e6dd-4689-b672-bb10cedfe986"
         }
       ],
-      "event": []
+      "id": "d0d7d92d-2f80-4587-af96-d557651ec393",
+      "createdAt": "2026-10-22T01:19:27.000Z",
+      "updatedAt": "2026-10-22T01:19:27.000Z",
+      "uid": "35240-d0d7d92d-2f80-4587-af96-d557651ec393"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io/admin"
     }
-  ],
-  "info": {
-    "_postman_id": "12b7b21f-2d04-4d35-8063-4045dee692b2",
-    "name": "Hanko Admin Audit Logs User Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,191 +1,158 @@
 {
+  "info": {
+    "_postman_id": "cf73309b-793d-47c7-b857-8ac1150f0d37",
+    "name": "Hanko Status API",
+    "description": "Operations tagged Status across 2 of this provider's published API definitions: hanko-admin-api-openapi.yml, hanko-public-api-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:18:51.000Z",
+    "updatedAt": "2026-10-22T01:18:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cf73309b-793d-47c7-b857-8ac1150f0d37"
+  },
   "item": [
     {
-      "id": "cccce2b9-135e-452b-aaac-2b82e67b6ab4",
-      "name": "Status",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "/",
       "item": [
         {
-          "id": "0bf617e5-4d66-46d7-b21e-f50f182a8a01",
           "name": "Status page",
+          "id": "a7951594-2504-4fcd-925c-325ca0089bbf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Status page",
-            "description": {
-              "content": "Return information about the API status. Returns a 500 if there are issues with database connectivity.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                ""
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+            "auth": {
+              "type": "bearer",
+              "bearer": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
               ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "text/html"
               }
             ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
               ]
-            }
+            },
+            "description": "Return information about the API status. Returns a 500 if there are issues with database connectivity."
           },
           "response": [
             {
-              "id": "ebc79d17-4fae-47e4-9e1f-9bd8971853cc",
+              "id": "59b1ae32-41dd-42e1-813b-9e011a379854",
               "name": "API is running",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    ""
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "text/html"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "text",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "text/html"
                 }
               ],
-              "body": "string",
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-10-22T01:18:51.000Z",
+              "updatedAt": "2026-10-22T01:18:51.000Z",
+              "uid": "35240-59b1ae32-41dd-42e1-813b-9e011a379854"
             },
             {
-              "id": "92ab0152-1387-454c-a85f-433812defeab",
+              "id": "b7abf2f3-fd51-4dcb-87d8-85b29f426ae7",
               "name": "API is not functioning properly",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    ""
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "text/html"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "text",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "text/html"
                 }
               ],
-              "body": "string",
               "cookie": [],
-              "_postman_previewlanguage": "text"
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-10-22T01:18:51.000Z",
+              "updatedAt": "2026-10-22T01:18:51.000Z",
+              "uid": "35240-b7abf2f3-fd51-4dcb-87d8-85b29f426ae7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:18:51.000Z",
+          "updatedAt": "2026-10-22T01:18:51.000Z",
+          "uid": "35240-a7951594-2504-4fcd-925c-325ca0089bbf"
         }
       ],
-      "event": []
+      "id": "a52f8d5e-2aad-4ff3-8206-dc8a7d766117",
+      "createdAt": "2026-10-22T01:18:51.000Z",
+      "updatedAt": "2026-10-22T01:18:51.000Z",
+      "uid": "35240-a52f8d5e-2aad-4ff3-8206-dc8a7d766117"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io/admin"
     }
-  ],
-  "info": {
-    "_postman_id": "48ac0c07-3eec-4835-81a2-c5d64e9ce58b",
-    "name": "Hanko Admin Audit Logs Status API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

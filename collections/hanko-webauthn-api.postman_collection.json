@@ -1,1886 +1,2040 @@
 {
+  "info": {
+    "_postman_id": "90dd2096-a13a-4dbd-9db0-f45f7027e908",
+    "name": "Hanko Webauthn API",
+    "description": "Operations tagged webauthn across 2 of this provider's published API definitions: hanko-passkey-api-openapi.yml, hanko-public-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:19:52.000Z",
+    "updatedAt": "2026-10-22T01:19:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-90dd2096-a13a-4dbd-9db0-f45f7027e908"
+  },
   "item": [
     {
-      "id": "3735ee47-1fec-4826-8ab7-1eef6d3255ff",
-      "name": "webauthn",
-      "description": {
-        "content": "Represents all objects which are related to WebAuthn in common",
-        "type": "text/plain"
-      },
+      "name": "{tenant_id}",
       "item": [
         {
-          "id": "097d1fc8-7d1c-477d-b750-1a409ed4b935",
-          "name": "Well-known JWKS",
-          "request": {
-            "name": "Well-known JWKS",
-            "description": {
-              "content": "Endpoint for fetching JWKS",
-              "type": "text/plain"
-            },
-            "url": {
-              "protocol": "https",
-              "path": [
-                ":tenant_id",
-                ".well-known",
-                "jwks.json"
-              ],
-              "host": [
-                "passkeys",
-                "hanko",
-                "io"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "tenant_id",
-                  "description": "(Required) UUID of the tenant"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": ".well-known",
+          "item": [
             {
-              "id": "a92b0057-42ae-4b9c-8de5-d7a8d280fc12",
-              "name": "Example response",
-              "originalRequest": {
-                "url": {
-                  "protocol": "https",
-                  "path": [
-                    ":tenant_id",
-                    ".well-known",
-                    "jwks.json"
-                  ],
-                  "host": [
-                    "passkeys",
-                    "hanko",
-                    "io"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "tenant_id",
-                      "description": "(Required) UUID of the tenant"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "jwks.json",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Well-known JWKS",
+                  "id": "ebd5450f-d673-4166-9c56-2f935708527a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "https://passkeys.hanko.io/:tenant_id/.well-known/jwks.json",
+                      "protocol": "https",
+                      "host": [
+                        "passkeys",
+                        "hanko",
+                        "io"
+                      ],
+                      "path": [
+                        ":tenant_id",
+                        ".well-known",
+                        "jwks.json"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eece67a6-572a-49b6-bbdb-4959e558fe1e",
+                          "key": "tenant_id",
+                          "value": "<uuid>",
+                          "description": "(Required) UUID of the tenant"
+                        }
+                      ]
+                    },
+                    "description": "Endpoint for fetching JWKS"
+                  },
+                  "response": [
+                    {
+                      "id": "441519f5-4e85-45c4-a549-9faaa3e6e1e6",
+                      "name": "Example response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "https://passkeys.hanko.io/:tenant_id/.well-known/jwks.json",
+                          "protocol": "https",
+                          "host": [
+                            "passkeys",
+                            "hanko",
+                            "io"
+                          ],
+                          "path": [
+                            ":tenant_id",
+                            ".well-known",
+                            "jwks.json"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenant_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"keys\": [\n    {\n      \"alg\": \"<string>\",\n      \"e\": \"<string>\",\n      \"kid\": \"<uuid>\",\n      \"kty\": \"<string>\",\n      \"n\": \"<string>\",\n      \"use\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-441519f5-4e85-45c4-a549-9faaa3e6e1e6"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-ebd5450f-d673-4166-9c56-2f935708527a"
                 }
               ],
-              "body": "{\n  \"keys\": [\n    {\n      \"alg\": \"string\",\n      \"e\": \"string\",\n      \"kid\": \"1534ff46-bb64-4400-1e64-57934744b565\",\n      \"kty\": \"string\",\n      \"n\": \"string\",\n      \"use\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "cd64203e-3749-4695-9fe2-4ba1685a7806",
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-cd64203e-3749-4695-9fe2-4ba1685a7806"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "653b4f52-08e7-461d-9a1a-f3094188b1ba",
-          "name": "Initialize WebAuthn login",
-          "request": {
-            "name": "Initialize WebAuthn login",
-            "description": {
-              "content": "Initialize a login with Webauthn. Returns a JSON representation of CredentialRequestOptions for use\nwith the Webauthn API's `navigator.credentials.get()`.\n\nOmitting the optional request body or using an empty JSON object results in generation of request options for a\nlogin using a [discoverable credential](https://www.w3.org/TR/webauthn-2/#client-side-discoverable-public-key-credential-source)\n(i.e. they will not contain\n[allowCredentials](https://www.w3.org/TR/webauthn-2/#dom-publickeycredentialrequestoptions-allowcredentials)).\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the [webauthn-json](https://github.com/github/webauthn-json) library).\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "login",
-                "initialize"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"user_id\": \"<uuid4>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b7f357c5-c559-4a76-a713-4305186d9a5f",
-              "name": "Successful initialization",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"publicKey\": {\n    \"challenge\": \"qgOI+0KpGnl9NOqaT6dfsYvi96R87LgpErnvePeOgSU=\",\n    \"timeout\": 60000,\n    \"rpId\": \"localhost\",\n    \"allowCredentials\": [\n      {\n        \"type\": \"public-key\",\n        \"id\": \"Mepptysj5ZZrTlg0qiLbsZ068OtQMeGVAikVy2n1hvvG...\"\n      }\n    ],\n    \"userVerification\": \"required\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a5dc87c2-cb99-4ed6-8cb1-ac97f1eef3e2",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2c289bb8-4150-4cd6-8dbc-0093b596eb05",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2e5964db-eeb5-49db-b1ac-76c2b2c0647c",
-          "name": "Finalize WebAuthn login",
-          "request": {
-            "name": "Finalize WebAuthn login",
-            "description": {
-              "content": "Finalize a login with Webauthn using the WebAuthn API response to a `navigator.credentials.get()` call.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the [webauthn-json](https://github.com/github/webauthn-json) library).\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "login",
-                "finalize"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"response\": {\n    \"clientDataJson\": \"<base64url>\",\n    \"authenticatorData\": \"<base64url>\",\n    \"signature\": \"<base64url>\",\n    \"userHandle\": \"<base64url>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "055a3483-b903-42ff-8b9e-9db699998b21",
-              "name": "Successful login",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"authenticatorData\": \"SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MF...\",\n    \"signature\": \"MEQCIHe2RXqh6dyZw1LNXgeTTxljCV_qK2ydQjp02CiF...\",\n    \"userHandle\": \"rpe_EkgaSEeZG0TwzZyZJw\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "Present only when enabled via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n",
-                  "key": "X-Auth-Token",
-                  "value": "string"
-                },
-                {
-                  "disabled": false,
-                  "description": "Contains the seconds until the session expires.\n",
-                  "key": "X-Session-Lifetime",
-                  "value": "4170.305883459346"
-                },
-                {
-                  "disabled": false,
-                  "description": "Contains the JSON Web Token (JWT) that must be provided to protected endpoints.\nCookie attributes (e.g. domain) can be set via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.cookie`.\n",
-                  "key": "Set-Cookie",
-                  "value": "hanko=<JWT>; Path=/; HttpOnly"
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"credential_id\": \"string\",\n  \"user_id\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "95e0b7b3-7e0e-4774-91d0-b22547c4a8cd",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"authenticatorData\": \"SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MF...\",\n    \"signature\": \"MEQCIHe2RXqh6dyZw1LNXgeTTxljCV_qK2ydQjp02CiF...\",\n    \"userHandle\": \"rpe_EkgaSEeZG0TwzZyZJw\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e0f4a115-72c1-427b-8e27-3b0516245ea9",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"authenticatorData\": \"SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MF...\",\n    \"signature\": \"MEQCIHe2RXqh6dyZw1LNXgeTTxljCV_qK2ydQjp02CiF...\",\n    \"userHandle\": \"rpe_EkgaSEeZG0TwzZyZJw\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ba334199-e7c0-4313-aa7d-d8e72adc0160",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "login",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"authenticatorData\": \"SZYN5YgOjGh0NBcPZHZgW4_krrmihjLHmVzzuoMdl2MF...\",\n    \"signature\": \"MEQCIHe2RXqh6dyZw1LNXgeTTxljCV_qK2ydQjp02CiF...\",\n    \"userHandle\": \"rpe_EkgaSEeZG0TwzZyZJw\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "11d2eeac-89c6-4a48-a3ae-6b19a4021bdc",
-          "name": "Initialize WebAuthn registration",
-          "request": {
-            "name": "Initialize WebAuthn registration",
-            "description": {
-              "content": "Initialize a registration with Webauthn. Returns a JSON representation of CredentialCreationOptions for use\nwith the Webauthn API's `navigator.credentials.create()`.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the [webauthn-json](https://github.com/github/webauthn-json) library).\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "registration",
-                "initialize"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST"
-          },
-          "response": [
-            {
-              "id": "66f9e020-99f2-4649-b948-46ffbc3aadbe",
-              "name": "Challenge",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"publicKey\": {\n    \"rp\": {\n      \"name\": \"Hanko Authentication Service\",\n      \"id\": \"localhost\"\n    },\n    \"user\": {\n      \"id\": \"pPQT9rwJRD7gVncsnCDNyN\",\n      \"name\": \"user@example.com\",\n      \"displayName\": \"user@example.com\"\n    },\n    \"challenge\": \"7qmkJUXR0dOFnsW48evX3qKdCzlGjvvqAAvMDN+KTN0=\",\n    \"pubKeyCredParams\": [\n      {\n        \"type\": \"public-key\",\n        \"alg\": -7\n      }\n    ],\n    \"timeout\": 60000,\n    \"authenticatorSelection\": {\n      \"authenticatorAttachment\": \"platform\",\n      \"requireResidentKey\": true,\n      \"residentKey\": \"preferred\",\n      \"userVerification\": \"required\"\n    },\n    \"attestation\": \"none\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8d985078-c5c6-4b29-af17-3626c25ac907",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4ffe6735-e593-46d7-998e-e2bc7c141f85",
-              "name": "Unprocessable Entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 422,\n  \"message\": \"Unprocessable Entity\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dc139761-594a-48eb-92ed-25f57f65a44d",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "initialize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bac0df89-28d2-4c7d-928c-8dc31430694a",
-          "name": "Finalize WebAuthn registration",
-          "request": {
-            "name": "Finalize WebAuthn registration",
-            "description": {
-              "content": "Finalize a registration with Webauthn using the WebAuthn API response to a `navigator.credentials.create()` call.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the [webauthn-json](https://github.com/github/webauthn-json) library).\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "registration",
-                "finalize"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"response\": {\n    \"clientDataJson\": \"<base64url>\",\n    \"attestationObject\": \"<base64url>\",\n    \"transports\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "fc4803ee-ee6a-4dee-8b7e-f9b1461a27b7",
-              "name": "Successful registration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"attestationObject\": \"o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjfSZYN...\",\n    \"transports\": [\n      \"internal\",\n      \"internal\"\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"credential_id\": \"string\",\n  \"user_id\": \"c339547d-e17d-4ba7-8a1d-b3d5a4d17c1c\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7aeec2a7-6290-43f4-a5f8-52aef59dbe92",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"attestationObject\": \"o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjfSZYN...\",\n    \"transports\": [\n      \"internal\",\n      \"internal\"\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "be85ff28-70b6-4253-b1fe-d25248e24cae",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "registration",
-                    "finalize"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"id\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"rawId\": \"_18q6IjW09tiM4NSbsZjocUtGx00Muv5mN6LZCelCMDD...\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdl...\",\n    \"attestationObject\": \"o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjfSZYN...\",\n    \"transports\": [\n      \"internal\",\n      \"internal\"\n    ]\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2287a316-529a-4754-86ee-4299f4d5e3cc",
-          "name": "Get a list of WebAuthn credentials",
-          "request": {
-            "name": "Get a list of WebAuthn credentials",
-            "description": {
-              "content": "Returns a list of WebAuthn credentials assigned to the current user.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "credentials"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET"
-          },
-          "response": [
-            {
-              "id": "de1ac547-5f65-4351-afdd-916a19bf5daa",
-              "name": "A list of WebAuthn credentials assigned to the current user",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"name\": \"iCloud\",\n    \"public_key\": \"pQECYyagASFYIBblARCP_at3cmprjzQN1lJ...\",\n    \"attestation_type\": \"packed\",\n    \"aaguid\": \"01020304-0506-0708-0102-030405060708\",\n    \"last_used_at\": \"2026-02-24T21:40:36.26936Z\",\n    \"created_at\": \"2026-02-24T21:40:36.26936Z\",\n    \"transports\": [\n      \"internal\"\n    ],\n    \"backup_eligible\": true,\n    \"backup_state\": true,\n    \"mfa_only\": false\n  },\n  {\n    \"name\": \"Yubikey Bio\",\n    \"public_key\": \"aNMEEyadASFYIBblARCP_at3cmp4gg3zQN1lJ...\",\n    \"attestation_type\": \"packed\",\n    \"aaguid\": \"90636e1f-ef82-43bf-bdcf-5255f139d12f\",\n    \"last_used_at\": \"2026-02-24T21:40:36.26936Z\",\n    \"created_at\": \"2026-02-24T21:40:36.26936Z\",\n    \"transports\": [\n      \"usb\"\n    ],\n    \"backup_eligible\": true,\n    \"backup_state\": false,\n    \"mfa_only\": true\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c266aba0-0854-43c0-a623-4708cfcd09be",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b7f4878b-8754-4dd6-ae7b-8ad6a776ef00",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a64033bf-af91-4e92-92a1-3a20b9cdea3c",
-          "name": "Updates a WebAuthn credential",
-          "request": {
-            "name": "Updates a WebAuthn credential",
-            "description": {
-              "content": "Updates the specified WebAuthn credential. Only credentials assigned to the current user can be updated.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "credentials",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the WebAuthn credential"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b2f4b9e9-2423-4fa8-990d-803d185717b0",
-              "name": "Credential updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "d2342e75-f72f-467e-a381-17c1c015981f",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ffbacdf7-b7e6-457a-a1f5-8fcb87aede5f",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "51e3ec38-674f-4643-918a-9eb06d9fc41b",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8c46a102-3725-40e6-b274-48e0979e4c01",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4de1ed7d-ff13-4e42-9fbb-e64ed1a3a9b6",
-          "name": "Deletes a WebAuthn credential",
-          "request": {
-            "name": "Deletes a WebAuthn credential",
-            "description": {
-              "content": "Deletes the specified WebAuthn credential.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webauthn",
-                "credentials",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid4>",
-                  "key": "id",
-                  "description": "(Required) ID of the WebAuthn credential"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE"
-          },
-          "response": [
-            {
-              "id": "d2d6af5a-0000-4fd1-a16b-6936f8a3870f",
-              "name": "Credential updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "78f83422-6454-4e18-81ff-65611d1fc435",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c65ddadb-a81f-44ab-b7ca-3f7aed8e2c1c",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 401,\n  \"message\": \"Unauthorized\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c4d950d6-1dc7-446f-866a-b78c442b72f5",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e1e4e3b4-3362-4801-bb5e-7b5e69590fb0",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webauthn",
-                    "credentials",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid4>",
-                      "key": "id",
-                      "description": "(Required) ID of the WebAuthn credential"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "345b89c2-86f4-4f91-9675-cc41b58f5504",
+          "createdAt": "2026-10-22T01:19:53.000Z",
+          "updatedAt": "2026-10-22T01:19:53.000Z",
+          "uid": "35240-345b89c2-86f4-4f91-9675-cc41b58f5504"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "id": "202cc539-a81e-408b-869c-0540efa5a5e0",
+      "createdAt": "2026-10-22T01:19:53.000Z",
+      "updatedAt": "2026-10-22T01:19:53.000Z",
+      "uid": "35240-202cc539-a81e-408b-869c-0540efa5a5e0"
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "name": "webauthn",
+      "item": [
+        {
+          "name": "login",
+          "item": [
+            {
+              "name": "initialize",
+              "item": [
+                {
+                  "name": "Initialize WebAuthn login",
+                  "id": "d981b07d-aa76-44cc-81e1-4742e2479898",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/login/initialize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "login",
+                        "initialize"
+                      ]
+                    },
+                    "description": "Initialize a login with Webauthn. Returns a JSON representation of CredentialRequestOptions for use\nwith the Webauthn API's `navigator.credentials.get()`.\n\nOmitting the optional request body or using an empty JSON object results in generation of request options for a\nlogin using a discoverable credential\n(i.e. they will not contain\nallowCredentials).\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the webauthn-json library)."
+                  },
+                  "response": [
+                    {
+                      "id": "4cf22846-0f80-4daa-975d-1f7219765d02",
+                      "name": "Successful initialization",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"publicKey\": {\n    \"challenge\": \"<string>\",\n    \"timeout\": \"<long>\",\n    \"rpId\": \"<string>\",\n    \"allowCredentials\": [\n      {\n        \"type\": \"public-key\",\n        \"id\": \"<string>\"\n      },\n      {\n        \"type\": \"public-key\",\n        \"id\": \"<string>\"\n      }\n    ],\n    \"userVerification\": \"preferred\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-4cf22846-0f80-4daa-975d-1f7219765d02"
+                    },
+                    {
+                      "id": "db7e8fe9-47a9-4506-9692-6cba8adea699",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-db7e8fe9-47a9-4506-9692-6cba8adea699"
+                    },
+                    {
+                      "id": "8e4c5f8a-88e2-4cf2-b892-ecc4e25c66a9",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"user_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-8e4c5f8a-88e2-4cf2-b892-ecc4e25c66a9"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-d981b07d-aa76-44cc-81e1-4742e2479898"
+                }
+              ],
+              "id": "e0d32a81-8ea1-474c-af92-49a33ef2f7cc",
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-e0d32a81-8ea1-474c-af92-49a33ef2f7cc"
+            },
+            {
+              "name": "finalize",
+              "item": [
+                {
+                  "name": "Finalize WebAuthn login",
+                  "id": "98be7a2f-cd4b-4336-bb73-eac48c7062fd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"authenticatorData\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/login/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "login",
+                        "finalize"
+                      ]
+                    },
+                    "description": "Finalize a login with Webauthn using the WebAuthn API response to a `navigator.credentials.get()` call.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the webauthn-json library)."
+                  },
+                  "response": [
+                    {
+                      "id": "bf904fec-f75a-444b-acd8-74a15204c735",
+                      "name": "Successful login",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"authenticatorData\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Present only when enabled via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.enable_auth_token_header`\nfor purposes of cross-domain communication between client and Hanko API.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Auth-Token",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Contains the seconds until the session expires.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "X-Session-Lifetime",
+                          "value": "<number>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Contains the JSON Web Token (JWT) that must be provided to protected endpoints.\nCookie attributes (e.g. domain) can be set via [configuration](https://github.com/teamhanko/hanko/blob/main/backend/docs/Config.md#hanko-backend-config) option `session.cookie`.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "Set-Cookie",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"credential_id\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-bf904fec-f75a-444b-acd8-74a15204c735"
+                    },
+                    {
+                      "id": "263e1bee-4aef-4c02-9944-079564d6eed3",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"authenticatorData\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-263e1bee-4aef-4c02-9944-079564d6eed3"
+                    },
+                    {
+                      "id": "6cf475eb-18f2-4c87-8e0b-face8ecb29b5",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"authenticatorData\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-6cf475eb-18f2-4c87-8e0b-face8ecb29b5"
+                    },
+                    {
+                      "id": "f217e53d-1983-4203-9263-992ce5298655",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"authenticatorData\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"userHandle\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/login/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "login",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-f217e53d-1983-4203-9263-992ce5298655"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-98be7a2f-cd4b-4336-bb73-eac48c7062fd"
+                }
+              ],
+              "id": "4422ba19-de9f-4c4e-a515-95f806e6a3d1",
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-4422ba19-de9f-4c4e-a515-95f806e6a3d1"
+            }
+          ],
+          "id": "46cbd263-d0b1-4b68-980c-97999bc9a4db",
+          "createdAt": "2026-10-22T01:19:53.000Z",
+          "updatedAt": "2026-10-22T01:19:53.000Z",
+          "uid": "35240-46cbd263-d0b1-4b68-980c-97999bc9a4db"
+        },
+        {
+          "name": "registration",
+          "item": [
+            {
+              "name": "initialize",
+              "item": [
+                {
+                  "name": "Initialize WebAuthn registration",
+                  "id": "0e4994ad-4608-4d4e-910c-33f7f23578fc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "hanko",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/registration/initialize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "registration",
+                        "initialize"
+                      ]
+                    },
+                    "description": "Initialize a registration with Webauthn. Returns a JSON representation of CredentialCreationOptions for use\nwith the Webauthn API's `navigator.credentials.create()`.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the webauthn-json library)."
+                  },
+                  "response": [
+                    {
+                      "id": "d947c202-3794-4e19-88b6-e056e9991dee",
+                      "name": "Challenge",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"publicKey\": {\n    \"rp\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"user\": {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"displayName\": \"<string>\"\n    },\n    \"challenge\": \"<string>\",\n    \"pubKeyCredParams\": [\n      {\n        \"type\": \"public-key\",\n        \"alg\": \"<number>\"\n      },\n      {\n        \"type\": \"public-key\",\n        \"alg\": \"<number>\"\n      }\n    ],\n    \"timeout\": \"<long>\",\n    \"authenticatorSelection\": {\n      \"authenticatorAttachment\": \"platform\",\n      \"requireResidentKey\": \"<boolean>\",\n      \"residentKey\": \"discouraged\",\n      \"userVerification\": \"discouraged\"\n    },\n    \"attestation\": \"direct\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-d947c202-3794-4e19-88b6-e056e9991dee"
+                    },
+                    {
+                      "id": "28013247-342c-47fb-92a8-d32215ae0400",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-28013247-342c-47fb-92a8-d32215ae0400"
+                    },
+                    {
+                      "id": "18060801-ddb2-49f0-b227-9dbc82c2c286",
+                      "name": "Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-18060801-ddb2-49f0-b227-9dbc82c2c286"
+                    },
+                    {
+                      "id": "b75f4961-8bcf-4658-81e1-a47cc16cefaa",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/initialize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "initialize"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-b75f4961-8bcf-4658-81e1-a47cc16cefaa"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-0e4994ad-4608-4d4e-910c-33f7f23578fc"
+                }
+              ],
+              "id": "c7ace182-63dd-45bf-8bd5-ba7b5cd324e0",
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-c7ace182-63dd-45bf-8bd5-ba7b5cd324e0"
+            },
+            {
+              "name": "finalize",
+              "item": [
+                {
+                  "name": "Finalize WebAuthn registration",
+                  "id": "45babf82-821e-4415-8f09-01d71902fe74",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "hanko",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"attestationObject\": \"<string>\",\n    \"transports\": [\n      \"usb\",\n      \"ble\"\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/registration/finalize",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "registration",
+                        "finalize"
+                      ]
+                    },
+                    "description": "Finalize a registration with Webauthn using the WebAuthn API response to a `navigator.credentials.create()` call.\n\n*Note*: The Webauthn API uses binary data represented by ArrayBuffers for certain input/output values.\nThe Hanko API returns these values as base64url-encoded, so they must be converted to ArrayBuffers\nwhen passed to the Webauthn API. Similarly, Webauthn API output must be converted to base64url-encoded values\nwhen passed to the Hanko API (e.g. using the webauthn-json library)."
+                  },
+                  "response": [
+                    {
+                      "id": "3014a4cc-0840-4778-add0-8349ddc38524",
+                      "name": "Successful registration",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"attestationObject\": \"<string>\",\n    \"transports\": [\n      \"usb\",\n      \"ble\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"credential_id\": \"<string>\",\n  \"user_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-3014a4cc-0840-4778-add0-8349ddc38524"
+                    },
+                    {
+                      "id": "3a1c026a-1daa-45fb-a645-dbddef080190",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"attestationObject\": \"<string>\",\n    \"transports\": [\n      \"usb\",\n      \"ble\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-3a1c026a-1daa-45fb-a645-dbddef080190"
+                    },
+                    {
+                      "id": "301c69f8-79df-4ce7-b484-07209d5d5a2d",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"rawId\": \"<string>\",\n  \"type\": \"public-key\",\n  \"response\": {\n    \"clientDataJson\": \"<string>\",\n    \"attestationObject\": \"<string>\",\n    \"transports\": [\n      \"usb\",\n      \"ble\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/registration/finalize",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "registration",
+                            "finalize"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-301c69f8-79df-4ce7-b484-07209d5d5a2d"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-45babf82-821e-4415-8f09-01d71902fe74"
+                }
+              ],
+              "id": "8ac6a665-1c20-4200-8edd-6d83bf8d886c",
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-8ac6a665-1c20-4200-8edd-6d83bf8d886c"
+            }
+          ],
+          "id": "d72287e1-0731-444f-a468-3cce03f3bdbd",
+          "createdAt": "2026-10-22T01:19:53.000Z",
+          "updatedAt": "2026-10-22T01:19:53.000Z",
+          "uid": "35240-d72287e1-0731-444f-a468-3cce03f3bdbd"
+        },
+        {
+          "name": "credentials",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Updates a WebAuthn credential",
+                  "id": "11eae323-1d2f-4b0d-98c8-64b2f4d68b13",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "hanko",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "credentials",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fccc57dc-a155-4372-bdb5-385cfc318dc2",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the WebAuthn credential"
+                        }
+                      ]
+                    },
+                    "description": "Updates the specified WebAuthn credential. Only credentials assigned to the current user can be updated."
+                  },
+                  "response": [
+                    {
+                      "id": "15f62653-d1fc-42e2-824e-a7c6a3c818b9",
+                      "name": "Credential updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-15f62653-d1fc-42e2-824e-a7c6a3c818b9"
+                    },
+                    {
+                      "id": "d7f01061-d987-444c-bb52-d2308c3a26ee",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-d7f01061-d987-444c-bb52-d2308c3a26ee"
+                    },
+                    {
+                      "id": "c5a5ebb8-6f51-4415-922b-9ec7f4a14567",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-c5a5ebb8-6f51-4415-922b-9ec7f4a14567"
+                    },
+                    {
+                      "id": "d29134e7-e7b4-4223-92db-f4ee51d4ec22",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-d29134e7-e7b4-4223-92db-f4ee51d4ec22"
+                    },
+                    {
+                      "id": "3fcfbb26-4f38-40a3-a671-26a1476ce58b",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-3fcfbb26-4f38-40a3-a671-26a1476ce58b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-11eae323-1d2f-4b0d-98c8-64b2f4d68b13"
+                },
+                {
+                  "name": "Deletes a WebAuthn credential",
+                  "id": "11482191-0477-4198-832e-9eaf9b66a7b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "hanko",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "credentials",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f0dc213-81a5-4073-ae4d-bec7785eddd8",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) ID of the WebAuthn credential"
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified WebAuthn credential."
+                  },
+                  "response": [
+                    {
+                      "id": "bda39195-eaac-46b4-83bf-ec655eb47c51",
+                      "name": "Credential updated successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-bda39195-eaac-46b4-83bf-ec655eb47c51"
+                    },
+                    {
+                      "id": "600e88be-2004-4e1d-ba56-5674833bec6d",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-600e88be-2004-4e1d-ba56-5674833bec6d"
+                    },
+                    {
+                      "id": "7630ce25-041e-4d41-a837-cc12367f1c17",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-7630ce25-041e-4d41-a837-cc12367f1c17"
+                    },
+                    {
+                      "id": "059ce039-cbc6-4673-9c4c-6a90714c10d5",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-059ce039-cbc6-4673-9c4c-6a90714c10d5"
+                    },
+                    {
+                      "id": "098956cc-a6d8-492e-a3dd-f91ca73556fc",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "hanko",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/webauthn/credentials/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "webauthn",
+                            "credentials",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:53.000Z",
+                      "updatedAt": "2026-10-22T01:19:53.000Z",
+                      "uid": "35240-098956cc-a6d8-492e-a3dd-f91ca73556fc"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-11482191-0477-4198-832e-9eaf9b66a7b0"
+                }
+              ],
+              "id": "e614b9f7-0386-4847-bd9b-40a6e9ff6be3",
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-e614b9f7-0386-4847-bd9b-40a6e9ff6be3"
+            },
+            {
+              "name": "Get a list of WebAuthn credentials",
+              "id": "6601bb31-28e6-45d7-b621-3ba145c9073d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "hanko",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webauthn/credentials",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webauthn",
+                    "credentials"
+                  ]
+                },
+                "description": "Returns a list of WebAuthn credentials assigned to the current user."
+              },
+              "response": [
+                {
+                  "id": "bb4cf4e8-ab1d-4abe-9212-2046cfc95da0",
+                  "name": "A list of WebAuthn credentials assigned to the current user",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/credentials",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "credentials"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"aaguid\": \"<uuid>\",\n    \"attestation_type\": \"none\",\n    \"backup_eligible\": \"<boolean>\",\n    \"backup_state\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"id\": \"<uuid>\",\n    \"last_used_at\": \"<dateTime>\",\n    \"mfa_only\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"public-key\": \"<string>\",\n    \"transports\": [\n      \"internal\",\n      \"internal\"\n    ]\n  },\n  {\n    \"aaguid\": \"<uuid>\",\n    \"attestation_type\": \"tpm\",\n    \"backup_eligible\": \"<boolean>\",\n    \"backup_state\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"id\": \"<uuid>\",\n    \"last_used_at\": \"<dateTime>\",\n    \"mfa_only\": \"<boolean>\",\n    \"name\": \"<string>\",\n    \"public-key\": \"<string>\",\n    \"transports\": [\n      \"internal\",\n      \"ble\"\n    ]\n  }\n]",
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-bb4cf4e8-ab1d-4abe-9212-2046cfc95da0"
+                },
+                {
+                  "id": "ed1aba84-748d-48e2-9052-532d44adadd9",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/credentials",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "credentials"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-ed1aba84-748d-48e2-9052-532d44adadd9"
+                },
+                {
+                  "id": "572096be-1aa5-4689-9899-a7cfa6df7e66",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "hanko",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webauthn/credentials",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webauthn",
+                        "credentials"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:53.000Z",
+                  "updatedAt": "2026-10-22T01:19:53.000Z",
+                  "uid": "35240-572096be-1aa5-4689-9899-a7cfa6df7e66"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:53.000Z",
+              "updatedAt": "2026-10-22T01:19:53.000Z",
+              "uid": "35240-6601bb31-28e6-45d7-b621-3ba145c9073d"
+            }
+          ],
+          "id": "f5d5a612-41cc-49eb-9326-c5a0b283b431",
+          "createdAt": "2026-10-22T01:19:53.000Z",
+          "updatedAt": "2026-10-22T01:19:53.000Z",
+          "uid": "35240-f5d5a612-41cc-49eb-9326-c5a0b283b431"
+        }
+      ],
+      "id": "eb5617d6-9693-4075-8735-29e348bbbdaf",
+      "createdAt": "2026-10-22T01:19:53.000Z",
+      "updatedAt": "2026-10-22T01:19:53.000Z",
+      "uid": "35240-eb5617d6-9693-4075-8735-29e348bbbdaf"
     }
   ],
-  "info": {
-    "_postman_id": "45280657-5fbd-438b-9f9f-e857dd2031fb",
-    "name": "Hanko Admin Audit Logs webauthn API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://passkeys.hanko.io"
     }
-  }
+  ]
 }

@@ -1,791 +1,708 @@
 {
+  "info": {
+    "_postman_id": "3a479eec-033f-4740-aefa-f655395fa43e",
+    "name": "Hanko Admin User Metadata Management API",
+    "description": "## Introduction\n\nThis is the OpenAPI specification for the Hanko Admin API.\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:19:37.000Z",
+    "updatedAt": "2026-10-22T01:19:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3a479eec-033f-4740-aefa-f655395fa43e"
+  },
   "item": [
     {
-      "id": "8579d757-9472-43b6-b816-0f310dc73c5b",
-      "name": "User Metadata Management",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "users",
       "item": [
         {
-          "id": "99d3150f-b5db-4f7f-9323-e0f78f582103",
-          "name": "Get metadata of a user",
-          "request": {
-            "name": "Get metadata of a user",
-            "description": {},
-            "url": {
-              "path": [
-                "users",
-                ":id",
-                "metadata"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "id",
-                  "description": "(Required) UUID of the requested object"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
+          "name": "{id}",
+          "item": [
             {
-              "id": "8762cbe4-02de-4c6b-a877-d51ff7915ee3",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "metadata",
+              "item": [
+                {
+                  "name": "Get metadata of a user",
+                  "id": "9de5eb3b-e3b6-47bf-ab9a-8c33bf4d44e5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5f802feb-fe20-4699-9f26-f445b2df123a",
-              "name": "No content (user has no metadata)",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "80b4b728-55c3-4d44-a212-e1b0d175cc10",
+                          "key": "id",
+                          "value": "<uuid>",
+                          "description": "(Required) UUID of the requested object"
+                        }
+                      ]
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "cb7b14cf-aa8a-46f7-b52d-4848461bce68",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d35bf906-1faf-440b-a82e-442bf630985d",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
+                      "id": "0998cd8e-2270-4bed-b10d-adc90498e91c",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"public_metadata\": {\n    \"fugiatb\": {},\n    \"adipisicingf8\": {}\n  },\n  \"private_metadata\": {\n    \"Duise1\": {},\n    \"cillum_a\": {}\n  },\n  \"unsafe_metadata\": {\n    \"do_d\": {},\n    \"anim_8e_\": {},\n    \"quisa\": {}\n  }\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-0998cd8e-2270-4bed-b10d-adc90498e91c"
                     },
                     {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
+                      "id": "76d5322f-4508-4624-8c9c-88884efa035d",
+                      "name": "No content (user has no metadata)",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-76d5322f-4508-4624-8c9c-88884efa035d"
+                    },
+                    {
+                      "id": "0ff33821-695c-47e8-be76-d2d1c42df989",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-0ff33821-695c-47e8-be76-d2d1c42df989"
+                    },
+                    {
+                      "id": "89cc7214-fa5c-4ce2-a0a0-49200bedf9ae",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-89cc7214-fa5c-4ce2-a0a0-49200bedf9ae"
+                    },
+                    {
+                      "id": "f558cd51-1a12-40a9-bb9a-19958a5c705d",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-f558cd51-1a12-40a9-bb9a-19958a5c705d"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-22T01:19:38.000Z",
+                  "updatedAt": "2026-10-22T01:19:38.000Z",
+                  "uid": "35240-9de5eb3b-e3b6-47bf-ab9a-8c33bf4d44e5"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                {
+                  "name": "Patch metadata of a user",
+                  "id": "542df24b-ba8f-4cdb-b5df-91b1932fcbc4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "954afad3-fa74-4ba2-8923-93713740473e",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
                     },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"public_metadata\": {},\n  \"private_metadata\": {},\n  \"unsafe_metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/users/:id/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        ":id",
+                        "metadata"
+                      ],
+                      "variable": [
+                        {
+                          "id": "72b0cb3f-e386-4b1a-abfb-ce9c3c7b1c95",
+                          "key": "id",
+                          "value": "<uuid>",
+                          "description": "(Required) UUID of the requested object"
+                        }
+                      ]
+                    },
+                    "description": "Updates a users metadata by deep merging the metadata patch from\nthe request with existing metadata.\n\nSet the entire request to `null` to clear all metadata:\nSet any of `public_metadata`, `private_metadata`, `unsafe_metadata` to null to\nclear metadata for that category.\n\nAn empty object (`{}`) for the top level request object or an empty object for\n`public_metadata`, `private_metadata` or the `unsafe_metadata` property represent\na noop patch.\n\nUnknown top level keys besides `public_metadata`, `private_metadata` or `unsafe_metadata`\nare ignored.\n\nAll other top level request values (e.g. an empty string, a non-empty string, an array) result in a bad request."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "response": [
+                    {
+                      "id": "df7ec692-a515-4cb2-a536-f5a870e12d4c",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_metadata\": {},\n  \"private_metadata\": {},\n  \"unsafe_metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"public_metadata\": {\n    \"fugiatb\": {},\n    \"adipisicingf8\": {}\n  },\n  \"private_metadata\": {\n    \"Duise1\": {},\n    \"cillum_a\": {}\n  },\n  \"unsafe_metadata\": {\n    \"do_d\": {},\n    \"anim_8e_\": {},\n    \"quisa\": {}\n  }\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-df7ec692-a515-4cb2-a536-f5a870e12d4c"
+                    },
+                    {
+                      "id": "7aa7c808-a34a-43ad-88bd-df1e16589fff",
+                      "name": "No content (user has no metadata)",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_metadata\": {},\n  \"private_metadata\": {},\n  \"unsafe_metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-7aa7c808-a34a-43ad-88bd-df1e16589fff"
+                    },
+                    {
+                      "id": "290366d5-78a6-4a70-82e3-50f66a60ce0b",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_metadata\": {},\n  \"private_metadata\": {},\n  \"unsafe_metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-290366d5-78a6-4a70-82e3-50f66a60ce0b"
+                    },
+                    {
+                      "id": "ce21acc9-87b2-4a5a-8941-8f2448139daf",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_metadata\": {},\n  \"private_metadata\": {},\n  \"unsafe_metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-ce21acc9-87b2-4a5a-8941-8f2448139daf"
+                    },
+                    {
+                      "id": "663874a0-f67b-48df-8882-43066ba7d94b",
+                      "name": "Internal server error",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"public_metadata\": {},\n  \"private_metadata\": {},\n  \"unsafe_metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/users/:id/metadata",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            ":id",
+                            "metadata"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:19:38.000Z",
+                      "updatedAt": "2026-10-22T01:19:38.000Z",
+                      "uid": "35240-663874a0-f67b-48df-8882-43066ba7d94b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:19:38.000Z",
+                  "updatedAt": "2026-10-22T01:19:38.000Z",
+                  "uid": "35240-542df24b-ba8f-4cdb-b5df-91b1932fcbc4"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9577b3dd-d2de-40cc-82d1-b43078025150",
-          "name": "Patch metadata of a user",
-          "request": {
-            "name": "Patch metadata of a user",
-            "description": {
-              "content": "Updates a users metadata by deep merging the metadata patch from\nthe request with existing metadata.\n\nSet the entire request to `null` to clear all metadata:\nSet any of `public_metadata`, `private_metadata`, `unsafe_metadata` to null to\nclear metadata for that category. \n\nAn empty object (`{}`) for the top level request object or an empty object for\n`public_metadata`, `private_metadata` or the `unsafe_metadata` property represent\na noop patch. \n\nUnknown top level keys besides `public_metadata`, `private_metadata` or `unsafe_metadata`\nare ignored.\n\nAll other top level request values (e.g. an empty string, a non-empty string, an array) result in a bad request.\n",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "users",
-                ":id",
-                "metadata"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "id",
-                  "description": "(Required) UUID of the requested object"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"public_metadata\": {\n    \"key_0\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "15fd00f9-d8b0-4826-bf97-15182fdf79f8",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "023028c4-f468-4925-a22f-64b7e4825536",
-              "name": "No content (user has no metadata)",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "6136a9a5-d4fd-43de-9496-c67216ea75dd",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "83f39844-6081-4aeb-a167-83cbd886b203",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "39905494-8941-4bad-8848-d254fd8d95da",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "users",
-                    ":id",
-                    "metadata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"public_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  },\n  \"private_metadata\": {\n    \"key_0\": {}\n  },\n  \"unsafe_metadata\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "30f13cce-66e1-4503-8bc9-709cb2ae0b99",
+              "createdAt": "2026-10-22T01:19:38.000Z",
+              "updatedAt": "2026-10-22T01:19:38.000Z",
+              "uid": "35240-30f13cce-66e1-4503-8bc9-709cb2ae0b99"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1541d589-cc1d-4687-9d6b-c819d649da4e",
+          "createdAt": "2026-10-22T01:19:38.000Z",
+          "updatedAt": "2026-10-22T01:19:38.000Z",
+          "uid": "35240-1541d589-cc1d-4687-9d6b-c819d649da4e"
         }
       ],
-      "event": []
+      "id": "b81931dc-12de-48b2-a9f4-23022b0543d2",
+      "createdAt": "2026-10-22T01:19:38.000Z",
+      "updatedAt": "2026-10-22T01:19:38.000Z",
+      "uid": "35240-b81931dc-12de-48b2-a9f4-23022b0543d2"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io/admin"
     }
-  ],
-  "info": {
-    "_postman_id": "e8b257ce-0a5e-4dc4-9797-21c4bf6e95e5",
-    "name": "Hanko Admin Audit Logs User Metadata Management API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

@@ -1,189 +1,945 @@
 {
+  "info": {
+    "_postman_id": "0471fa82-2fd1-4b19-bd2e-eefa2f0504ce",
+    "name": "Hanko Admin Webhooks API",
+    "description": "## Introduction\n\nThis is the OpenAPI specification for the Hanko Admin API.\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\nContact Support:\n Email: developers@hanko.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:19:58.000Z",
+    "updatedAt": "2026-10-22T01:19:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0471fa82-2fd1-4b19-bd2e-eefa2f0504ce"
+  },
   "item": [
     {
-      "id": "c254ed4f-3a3c-499b-9551-01306e86a35a",
-      "name": "Webhooks",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "webhooks",
       "item": [
         {
-          "id": "8a06d8aa-0984-466f-9564-cf96c1db97ff",
-          "name": "Get a list of webhooks",
-          "request": {
-            "name": "Get a list of webhooks",
-            "description": {
-              "content": "Returns a list of all configured webhooks. ",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a webhook by ID",
+              "id": "df670b0e-4ac6-4576-bd33-ef8a7b82ab64",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5a4beecb-a074-42cb-ad2b-6016ce6f04ed",
+                      "key": "id",
+                      "value": "<uuid>",
+                      "description": "(Required) UUID of the requested object"
+                    }
+                  ]
+                }
+              },
+              "response": [
                 {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "id": "5ce75f2b-b347-4b39-b686-fca634cb4e7c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"failures\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\",\n  \"events\": [\n    {\n      \"id\": \"<uuid>\",\n      \"event\": \"user.update.username.update\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"event\": \"user\"\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-5ce75f2b-b347-4b39-b686-fca634cb4e7c"
+                },
+                {
+                  "id": "2983ad0b-789d-4eed-aab1-c7db25243250",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-2983ad0b-789d-4eed-aab1-c7db25243250"
+                },
+                {
+                  "id": "f19b515e-4f02-440d-9238-70b0ed960658",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-f19b515e-4f02-440d-9238-70b0ed960658"
+                },
+                {
+                  "id": "0b8ec5f3-ddad-4203-8dfb-951b0fb1de36",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-0b8ec5f3-ddad-4203-8dfb-951b0fb1de36"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-df670b0e-4ac6-4576-bd33-ef8a7b82ab64"
+            },
+            {
+              "name": "Delete a webhook by ID",
+              "id": "c5328060-b991-40d1-80f1-68a970900627",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ce879220-d63c-413b-ab62-2e18201e8268",
+                      "key": "id",
+                      "value": "<uuid>",
+                      "description": "(Required) UUID of the requested object"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4fe78f1d-7fc1-4a76-98b6-5da9c889b684",
+                  "name": "No Content",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-4fe78f1d-7fc1-4a76-98b6-5da9c889b684"
+                },
+                {
+                  "id": "6da3618b-b69e-4167-991e-25ca6f564913",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-6da3618b-b69e-4167-991e-25ca6f564913"
+                },
+                {
+                  "id": "5d4e2473-a32b-4992-a123-34ffe5094cd0",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-5d4e2473-a32b-4992-a123-34ffe5094cd0"
+                },
+                {
+                  "id": "8cb0c7c8-5fa9-488a-b4b5-d43707ac600d",
+                  "name": "Internal Server Error",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-8cb0c7c8-5fa9-488a-b4b5-d43707ac600d"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-c5328060-b991-40d1-80f1-68a970900627"
+            },
+            {
+              "name": "Update a webhook by ID",
+              "id": "38be254b-7405-4f08-a6d9-992526df93e6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"user.update.email\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "5763231d-7cc2-40ab-a16b-cdfcd8fae37d",
+                      "key": "id",
+                      "value": "<uuid>",
+                      "description": "(Required) UUID of the requested object"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d4cac8eb-6497-4e06-8ace-21931d9ae9a9",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"user.update.email\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<uuid>\",\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"failures\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\",\n  \"events\": [\n    {\n      \"id\": \"<uuid>\",\n      \"event\": \"user.update.username.update\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"event\": \"user\"\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-d4cac8eb-6497-4e06-8ace-21931d9ae9a9"
+                },
+                {
+                  "id": "414b66bf-923b-43e0-9dc7-059341f7e128",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"user.update.email\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-414b66bf-923b-43e0-9dc7-059341f7e128"
+                },
+                {
+                  "id": "54d50c5c-d457-417d-9f51-4ac65839e1da",
+                  "name": "Not Found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"user.update.email\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-54d50c5c-d457-417d-9f51-4ac65839e1da"
+                },
+                {
+                  "id": "89e5e67b-adaa-4f75-b97a-4dd14b4cdace",
+                  "name": "Internal server error",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"user.update.email\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/webhooks/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "webhooks",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:19:58.000Z",
+                  "updatedAt": "2026-10-22T01:19:58.000Z",
+                  "uid": "35240-89e5e67b-adaa-4f75-b97a-4dd14b4cdace"
+                }
+              ],
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-38be254b-7405-4f08-a6d9-992526df93e6"
+            }
+          ],
+          "id": "cd9ae4b3-0bf5-45c9-bafb-c8df6633a673",
+          "createdAt": "2026-10-22T01:19:58.000Z",
+          "updatedAt": "2026-10-22T01:19:58.000Z",
+          "uid": "35240-cd9ae4b3-0bf5-45c9-bafb-c8df6633a673"
+        },
+        {
+          "name": "Get a list of webhooks",
+          "id": "c1d5c85d-9d52-4b09-a1fb-27d781e19902",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
               ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
+            },
+            "description": "Returns a list of all configured webhooks."
+          },
+          "response": [
+            {
+              "id": "99568531-7660-464b-bf8a-57bf3d3fc95d",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"database\": [\n    {\n      \"id\": \"<uuid>\",\n      \"callback\": \"<uri>\",\n      \"enabled\": \"<boolean>\",\n      \"failures\": \"<integer>\",\n      \"expires_at\": \"<dateTime>\",\n      \"events\": [\n        {\n          \"id\": \"<uuid>\",\n          \"event\": \"user.update.username.update\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"event\": \"email.send\"\n        }\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"callback\": \"<uri>\",\n      \"enabled\": \"<boolean>\",\n      \"failures\": \"<integer>\",\n      \"expires_at\": \"<dateTime>\",\n      \"events\": [\n        {\n          \"id\": \"<uuid>\",\n          \"event\": \"user.update.email.delete\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"event\": \"user.login\"\n        }\n      ],\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ],\n  \"config\": [\n    {\n      \"callback\": \"<uri>\",\n      \"events\": [\n        \"user.update\"\n      ]\n    },\n    {\n      \"callback\": \"<uri>\",\n      \"events\": [\n        \"user.update.email.create\"\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-99568531-7660-464b-bf8a-57bf3d3fc95d"
+            },
+            {
+              "id": "f966708f-c7c1-4ba7-bd6c-8254ed217d11",
+              "name": "Internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-f966708f-c7c1-4ba7-bd6c-8254ed217d11"
+            }
+          ],
+          "createdAt": "2026-10-22T01:19:58.000Z",
+          "updatedAt": "2026-10-22T01:19:58.000Z",
+          "uid": "35240-c1d5c85d-9d52-4b09-a1fb-27d781e19902"
+        },
+        {
+          "name": "Create a new database webhook",
+          "id": "4d20e43f-0c61-40af-8c72-0fe5c8d277a7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "13fae157-5720-40bb-bf5e-f038458da5c4",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"database\": [\n    {\n      \"id\": \"ab9f953d-581c-4a4f-b326-4129a80f7c9a\",\n      \"callback\": \"https://vFaHUuOwGtCOKntesIeKNvKuL.skotbCt15FViYJ6JRyANUwVoMlHEYhYWs\",\n      \"enabled\": true,\n      \"failures\": 8490,\n      \"expires_at\": \"2009-04-20T05:40:44.902Z\",\n      \"events\": [\n        {\n          \"id\": \"9f1ea7db-9f06-bf26-59df-613e6d67fa6b\",\n          \"event\": \"user.create\"\n        },\n        {\n          \"id\": \"3f24b7a8-5ee5-9ab1-01c6-36195c649feb\",\n          \"event\": \"email.send\"\n        }\n      ],\n      \"created_at\": \"2013-06-13T13:21:12.947Z\",\n      \"updated_at\": \"2022-09-14T12:15:09.788784Z\"\n    },\n    {\n      \"id\": \"e52fec07-48c7-b9f4-8906-d17289f46f42\",\n      \"callback\": \"https://cQOLBroKqmzAdiIsgrmDmgtlZ.fwzrMHQr0BK3+eEX.iorF4hfeCaOj54pVUOD+T8FSoq7FFrTex1hdxSCuvWdLmPcRE7bTgBgM\",\n      \"enabled\": false,\n      \"failures\": 217,\n      \"expires_at\": \"1957-12-19T08:25:03.983Z\",\n      \"events\": [\n        {\n          \"id\": \"79af784b-2202-bf29-974f-4c58c4e03c36\",\n          \"event\": \"email.send\"\n        },\n        {\n          \"id\": \"98933e1a-24ad-1186-a203-be1b3dc0062b\",\n          \"event\": \"user.update.username.delete\"\n        }\n      ],\n      \"created_at\": \"2002-08-07T11:51:53.292Z\",\n      \"updated_at\": \"2022-09-14T12:15:09.788784Z\"\n    }\n  ],\n  \"config\": [\n    {\n      \"callback\": \"https://WYwPHfR.hcLTkHQe5IwrHeOkZWpmYoYKLQI3KAWJHOlWK7bUt1dtp7lqotzwv,t--yq\",\n      \"events\": [\n        \"user.update.username.delete\"\n      ]\n    },\n    {\n      \"callback\": \"https://PdCqfmHrahiRGTuqWwfJSUyjfjhz.ikoUPh2pRspPLuPvF0v,udUZ3ykf.PJckSJVn-\",\n      \"events\": [\n        \"user.update.email.delete\"\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b08829d5-e9f2-4e34-901b-06f08c93d239",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2609752e-f719-4e61-8327-ea40000aac0a",
-          "name": "Create a new database webhook",
-          "request": {
-            "name": "Create a new database webhook",
-            "description": {
-              "content": "",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "webhooks"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
               ]
             },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -194,1133 +950,215 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
+              "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"user.update.username.update\"\n  ]\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "webhooks"
+              ]
             }
           },
           "response": [
             {
-              "id": "ca597fc2-1798-4473-8bbf-ae52521bd77d",
+              "id": "f3a7e1b0-edcb-4ad7-ac5f-833a23e76e43",
               "name": "Created",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
+                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"user.update.username.update\"\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "webhooks"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"861ee087-9a9e-7bce-7b96-01cfad56770b\",\n  \"callback\": \"https://VwzLUSLDTfh.sleGbFGA-Ymsj47j\",\n  \"enabled\": false,\n  \"failures\": 6592,\n  \"expires_at\": \"1965-06-03T01:35:43.621Z\",\n  \"events\": [\n    {\n      \"id\": \"a1c5654e-6c38-916e-2e5e-04b91b6d42bd\",\n      \"event\": \"user.update.username.update\"\n    },\n    {\n      \"id\": \"fc9efd04-1df3-3b20-73d3-a0e5448afa91\",\n      \"event\": \"user.update\"\n    }\n  ],\n  \"created_at\": \"2003-12-13T21:36:27.782Z\",\n  \"updated_at\": \"2022-09-14T12:15:09.788784Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"failures\": \"<integer>\",\n  \"expires_at\": \"<dateTime>\",\n  \"events\": [\n    {\n      \"id\": \"<uuid>\",\n      \"event\": \"user.update.username.update\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"event\": \"user\"\n    }\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-f3a7e1b0-edcb-4ad7-ac5f-833a23e76e43"
             },
             {
-              "id": "2745a2ec-f827-400f-a43b-9b49d41d31b0",
+              "id": "cd060536-294f-4cdf-a760-c16d77ca4602",
               "name": "Bad Request",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"user.update.username.update\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Bad Request",
               "code": 400,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-cd060536-294f-4cdf-a760-c16d77ca4602"
             },
             {
-              "id": "9cb0aa2d-6916-4c11-a33f-8d91aefbcf53",
+              "id": "435b7b21-3b7e-404a-9f03-9afd58925ff9",
               "name": "Internal server error",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"user.update.username.update\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/webhooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "webhooks"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:19:58.000Z",
+              "updatedAt": "2026-10-22T01:19:58.000Z",
+              "uid": "35240-435b7b21-3b7e-404a-9f03-9afd58925ff9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "935d8ef2-fa6f-497b-bbcf-fcb9a58d2d25",
-          "name": "Get a webhook by ID",
-          "request": {
-            "name": "Get a webhook by ID",
-            "description": {},
-            "url": {
-              "path": [
-                "webhooks",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "id",
-                  "description": "(Required) UUID of the requested object"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "501a2225-eb92-4dde-9431-b7deee7658b8",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"861ee087-9a9e-7bce-7b96-01cfad56770b\",\n  \"callback\": \"https://VwzLUSLDTfh.sleGbFGA-Ymsj47j\",\n  \"enabled\": false,\n  \"failures\": 6592,\n  \"expires_at\": \"1965-06-03T01:35:43.621Z\",\n  \"events\": [\n    {\n      \"id\": \"a1c5654e-6c38-916e-2e5e-04b91b6d42bd\",\n      \"event\": \"user.update.username.update\"\n    },\n    {\n      \"id\": \"fc9efd04-1df3-3b20-73d3-a0e5448afa91\",\n      \"event\": \"user.update\"\n    }\n  ],\n  \"created_at\": \"2003-12-13T21:36:27.782Z\",\n  \"updated_at\": \"2022-09-14T12:15:09.788784Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "61c58b0a-66ea-4999-bb32-1d3efb01376c",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "322c74c0-0a8d-4b3a-b64c-a0e779972dac",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8ee56ada-1df1-4950-97a0-a561f401e5fe",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2356730c-bccc-462c-a387-0337757540f8",
-          "name": "Delete a webhook by ID",
-          "request": {
-            "name": "Delete a webhook by ID",
-            "description": {},
-            "url": {
-              "path": [
-                "webhooks",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "id",
-                  "description": "(Required) UUID of the requested object"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "40052564-8a7b-4f48-a547-1cfec149360a",
-              "name": "No Content",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "e293d1aa-26bf-4af1-bf88-a95d640402e1",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0532c368-16c9-4f38-97b0-ee50ba41dd61",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2afee91c-9226-48eb-be85-dd42486741f9",
-              "name": "Internal Server Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8dff72e7-d7aa-4f84-9455-93c978cee2e8",
-          "name": "Update a webhook by ID",
-          "request": {
-            "name": "Update a webhook by ID",
-            "description": {},
-            "url": {
-              "path": [
-                "webhooks",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<uuid>",
-                  "key": "id",
-                  "description": "(Required) UUID of the requested object"
-                },
-                {
-                  "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                  "type": "any",
-                  "value": "{{tenant_id}}",
-                  "key": "tenant_id"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "fd4a4ba4-f6d9-4371-ab75-453b5df758d9",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"861ee087-9a9e-7bce-7b96-01cfad56770b\",\n  \"callback\": \"https://VwzLUSLDTfh.sleGbFGA-Ymsj47j\",\n  \"enabled\": false,\n  \"failures\": 6592,\n  \"expires_at\": \"1965-06-03T01:35:43.621Z\",\n  \"events\": [\n    {\n      \"id\": \"a1c5654e-6c38-916e-2e5e-04b91b6d42bd\",\n      \"event\": \"user.update.username.update\"\n    },\n    {\n      \"id\": \"fc9efd04-1df3-3b20-73d3-a0e5448afa91\",\n      \"event\": \"user.update\"\n    }\n  ],\n  \"created_at\": \"2003-12-13T21:36:27.782Z\",\n  \"updated_at\": \"2022-09-14T12:15:09.788784Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2f4a5eda-6bd0-4ee0-b895-352d5cdd1c5d",
-              "name": "Bad Request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "27b39a7a-9ef2-4c42-b683-d2e21f5af8ac",
-              "name": "Not Found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 404,\n  \"message\": \"Not found\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bb6ad49a-da3b-4073-bd2f-a8af5b83073f",
-              "name": "Internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "webhooks",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<uuid>",
-                      "key": "id",
-                      "description": "(Required) UUID of the requested object"
-                    },
-                    {
-                      "description": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-                      "type": "any",
-                      "value": "{{tenant_id}}",
-                      "key": "tenant_id"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"callback\": \"<uri>\",\n  \"enabled\": \"<boolean>\",\n  \"events\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"code\": 500,\n  \"message\": \"Internal Server Error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:19:58.000Z",
+          "updatedAt": "2026-10-22T01:19:58.000Z",
+          "uid": "35240-4d20e43f-0c61-40af-8c72-0fe5c8d277a7"
         }
       ],
-      "event": []
+      "id": "f0ece812-a126-4dc6-bfee-cc2a1535986f",
+      "createdAt": "2026-10-22T01:19:58.000Z",
+      "updatedAt": "2026-10-22T01:19:58.000Z",
+      "uid": "35240-f0ece812-a126-4dc6-bfee-cc2a1535986f"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "description": {
-        "content": "The (UU)ID of a tenant. Replace the default value with your tenant ID.",
-        "type": "text/plain"
-      },
-      "type": "any",
-      "value": "",
-      "key": "tenant_id"
+      "key": "tenant_id",
+      "value": ""
     },
     {
-      "type": "string",
-      "value": "https://{{tenant_id}}.hanko.io/admin",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://{{tenant_id}}.hanko.io/admin"
     }
-  ],
-  "info": {
-    "_postman_id": "b11fea3e-3b43-474b-a7fa-c4239c9c8d7f",
-    "name": "Hanko Admin Audit Logs Webhooks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "## Introduction\n\nThis is the OpenAPI specification for the [Hanko Admin API](https://github.com/teamhanko/hanko/blob/main/backend/README.md#start-private-api).\n\n## Authentication\n\nThe Admin API must be protected by an access management system.\n\n---\n\n\nContact Support:\n Email: developers@hanko.io",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
