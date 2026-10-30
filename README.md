@@ -1,4 +1,4 @@
-# Hanko (hanko)
+# Hanko
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,59 +64,194 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Hanko is a passkey-first, open-source authentication platform and cloud service that provides REST APIs for passkeys (WebAuthn/FIDO2), passwords, OAuth social login, SAML SSO, multi-factor authentication, session management, and user management. It is available as a managed cloud service and as a self-hosted open-source deployment, and is positioned as a modern alternative to Auth0, Clerk, and WorkOS. Hanko is headquartered in Germany and emphasizes privacy-first, European-hosted infrastructure.
+Hanko is a passkey-first, open-source authentication platform that serves as a modern alternative to Auth0, Clerk, and WorkOS. It provides a REST API covering passkeys (WebAuthn/FIDO2), passwords, OAuth social login, SAML SSO, multi-factor authentication, and session management. Hanko is available as a managed cloud service and as a self-hosted open-source deployment, targeting developers who want to add passwordless authentication to their applications. The platform is headquartered in Germany and emphasizes privacy-first, European-hosted infrastructure with a free tier supporting up to 10,000 monthly active users.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hanko/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hanko/refs/heads/main/apis.yml)
+**Areas:** Authentication · Passkeys · WebAuthn · FIDO2 · Identity · SAML · Passwordless · Open Source · Identity Federation
 
-**Naftiko:** [https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=hanko-api-evangelist&utm_content=repo](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=hanko-api-evangelist&utm_content=repo)
+## Hanko on APIs.io
 
-## Tags
+Everything profiled for Hanko is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hanko/](https://apis.io/providers/hanko/)** — or go straight to one of the APIs or properties below.
 
-- Authentication
-- Passkeys
-- WebAuthn
-- FIDO2
-- Identity
-- OAuth
-- SAML
-- Passwordless
-- Open Source
+### APIs (21)
 
-## APIs
+- [Hanko Audit Logs API](https://apis.io/apis/hanko/hanko-audit-logs-api/) — The Audit Logs API from Hanko — 2 operation(s) for audit logs.
+- [Hanko Credentials API](https://apis.io/apis/hanko/hanko-credentials-api/) — The Credentials API from Hanko — 9 operation(s) for credentials.
+- [Hanko Email Management API](https://apis.io/apis/hanko/hanko-email-management-api/) — The Email Management API from Hanko — 3 operation(s) for email management.
+- [Hanko Login API](https://apis.io/apis/hanko/hanko-login-api/) — The Login API from Hanko — 2 operation(s) for login.
+- [Hanko Metrics API](https://apis.io/apis/hanko/hanko-metrics-api/) — The Metrics API from Hanko — 1 operation(s) for metrics.
+- [Hanko Mfa API](https://apis.io/apis/hanko/hanko-mfa-api/) — Represents all objects which are related to MFA in common
+- [Hanko Passcode API](https://apis.io/apis/hanko/hanko-passcode-api/) — The Passcode API from Hanko — 2 operation(s) for passcode.
+- [Hanko Password API](https://apis.io/apis/hanko/hanko-password-api/) — The Password API from Hanko — 2 operation(s) for password.
+- [Hanko SAML API](https://apis.io/apis/hanko/hanko-saml-api/) — The SAML API from Hanko — 3 operation(s) for saml.
+- [Hanko Session Management API](https://apis.io/apis/hanko/hanko-session-management-api/) — The Session Management API from Hanko — 1 operation(s) for session management.
+- [Hanko Sessions API](https://apis.io/apis/hanko/hanko-sessions-api/) — The Sessions API from Hanko — 1 operation(s) for sessions.
+- [Hanko Status API](https://apis.io/apis/hanko/hanko-status-api/) — The Status API from Hanko — 1 operation(s) for status.
+- [Hanko Third Party API](https://apis.io/apis/hanko/hanko-third-party-api/) — The Third Party API from Hanko — 2 operation(s) for third party.
+- [Hanko Token API](https://apis.io/apis/hanko/hanko-token-api/) — The Token API from Hanko — 1 operation(s) for token.
+- [Hanko Transaction API](https://apis.io/apis/hanko/hanko-transaction-api/) — The Transaction API from Hanko — 2 operation(s) for transaction.
+- [Hanko User Management API](https://apis.io/apis/hanko/hanko-user-management-api/) — The User Management API from Hanko — 5 operation(s) for user management.
+- [Hanko User Metadata Management API](https://apis.io/apis/hanko/hanko-user-metadata-management-api/) — The User Metadata Management API from Hanko — 1 operation(s) for user metadata management.
+- [Hanko Users API](https://apis.io/apis/hanko/hanko-users-api/) — The Users API from Hanko — 9 operation(s) for users.
+- [Hanko Webauthn API](https://apis.io/apis/hanko/hanko-webauthn-api/) — Represents all objects which are related to WebAuthn in common
+- [Hanko Webhooks API](https://apis.io/apis/hanko/hanko-webhooks-api/) — The Webhooks API from Hanko — 2 operation(s) for webhooks.
+- [Hanko .well-known API](https://apis.io/apis/hanko/hanko-well-known-api/) — The .well-known API from Hanko — 2 operation(s) for .well-known.
 
-| API | Description | Docs | OpenAPI |
-|-----|-------------|------|---------|
-| Hanko Public API | Frontend-facing authentication endpoints: WebAuthn, OAuth, SAML, sessions, user management | [Docs](https://docs.hanko.io) | [OpenAPI](https://docs.hanko.io/openapi-public.yaml) |
-| Hanko Admin API | Backend management: users, sessions, emails, webhooks, audit logs, credentials | [Docs](https://docs.hanko.io) | [OpenAPI](https://docs.hanko.io/openapi-admin.yaml) |
-| Hanko Passkey API | Standalone FIDO2 passkey server for adding passkeys to any existing auth system | [Docs](https://docs.hanko.io/passkey-api/introduction) | [OpenAPI](https://docs.hanko.io/openapi-passkeys.yaml) |
-| Hanko Flow API | Structured multi-step authentication flows powering Hanko Elements UI | [Docs](https://docs.hanko.io) | [OpenAPI](https://docs.hanko.io/openapi-flow.yaml) |
+### Published properties
 
-## Plans / Rate Limits / FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Resource | File |
-|----------|------|
-| Plans & Pricing | [plans/hanko-plans-pricing.yml](plans/hanko-plans-pricing.yml) |
-| Rate Limits | [rate-limits/hanko-rate-limits.yml](rate-limits/hanko-rate-limits.yml) |
-| FinOps | [finops/hanko-finops.yml](finops/hanko-finops.yml) |
+#### Agentic access (1)
 
-## Timestamps
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+- [Hanko Agentic Access](https://apis.io/agentic-access/hanko/hanko-agentic-access/)
 
-## Common Properties
+#### JSON Schema (3)
 
-| Type | URL |
-|------|-----|
-| Website | [https://www.hanko.io](https://www.hanko.io) |
-| Documentation | [https://docs.hanko.io](https://docs.hanko.io) |
-| GitHub Organization | [https://github.com/teamhanko](https://github.com/teamhanko) |
-| LinkedIn | [https://www.linkedin.com/company/teamhanko](https://www.linkedin.com/company/teamhanko) |
-| Blog | [https://www.hanko.io/blog](https://www.hanko.io/blog) |
-| Pricing | [https://www.hanko.io/pricing](https://www.hanko.io/pricing) |
-| Status Page | [https://status.hanko.io](https://status.hanko.io) |
-| X (Twitter) | [https://twitter.com/hanko](https://twitter.com/hanko) |
+The data models the API reads and writes.
 
-## Maintainers
+- [Hanko Session](https://apis.io/schemas/hanko/hanko-session/)
+- [Hanko User](https://apis.io/schemas/hanko/hanko-user/)
+- [Hanko WebAuthn Credential](https://apis.io/schemas/hanko/hanko-webauthn-credential/)
 
-- **Kin Lane** — kin@apievangelist.com
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Hanko Context](https://apis.io/jsonld/hanko/hanko-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Hanko Vocabulary](https://apis.io/vocabularies/hanko/hanko-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Hanko Passkey Registration Example](https://apis.io/examples/hanko/hanko-passkey-registration-example/)
+- [Hanko User Get Example](https://apis.io/examples/hanko/hanko-user-get-example/)
+- [Hanko Webauthn Login Initialize Example](https://apis.io/examples/hanko/hanko-webauthn-login-initialize-example/)
+
+#### Collections (22)
+
+Postman and Open Collection request collections.
+
+- [Hanko Admin Audit Logs API](https://apis.io/collections/hanko/open-hanko-audit-logs-api/)
+- [Hanko Admin Audit Logs Credentials API](https://apis.io/collections/hanko/open-hanko-credentials-api/)
+- [Hanko Admin Audit Logs Email Management API](https://apis.io/collections/hanko/open-hanko-email-management-api/)
+- [Hanko Admin Audit Logs flow API](https://apis.io/collections/hanko/open-hanko-flow-api/)
+- [Hanko Admin Audit Logs Login API](https://apis.io/collections/hanko/open-hanko-login-api/)
+- [Hanko Admin Audit Logs Metrics API](https://apis.io/collections/hanko/open-hanko-metrics-api/)
+- [Hanko Admin Audit Logs mfa API](https://apis.io/collections/hanko/open-hanko-mfa-api/)
+- [Hanko Admin Audit Logs Passcode API](https://apis.io/collections/hanko/open-hanko-passcode-api/)
+- [Hanko Admin Audit Logs Password API](https://apis.io/collections/hanko/open-hanko-password-api/)
+- [Hanko Admin Audit Logs SAML API](https://apis.io/collections/hanko/open-hanko-saml-api/)
+- [Hanko Admin Audit Logs Session Management API](https://apis.io/collections/hanko/open-hanko-session-management-api/)
+- [Hanko Admin Audit Logs Sessions API](https://apis.io/collections/hanko/open-hanko-sessions-api/)
+- [Hanko Admin Audit Logs Status API](https://apis.io/collections/hanko/open-hanko-status-api/)
+- [Hanko Admin Audit Logs Third Party API](https://apis.io/collections/hanko/open-hanko-third-party-api/)
+- [Hanko Admin Audit Logs Token API](https://apis.io/collections/hanko/open-hanko-token-api/)
+- [Hanko Admin Audit Logs Transaction API](https://apis.io/collections/hanko/open-hanko-transaction-api/)
+- [Hanko Admin Audit Logs User Management API](https://apis.io/collections/hanko/open-hanko-user-management-api/)
+- [Hanko Admin Audit Logs User Metadata Management API](https://apis.io/collections/hanko/open-hanko-user-metadata-management-api/)
+- [Hanko Admin Audit Logs Users API](https://apis.io/collections/hanko/open-hanko-users-api/)
+- [Hanko Admin Audit Logs webauthn API](https://apis.io/collections/hanko/open-hanko-webauthn-api/)
+- [Hanko Admin Audit Logs Webhooks API](https://apis.io/collections/hanko/open-hanko-webhooks-api/)
+- [Hanko Admin Audit Logs .well-known API](https://apis.io/collections/hanko/open-hanko-well-known-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Hanko — jsonschema rules](https://apis.io/rules/hanko/hanko-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Hanko Authentication](https://apis.io/security/hanko/hanko-authentication/)
+- [Hanko Domain Security](https://apis.io/security/hanko/hanko-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Hanko Plans Pricing](https://apis.io/plans/hanko/hanko-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Hanko Rate Limits](https://apis.io/rate-limits/hanko/hanko-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Hanko Finops](https://apis.io/finops/hanko/hanko-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.hanko.io)
+- [Documentation](https://docs.hanko.io)
+- [Pricing](https://www.hanko.io/pricing)
+- [Blog](https://www.hanko.io/blog)
+- [GitHub](https://github.com/teamhanko)
+- [Status](https://status.hanko.io)
+
+## API Evangelist rating
+
+**Kin Score 36.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 59.6 |
+| Contract governance | 23.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hanko/](https://apis.io/providers/hanko/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hanko: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hanko/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
